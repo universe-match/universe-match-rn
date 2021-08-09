@@ -15,7 +15,9 @@ const colors = {
   unCpl: '#C5C5C5',
   login_btn: '#3389FF',
   skyBlue: '#E1ECFE',
-  focusTabBar:'#75A4F4'
+  focusTabBar:'#75A4F4',
+  stroke:'#75A4F4',
+  yellow:'#FCE37F'
 };
 
 export default colors;
