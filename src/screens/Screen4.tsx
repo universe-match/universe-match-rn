@@ -10,6 +10,7 @@ import {
 const Screen4 = () => {
     return (
         <SafeAreaView>
+            
             <Text>Screen4</Text>
         </SafeAreaView>
     )

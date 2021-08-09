@@ -1,18 +1,211 @@
 import React from 'react'
 import {
     SafeAreaView,
-    StyleSheet,
-    ScrollView,
-    View,
     Text,
+    FlatList,
+    View,
+    StyleSheet,
     StatusBar,
+    Image,
+    ScrollView
   } from 'react-native';
+import Header from '../components/groupmatch/Header'
+import {height,width,colors} from '../constants/Index'
+import man from '../assets/images/test/man.png'
+import woman from '../assets/images/test/woman.png'
+
+const DATA = [
+    {
+      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+      title: '서울에서 만나요!',
+      nickname:'김민수'
+    },
+    {
+      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      title: '서울에서 만나요!',
+      nickname:'김은지'
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-1455713e29d72',
+      title: '서울에서 만나요!',
+      nickname:'김민수'
+    },
+    {
+        id: '58694a0f-3da1-471f-bd96-1455714e29d72',
+        title: '서울에서 만나요!',
+        nickname:'김은지'
+    },
+    {
+        id: '58694a0f-3da1-471f-bd96-145571e239d72',
+        title: '서울에서 만나요!',
+        nickname:'김민수'
+    },
+    {
+    id: '58694a0f-3da1-471f-bd96-1455715e292d72',
+    title: '서울에서 만나요!',
+    },
+    {
+    id: '58694a0f-3da1-471f-bd96-1455741e29d72',
+    title: '서울에서 만나요!',
+    },
+];
+const Item = ({ title }:any) => (
+    <View style={styles.item}>
+        <View style={{left:10}}>
+            <View style={styles.topArea}>
+                <Text >{title}</Text>
+                <Text style={{right:20}} >서울시</Text>
+            </View>
+            <View style={styles.topArea}>
+                <Text >평균연령 24</Text>
+                <Text style={{right:20}} >8월9~20일</Text> 
+            </View>
+            <ScrollView
+            style={{width:width*290}}
+            horizontal={true}
+            showsHorizontalScrollIndicator = {true}
+            onMomentumScrollEnd ={
+                () => {console.log('Scrolling is End')}
+            }
+            >
+            <View style={{flexDirection:'row',justifyContent:'flex-start',marginTop:15}}>
+                <View>
+                    <Image
+                        style={styles.manPhoto}
+                        source={man}
+                    />
+                    <View>
+                        <Text style={styles.profileName}>김민수</Text> 
+                        <View style={{flexDirection:'row',justifyContent:'flex-start'}}>
+                            <Text >#ENTJ</Text><Text>/</Text><Text >고려대</Text>
+                        </View>
+                    </View>
+                </View>
+                <View>
+                    <Image
+                        style={styles.womanPhoto}
+                        source={woman}
+                    />
+                    <View>
+                        <Text style={styles.profileName}>김지은</Text> 
+                        <View style={{flexDirection:'row',justifyContent:'flex-start'}}>
+                            <Text >#ENTJ</Text><Text>/</Text><Text >연세대</Text>
+                        </View>
+                    </View>
+                </View>
+                <View>
+                    <Image
+                        style={styles.manPhoto}
+                        source={man}
+                    />
+                    <View>
+                        <Text style={styles.profileName}>김민수</Text> 
+                        <View style={{flexDirection:'row',justifyContent:'flex-start'}}>
+                            <Text >#ENTJ</Text><Text>/</Text><Text >고려대</Text>
+                        </View>
+                    </View>
+                </View>
+                <View>
+                    <Image
+                        style={styles.womanPhoto}
+                        source={woman}
+                    />
+                    <View>
+                        <Text style={styles.profileName}>김지은</Text> 
+                        <View style={{flexDirection:'row',justifyContent:'flex-start'}}>
+                            <Text >#ENTJ</Text><Text>/</Text><Text >연세대</Text>
+                        </View>
+                    </View>
+                </View>
+                <View>
+                    <Image
+                        style={styles.manPhoto}
+                        source={man}
+                    />
+                    <View>
+                        <Text style={styles.profileName}>김민수</Text> 
+                        <View style={{flexDirection:'row',justifyContent:'flex-start'}}>
+                            <Text >#ENTJ</Text><Text>/</Text><Text >고려대</Text>
+                        </View>
+                    </View>
+                </View>
+                <View>
+                    <Image
+                        style={styles.womanPhoto}
+                        source={woman}
+                    />
+                    <View>
+                        <Text style={styles.profileName}>김지은</Text> 
+                        <View style={{flexDirection:'row',justifyContent:'flex-start'}}>
+                            <Text >#ENTJ</Text><Text>/</Text><Text >연세대</Text>
+                        </View>
+                    </View>
+                </View>    
+            </View>
+            </ScrollView>
+            
+        </View>
+    </View>
+);
+  
 const Screen1 = () => {
+    const renderItem = ({ item }:any) => (
+        <View style={{backgroundColor:colors.white}}>
+            <Item title={item.title} />
+        </View>
+    );
     return (
         <SafeAreaView>
-            <Text>Screen1</Text>
+            <Header /> 
+            <FlatList
+                data={DATA}
+                renderItem={renderItem}
+                keyExtractor={item => item.id}
+            />
         </SafeAreaView>
     )
 }
-
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      marginTop: StatusBar.currentHeight || 0,
+    },
+    item: {
+      backgroundColor: colors.white,
+      borderColor:colors.stroke,
+      marginVertical: 8,
+      borderWidth: 1,
+      marginLeft:30,
+      marginRight:30,
+      width:width*300
+    },
+    title: {
+      fontSize: 32,
+    },
+    topArea:{
+        flexDirection:'row',
+        flex:1,
+        justifyContent:'space-between'
+    },
+    manPhoto:{
+        borderRadius:100,
+        height:height*80,
+        width:width*80,
+        marginLeft:5,
+        borderWidth:1,
+        borderColor:colors.stroke
+    },
+    womanPhoto:{
+        borderRadius:100,
+        height:height*80,
+        width:width*80,
+        marginLeft:5,
+        borderWidth:1,
+        borderColor:'#FFBAD6'
+    },
+    profileName:{
+        marginLeft:30
+    }
+  });
+  
 export default Screen1

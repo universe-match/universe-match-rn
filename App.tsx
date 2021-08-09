@@ -1,12 +1,8 @@
 import React from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-  Image
+  Image,
+  SafeAreaView
 } from 'react-native';
 
 import {NavigationContainer} from '@react-navigation/native'
