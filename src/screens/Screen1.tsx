@@ -7,12 +7,14 @@ import {
     StyleSheet,
     StatusBar,
     Image,
-    ScrollView
+    ScrollView,
+    TouchableOpacity
   } from 'react-native';
 import Header from '../components/groupmatch/Header'
 import {height,width,colors} from '../constants/Index'
 import man from '../assets/images/test/man.png'
 import woman from '../assets/images/test/woman.png'
+import plus from '../assets/images/common/plus.png'
 
 const DATA = [
     {
@@ -51,10 +53,10 @@ const DATA = [
 ];
 const Item = ({ title }:any) => (
     <View style={styles.item}>
-        <View style={{left:10}}>
+        <View style={{left:10,marginTop:20}}>
             <View style={styles.topArea}>
-                <Text >{title}</Text>
-                <Text style={{right:20}} >서울시</Text>
+                <Text style={{color:'rgba(0, 0, 0, 1)',fontSize:20,fontWeight: "bold"}}>{title}</Text>
+                <Text style={{right:20,marginTop:10}} >서울시</Text>
             </View>
             <View style={styles.topArea}>
                 <Text >평균연령 24</Text>
@@ -81,6 +83,7 @@ const Item = ({ title }:any) => (
                         </View>
                     </View>
                 </View>
+
                 <View>
                     <Image
                         style={styles.womanPhoto}
@@ -143,12 +146,19 @@ const Item = ({ title }:any) => (
                 </View>    
             </View>
             </ScrollView>
-            
+        </View>
+        <View style={styles.progressBar}>
+            <View style={[styles.absoluteFill, {width: '75%'}]}  />
         </View>
     </View>
 );
   
 const Screen1 = () => {
+
+    const clickHandler = () =>{
+        
+    }
+
     const renderItem = ({ item }:any) => (
         <View style={{backgroundColor:colors.white}}>
             <Item title={item.title} />
@@ -162,6 +172,19 @@ const Screen1 = () => {
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
             />
+            <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={clickHandler}
+            style={styles.touchableOpacityStyle}>
+            <Image
+                // FAB using TouchableOpacity with an image
+                // For online image
+                source={plus}
+                // For local image
+                //source={require('./images/float-add-icon.png')}
+                style={styles.floatingButtonStyle}
+            />
+            </TouchableOpacity>
         </SafeAreaView>
     )
 }
@@ -173,11 +196,12 @@ const styles = StyleSheet.create({
     item: {
       backgroundColor: colors.white,
       borderColor:colors.stroke,
+      borderRadius:10,
       marginVertical: 8,
       borderWidth: 1,
       marginLeft:30,
       marginRight:30,
-      width:width*300
+      width:width*300,
     },
     title: {
       fontSize: 32,
@@ -205,7 +229,43 @@ const styles = StyleSheet.create({
     },
     profileName:{
         marginLeft:30
-    }
+    },
+    progressBar:{
+        height: 15,
+        width: '90%',
+        backgroundColor: 'rgba(176, 186, 195, 0.45)',
+        borderColor: 'rgba(176, 186, 195, 0.45)',
+        borderWidth: 2,
+        borderRadius: 5,
+        marginLeft:20,
+        marginBottom:20,
+        marginTop:20
+    },
+    absoluteFill:{
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        backgroundColor: colors.yellow
+    },
+    touchableOpacityStyle: {
+        position: 'absolute',
+        width: 75,
+        height: 75,
+        alignItems: 'center',
+        justifyContent: 'center',
+        right: 20,
+        bottom: 50,
+        backgroundColor:'rgba(255, 186, 214, 1)',
+        borderRadius:50
+    },
+    floatingButtonStyle: {
+        resizeMode: 'contain',
+        width: 50,
+        height: 50,
+        //backgroundColor:'black'
+    },
   });
   
 export default Screen1
