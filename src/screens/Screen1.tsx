@@ -8,6 +8,7 @@ import {
   StatusBar,
   Image,
   ScrollView,
+  TouchableHighlight,
   TouchableOpacity,
 } from 'react-native';
 import Header from '../components/groupmatch/Header';
@@ -15,6 +16,8 @@ import {height, width, colors} from '../constants/Index';
 import man from '../assets/images/test/man.png';
 import woman from '../assets/images/test/woman.png';
 import plus from '../assets/images/common/plus.png';
+import heart from '../assets/images/common/heart.png';
+import check from '../assets/images/common/check.png';
 
 const DATA = [
   {
@@ -51,113 +54,147 @@ const DATA = [
     title: '서울에서 만나요!',
   },
 ];
-const Item = ({title}: any) => (
-  <View style={styles.item}>
-    <View style={{left: 10, marginTop: 20}}>
-      <View style={styles.topArea}>
-        <Text
-          style={{color: 'rgba(0, 0, 0, 1)', fontSize: 20, fontWeight: 'bold'}}>
-          {title}
-        </Text>
-        <Text style={{right: 20, marginTop: 10}}>서울시</Text>
-      </View>
-      <View style={styles.topArea}>
-        <Text>평균연령 24</Text>
-        <Text style={{right: 20}}>8월9~20일</Text>
-      </View>
-      <ScrollView
-        style={{width: width * 290}}
-        horizontal={true}
-        showsHorizontalScrollIndicator={true}
-        onMomentumScrollEnd={() => {
-          console.log('Scrolling is End');
-        }}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'flex-start',
-            marginTop: 15,
-          }}>
-          <View>
-            <Image style={styles.manPhoto} source={man} />
-            <View>
-              <Text style={styles.profileName}>김민수</Text>
-              <View
-                style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
-                <Text>#ENTJ</Text>
-                <Text>/</Text>
-                <Text>고려대</Text>
-              </View>
-            </View>
-          </View>
 
-          <View>
-            <Image style={styles.womanPhoto} source={woman} />
-            <View>
-              <Text style={styles.profileName}>김지은</Text>
-              <View
-                style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
-                <Text>#ENTJ</Text>
-                <Text>/</Text>
-                <Text>연세대</Text>
+const clickItem = () => {
+  console.log('clickItem');
+};
+
+const Item = ({title}: any) => (
+  <>
+    <TouchableHighlight
+      activeOpacity={0.7}
+      onPress={clickItem}
+      underlayColor="#b0bac36b">
+      <View style={styles.item}>
+        <View style={{left: 10, marginTop: 20}}>
+          <View style={styles.topArea}>
+            <Text
+              style={{
+                color: 'rgba(0, 0, 0, 1)',
+                fontSize: 20,
+                fontWeight: 'bold',
+              }}>
+              {title}
+            </Text>
+            <Text style={{right: 20, marginTop: 10}}>서울시</Text>
+          </View>
+          <View style={styles.topArea}>
+            <Text>평균연령 24</Text>
+            <Text style={{right: 20}}>8월9~20일</Text>
+          </View>
+          <ScrollView
+            style={{width: width * 290}}
+            horizontal={true}
+            showsHorizontalScrollIndicator={true}
+            onMomentumScrollEnd={() => {
+              console.log('Scrolling is End');
+            }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'flex-start',
+                marginTop: 15,
+              }}>
+              <View>
+                <Image style={styles.manPhoto} source={man} />
+                <View>
+                  <Text style={styles.profileName}>김민수</Text>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'flex-start',
+                    }}>
+                    <Text>#ENTJ</Text>
+                    <Text>/</Text>
+                    <Text>고려대</Text>
+                  </View>
+                </View>
+              </View>
+
+              <View>
+                <Image style={styles.womanPhoto} source={woman} />
+                <View>
+                  <Text style={styles.profileName}>김지은</Text>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'flex-start',
+                    }}>
+                    <Text>#ENTJ</Text>
+                    <Text>/</Text>
+                    <Text>연세대</Text>
+                  </View>
+                </View>
+              </View>
+              <View>
+                <Image style={styles.manPhoto} source={man} />
+                <View>
+                  <Text style={styles.profileName}>김민수</Text>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'flex-start',
+                    }}>
+                    <Text>#ENTJ12</Text>
+                    <Text>/</Text>
+                    <Text>고려대</Text>
+                  </View>
+                </View>
+              </View>
+              <View>
+                <Image style={styles.womanPhoto} source={woman} />
+                <View>
+                  <Text style={styles.profileName}>김지은</Text>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'flex-start',
+                    }}>
+                    <Text>#ENTJ</Text>
+                    <Text>/</Text>
+                    <Text>연세대</Text>
+                  </View>
+                </View>
+              </View>
+              <View>
+                <Image style={styles.manPhoto} source={man} />
+                <View>
+                  <Text style={styles.profileName}>김민수</Text>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'flex-start',
+                    }}>
+                    <Text>#ENTJ</Text>
+                    <Text>/</Text>
+                    <Text>고려대</Text>
+                  </View>
+                </View>
+              </View>
+              <View>
+                <Image style={styles.womanPhoto} source={woman} />
+                <View>
+                  <Text style={styles.profileName}>김지은</Text>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'flex-start',
+                    }}>
+                    <Text>#ENTJ</Text>
+                    <Text>/</Text>
+                    <Text>연세대</Text>
+                  </View>
+                </View>
               </View>
             </View>
-          </View>
-          <View>
-            <Image style={styles.manPhoto} source={man} />
-            <View>
-              <Text style={styles.profileName}>김민수</Text>
-              <View
-                style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
-                <Text>#ENTJ12</Text>
-                <Text>/</Text>
-                <Text>고려대</Text>
-              </View>
-            </View>
-          </View>
-          <View>
-            <Image style={styles.womanPhoto} source={woman} />
-            <View>
-              <Text style={styles.profileName}>김지은</Text>
-              <View
-                style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
-                <Text>#ENTJ</Text>
-                <Text>/</Text>
-                <Text>연세대</Text>
-              </View>
-            </View>
-          </View>
-          <View>
-            <Image style={styles.manPhoto} source={man} />
-            <View>
-              <Text style={styles.profileName}>김민수</Text>
-              <View
-                style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
-                <Text>#ENTJ</Text>
-                <Text>/</Text>
-                <Text>고려대</Text>
-              </View>
-            </View>
-          </View>
-          <View>
-            <Image style={styles.womanPhoto} source={woman} />
-            <View>
-              <Text style={styles.profileName}>김지은</Text>
-              <View
-                style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
-                <Text>#ENTJ</Text>
-                <Text>/</Text>
-                <Text>연세대</Text>
-              </View>
-            </View>
-          </View>
+          </ScrollView>
         </View>
-      </ScrollView>
-    </View>
-    <View style={styles.progressBar}>
-      <View style={[styles.absoluteFill, {width: '75%'}]} />
-    </View>
-  </View>
+        <View style={styles.progressBar}>
+          <View style={[styles.absoluteFill, {width: '75%'}]} />
+        </View>
+      </View>
+    </TouchableHighlight>
+  </>
 );
 
 const Screen1 = () => {
@@ -166,6 +203,12 @@ const Screen1 = () => {
   const renderItem = ({item}: any) => (
     <View style={{backgroundColor: colors.white}}>
       <Item title={item.title} />
+      <TouchableOpacity activeOpacity={0.5} style={styles.buttonHeartStyle}>
+        <Image source={heart} />
+      </TouchableOpacity>
+      <TouchableOpacity activeOpacity={0.5} style={styles.buttonCheckStyle}>
+        <Image source={check} />
+      </TouchableOpacity>
     </View>
   );
   return (
@@ -269,6 +312,28 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     //backgroundColor:'black'
+  },
+  buttonHeartStyle: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 22.6471,
+    width: 77,
+    height: 77,
+    top: 50,
+    left: 280,
+  },
+  buttonCheckStyle: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 22.6471,
+    width: 77,
+    height: 77,
+    top: 150,
+    left: 280,
   },
 });
 
