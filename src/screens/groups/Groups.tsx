@@ -6,10 +6,13 @@ import {
   Image,
   ScrollView,
   TouchableHighlight,
+  TouchableOpacity,
 } from 'react-native';
 import {height, width, colors} from '../../constants/Index';
 import man from '../../assets/images/test/man.png';
 import woman from '../../assets/images/test/woman.png';
+import heart from '../../assets/images/common/heart.png';
+import check from '../../assets/images/common/check.png';
 
 const DATA = [
   {
@@ -47,7 +50,8 @@ const DATA = [
   },
 ];
 
-const Groups = ({id, title, flagBgc, setFlagBgc}: any) => {
+const Groups = ({id, title}: any) => {
+  const [flagBgc, setFlagBgc] = useState(false);
   const [dataList] = useState(DATA);
 
   const clickItem = (itemId: any) => {
@@ -193,6 +197,16 @@ const Groups = ({id, title, flagBgc, setFlagBgc}: any) => {
           </View>
         </View>
       </TouchableHighlight>
+      {flagBgc && (
+        <>
+          <TouchableOpacity activeOpacity={0.5} style={styles.buttonHeartStyle}>
+            <Image source={heart} />
+          </TouchableOpacity>
+          <TouchableOpacity activeOpacity={0.5} style={styles.buttonCheckStyle}>
+            <Image source={check} />
+          </TouchableOpacity>
+        </>
+      )}
     </>
   );
 };
@@ -264,6 +278,28 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     backgroundColor: colors.green,
+  },
+  buttonHeartStyle: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 22.6471,
+    width: 77,
+    height: 77,
+    top: 50,
+    left: 280,
+  },
+  buttonCheckStyle: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 22.6471,
+    width: 77,
+    height: 77,
+    top: 150,
+    left: 280,
   },
 });
 

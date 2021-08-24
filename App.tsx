@@ -3,7 +3,7 @@ import {StyleSheet, Image, SafeAreaView} from 'react-native';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import MainScreen from './src/screens/MainScreen';
+import GroupScreen from './src/screens/GroupScreen';
 import Screen2 from './src/screens/Screen2';
 import Screen3 from './src/screens/Screen3';
 import Screen4 from './src/screens/Screen4';
@@ -36,7 +36,7 @@ const App = () => {
                 <Image style={styles.tinyLogo} source={group} />
               ),
             }}
-            component={MainScreen}
+            component={GroupScreen}
           />
           <Tab.Screen
             name="Screen2"
