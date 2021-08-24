@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {
   SafeAreaView,
   Text,
@@ -55,17 +55,28 @@ const DATA = [
   },
 ];
 
-const clickItem = () => {
-  console.log('clickItem');
-};
 
-const Item = ({title}: any) => (
-  <>
+const Item = ({id,title,flagBgc,setFlagBgc}: any) => {
+
+  const [dataList,setDataList] = useState(DATA)
+
+  const clickItem = (itemId:any) => {
+   
+    dataList.filter((obj)=>{
+      if(obj.id===itemId){
+        setFlagBgc(!flagBgc)
+      }
+    })
+
+  };
+  
+  return(
+    <>
     <TouchableHighlight
       activeOpacity={0.7}
-      onPress={clickItem}
+      onPress={()=>clickItem(id)}
       underlayColor="#b0bac36b">
-      <View style={styles.item}>
+      <View style={flagBgc?styles.item2:styles.item}>
         <View style={{left: 10, marginTop: 20}}>
           <View style={styles.topArea}>
             <Text
@@ -195,20 +206,26 @@ const Item = ({title}: any) => (
       </View>
     </TouchableHighlight>
   </>
-);
+  )
+};
 
 const Screen1 = () => {
   const clickHandler = () => {};
+  const [flagBgc,setFlagBgc] = useState(false);
 
-  const renderItem = ({item}: any) => (
+  const renderItem = ({item,index}: any) => (
     <View style={{backgroundColor: colors.white}}>
-      <Item title={item.title} />
-      <TouchableOpacity activeOpacity={0.5} style={styles.buttonHeartStyle}>
-        <Image source={heart} />
-      </TouchableOpacity>
-      <TouchableOpacity activeOpacity={0.5} style={styles.buttonCheckStyle}>
-        <Image source={check} />
-      </TouchableOpacity>
+      <Item id={item.id} title={item.title} flagBgc={flagBgc} setFlagBgc={setFlagBgc} />
+      {flagBgc&&
+      <>
+        <TouchableOpacity activeOpacity={0.5} style={styles.buttonHeartStyle}>
+          <Image source={heart} />
+        </TouchableOpacity>
+        <TouchableOpacity activeOpacity={0.5} style={styles.buttonCheckStyle}>
+          <Image source={check} />
+        </TouchableOpacity>
+      </>
+      }
     </View>
   );
   return (
@@ -242,6 +259,17 @@ const styles = StyleSheet.create({
   },
   item: {
     backgroundColor: colors.white,
+    borderColor: colors.green,
+    borderRadius: 10,
+    marginVertical: 8,
+    borderWidth: 1,
+    marginLeft: 30,
+    marginRight: 30,
+    width: width * 300,
+  },
+  item2: {
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    zIndex:100,
     borderColor: colors.green,
     borderRadius: 10,
     marginVertical: 8,
