@@ -11,6 +11,7 @@ import {
 import {width, colors} from '../../constants/Index';
 import Members from './Members';
 import ProgressBar from './ProgressBar';
+import GroupButtons from './GroupButtons';
 import heart from '../../assets/images/common/heart.png';
 import check from '../../assets/images/common/check.png';
 
@@ -98,16 +99,7 @@ const Groups = ({id, title}: any) => {
           <ProgressBar />
         </View>
       </TouchableHighlight>
-      {flagBgc && (
-        <>
-          <TouchableOpacity activeOpacity={0.5} style={styles.buttonHeartStyle}>
-            <Image source={heart} />
-          </TouchableOpacity>
-          <TouchableOpacity activeOpacity={0.5} style={styles.buttonCheckStyle}>
-            <Image source={check} />
-          </TouchableOpacity>
-        </>
-      )}
+      {flagBgc && <GroupButtons />}
     </>
   );
 };
@@ -142,7 +134,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
   },
-  buttonHeartStyle: {
+  heartButton: {
     position: 'absolute',
     justifyContent: 'center',
     alignItems: 'center',
@@ -153,7 +145,7 @@ const styles = StyleSheet.create({
     top: 50,
     left: 280,
   },
-  buttonCheckStyle: {
+  checkButton: {
     position: 'absolute',
     justifyContent: 'center',
     alignItems: 'center',
