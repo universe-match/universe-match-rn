@@ -8,9 +8,8 @@ import {
   TouchableHighlight,
   TouchableOpacity,
 } from 'react-native';
-import {height, width, colors} from '../../constants/Index';
-import man from '../../assets/images/test/man.png';
-import woman from '../../assets/images/test/woman.png';
+import {width, colors} from '../../constants/Index';
+import Members from './Members';
 import heart from '../../assets/images/common/heart.png';
 import check from '../../assets/images/common/check.png';
 
@@ -92,104 +91,7 @@ const Groups = ({id, title}: any) => {
               onMomentumScrollEnd={() => {
                 console.log('Scrolling is End');
               }}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'flex-start',
-                  marginTop: 15,
-                }}>
-                <View>
-                  <Image style={styles.manPhoto} source={man} />
-                  <View>
-                    <Text style={styles.profileName}>김민수</Text>
-                    <View
-                      style={{
-                        flexDirection: 'row',
-                        justifyContent: 'flex-start',
-                      }}>
-                      <Text>#ENTJ</Text>
-                      <Text>/</Text>
-                      <Text>고려대</Text>
-                    </View>
-                  </View>
-                </View>
-
-                <View>
-                  <Image style={styles.womanPhoto} source={woman} />
-                  <View>
-                    <Text style={styles.profileName}>김지은</Text>
-                    <View
-                      style={{
-                        flexDirection: 'row',
-                        justifyContent: 'flex-start',
-                      }}>
-                      <Text>#ENTJ</Text>
-                      <Text>/</Text>
-                      <Text>연세대</Text>
-                    </View>
-                  </View>
-                </View>
-                <View>
-                  <Image style={styles.manPhoto} source={man} />
-                  <View>
-                    <Text style={styles.profileName}>김민수</Text>
-                    <View
-                      style={{
-                        flexDirection: 'row',
-                        justifyContent: 'flex-start',
-                      }}>
-                      <Text>#ENTJ12</Text>
-                      <Text>/</Text>
-                      <Text>고려대</Text>
-                    </View>
-                  </View>
-                </View>
-                <View>
-                  <Image style={styles.womanPhoto} source={woman} />
-                  <View>
-                    <Text style={styles.profileName}>김지은</Text>
-                    <View
-                      style={{
-                        flexDirection: 'row',
-                        justifyContent: 'flex-start',
-                      }}>
-                      <Text>#ENTJ</Text>
-                      <Text>/</Text>
-                      <Text>연세대</Text>
-                    </View>
-                  </View>
-                </View>
-                <View>
-                  <Image style={styles.manPhoto} source={man} />
-                  <View>
-                    <Text style={styles.profileName}>김민수</Text>
-                    <View
-                      style={{
-                        flexDirection: 'row',
-                        justifyContent: 'flex-start',
-                      }}>
-                      <Text>#ENTJ</Text>
-                      <Text>/</Text>
-                      <Text>고려대</Text>
-                    </View>
-                  </View>
-                </View>
-                <View>
-                  <Image style={styles.womanPhoto} source={woman} />
-                  <View>
-                    <Text style={styles.profileName}>김지은</Text>
-                    <View
-                      style={{
-                        flexDirection: 'row',
-                        justifyContent: 'flex-start',
-                      }}>
-                      <Text>#ENTJ</Text>
-                      <Text>/</Text>
-                      <Text>연세대</Text>
-                    </View>
-                  </View>
-                </View>
-              </View>
+              <Members />
             </ScrollView>
           </View>
           <View style={styles.progressBar}>
@@ -240,25 +142,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flex: 1,
     justifyContent: 'space-between',
-  },
-  manPhoto: {
-    borderRadius: 100,
-    height: height * 80,
-    width: width * 80,
-    marginLeft: 5,
-    borderWidth: 1,
-    borderColor: colors.stroke,
-  },
-  womanPhoto: {
-    borderRadius: 100,
-    height: height * 80,
-    width: width * 80,
-    marginLeft: 5,
-    borderWidth: 1,
-    borderColor: '#FFBAD6',
-  },
-  profileName: {
-    marginLeft: 30,
   },
   progressBar: {
     height: 15,
