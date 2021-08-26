@@ -1,99 +1,47 @@
 import React, {useState} from 'react';
-import {
-  Text,
-  View,
-  StyleSheet,
-  ScrollView,
-  TouchableHighlight,
-} from 'react-native';
+import {View, FlatList, StyleSheet, TouchableHighlight} from 'react-native';
 import {width, colors} from '../../constants/Index';
-import {Members, ProgressBar, GroupButtons} from './Index';
+import {Group, ProgressBar, GroupButtons} from './Index';
 
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: '서울에서 만나요!',
-    nickname: '김민수',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: '서울에서 만나요!',
-    nickname: '김은지',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-1455713e29d72',
-    title: '서울에서 만나요!',
-    nickname: '김민수',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-1455714e29d72',
-    title: '서울에서 만나요!',
-    nickname: '김은지',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e239d72',
-    title: '서울에서 만나요!',
-    nickname: '김민수',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-1455715e292d72',
-    title: '서울에서 만나요!',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-1455741e29d72',
-    title: '서울에서 만나요!',
-  },
-];
-
-const Groups = ({id, title}: any) => {
+const Groups = ({groups}: any) => {
   const [flagBgc, setFlagBgc] = useState(false);
-  const [dataList] = useState(DATA);
+  const [dataList] = useState(groups);
 
   const clickItem = (itemId: any) => {
-    dataList.filter(obj => {
+    dataList.filter((obj: any) => {
       if (obj.id === itemId) {
         setFlagBgc(!flagBgc);
       }
     });
   };
 
-  return (
+  const renderGroup = ({item}: any) => (
     <>
       <TouchableHighlight
         activeOpacity={0.7}
-        onPress={() => clickItem(id)}
+        onPress={() => clickItem(item.id)}
         underlayColor="#b0bac36b">
         <View style={flagBgc ? styles.item2 : styles.item}>
-          <View style={{left: 10, marginTop: 20}}>
-            <View style={styles.topArea}>
-              <Text
-                style={{
-                  color: 'rgba(0, 0, 0, 1)',
-                  fontSize: 20,
-                  fontWeight: 'bold',
-                }}>
-                {title}
-              </Text>
-              <Text style={{right: 20, marginTop: 10}}>서울시</Text>
-            </View>
-            <View style={styles.topArea}>
-              <Text>평균연령 24</Text>
-              <Text style={{right: 20}}>8월9~20일</Text>
-            </View>
-            <ScrollView
-              style={{width: width * 290}}
-              horizontal={true}
-              showsHorizontalScrollIndicator={true}
-              onMomentumScrollEnd={() => {
-                console.log('Scrolling is End');
-              }}>
-              <Members />
-            </ScrollView>
-          </View>
+          <Group
+            title={item.title}
+            area={item.area}
+            old={item.old}
+            date={item.date}
+          />
           <ProgressBar />
         </View>
       </TouchableHighlight>
       {flagBgc && <GroupButtons />}
+    </>
+  );
+
+  return (
+    <>
+      <FlatList
+        data={groups}
+        renderItem={renderGroup}
+        keyExtractor={item => item.id}
+      />
     </>
   );
 };
@@ -119,14 +67,6 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     marginRight: 30,
     width: width * 300,
-  },
-  title: {
-    fontSize: 32,
-  },
-  topArea: {
-    flexDirection: 'row',
-    flex: 1,
-    justifyContent: 'space-between',
   },
 });
 
