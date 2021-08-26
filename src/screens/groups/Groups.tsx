@@ -3,17 +3,11 @@ import {
   Text,
   View,
   StyleSheet,
-  Image,
   ScrollView,
   TouchableHighlight,
-  TouchableOpacity,
 } from 'react-native';
 import {width, colors} from '../../constants/Index';
-import Members from './Members';
-import ProgressBar from './ProgressBar';
-import GroupButtons from './GroupButtons';
-import heart from '../../assets/images/common/heart.png';
-import check from '../../assets/images/common/check.png';
+import {Members, ProgressBar, GroupButtons} from './Index';
 
 const DATA = [
   {
@@ -133,28 +127,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flex: 1,
     justifyContent: 'space-between',
-  },
-  heartButton: {
-    position: 'absolute',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 22.6471,
-    width: 77,
-    height: 77,
-    top: 50,
-    left: 280,
-  },
-  checkButton: {
-    position: 'absolute',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 22.6471,
-    width: 77,
-    height: 77,
-    top: 150,
-    left: 280,
   },
 });
 
