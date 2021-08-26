@@ -1,7 +1,7 @@
 import React from 'react';
 import {FlatList, View} from 'react-native';
-import Groups from './groups/Groups';
-import {colors} from '../constants/Index';
+import Groups from './Groups';
+import {colors} from '../../constants/Index';
 
 const DATA = [
   {

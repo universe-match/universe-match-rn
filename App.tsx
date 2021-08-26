@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Image, SafeAreaView} from 'react-native';
+import {StyleSheet, Image} from 'react-native';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
