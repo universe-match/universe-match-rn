@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {width, colors} from '../../constants/Index';
 import Members from './Members';
+import ProgressBar from './ProgressBar';
 import heart from '../../assets/images/common/heart.png';
 import check from '../../assets/images/common/check.png';
 
@@ -94,9 +95,7 @@ const Groups = ({id, title}: any) => {
               <Members />
             </ScrollView>
           </View>
-          <View style={styles.progressBar}>
-            <View style={[styles.absoluteFill, {width: '75%'}]} />
-          </View>
+          <ProgressBar />
         </View>
       </TouchableHighlight>
       {flagBgc && (
@@ -142,25 +141,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flex: 1,
     justifyContent: 'space-between',
-  },
-  progressBar: {
-    height: 15,
-    width: '90%',
-    backgroundColor: 'rgba(176, 186, 195, 0.45)',
-    borderColor: 'rgba(176, 186, 195, 0.45)',
-    borderWidth: 2,
-    borderRadius: 5,
-    marginLeft: 20,
-    marginBottom: 20,
-    marginTop: 20,
-  },
-  absoluteFill: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    backgroundColor: colors.green,
   },
   buttonHeartStyle: {
     position: 'absolute',
