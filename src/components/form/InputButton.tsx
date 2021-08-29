@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {
   View,
   TouchableOpacity,
@@ -6,72 +6,90 @@ import {
   TextInput,
   Text,
 } from 'react-native';
-import {height, width, colors} from '../../constants/Index';
+import {fonts, getHeight, getWidth, colors} from '../../constants/Index';
 
 interface InputButton {
   inputValue: string;
   setInputValue: Function;
-  buttonText: string;
+  buttonContent: ReactNode | string;
   placeholder: string;
-  onPress: Function;
-  isPassword: boolean;
-  style: object;
+  onPress(value: string): void;
+  isPassword?: boolean;
+  isEditable?: boolean;
+  style?: object;
 }
 
 const InputButton = ({
   inputValue,
   setInputValue,
-  buttonText,
+  buttonContent,
   placeholder,
   onPress,
   isPassword = false,
+  isEditable = true,
   style,
 }: InputButton) => {
   return (
-    <View style={{...styles.wrapper, ...style}}>
+    <View style={[styles.wrapper, style]}>
       <TextInput
         style={styles.input}
         secureTextEntry={isPassword}
         placeholder={placeholder}
         onChangeText={value => setInputValue(value)}
         defaultValue={inputValue}
-        placeholderTextColor="#858585"
+        placeholderTextColor={colors.gray4}
+        editable={isEditable}
       />
       <TouchableOpacity
         activeOpacity={0.8}
         style={styles.button}
-        onPress={onPress}>
-        <Text
-          style={{
-            fontSize: 13,
-            color: colors.white,
-            lineHeight: 45,
-            textAlign: 'center',
-          }}>
-          {buttonText}
-        </Text>
+        onPress={() => {
+          onPress('');
+        }}>
+        {typeof buttonContent === 'string' ? (
+          <Text style={styles.textContent}>{buttonContent}</Text>
+        ) : (
+          <View style={styles.content}>{buttonContent}</View>
+        )}
       </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  wrapper: {display: 'flex', flexDirection: 'row', height: 45},
+  wrapper: {display: 'flex', flexDirection: 'row', height: getHeight(76)},
   input: {
     flex: 7,
-    borderWidth: 1,
+    width: getWidth(413),
+    borderWidth: getWidth(1),
     borderTopLeftRadius: 25,
     borderBottomLeftRadius: 25,
-    borderColor: '#5EDEB4',
-    backgroundColor: 'rgba(94, 222, 180, 0.17)',
+    borderColor: colors.green,
+    backgroundColor: colors.lightGreen,
     textAlign: 'left',
     paddingLeft: 30,
+    fontSize: getWidth(20),
+    fontFamily: fonts.light,
   },
   button: {
     flex: 3,
+    width: getWidth(166),
     borderTopRightRadius: 25,
     borderBottomRightRadius: 25,
-    backgroundColor: '#5EDEB4',
+    backgroundColor: colors.green,
+  },
+  textContent: {
+    fontSize: getWidth(20),
+    fontFamily: fonts.light,
+    color: colors.white,
+    lineHeight: 45,
+    textAlign: 'center',
+  },
+  content: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
   },
 });
 

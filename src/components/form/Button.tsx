@@ -1,39 +1,39 @@
 import React from 'react';
-import {TouchableOpacity, Text} from 'react-native';
+import {TouchableOpacity, StyleSheet, Text} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {height, width, colors} from '../../constants/Index';
+import {fonts, getHeight, getWidth, colors} from '../../constants/Index';
 
 interface Button {
   title: string;
+  style?: object;
   onPress(): void;
 }
 
-const Button = ({title, onPress}: Button) => {
+const Button = ({title, onPress, style}: Button) => {
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity style={style} onPress={onPress}>
       <LinearGradient
         useAngle={true}
         angle={90}
-        colors={['rgb(94, 222, 180)', '#34DE91']}
+        colors={['#8ddfc3', '#11e083']}
         style={{
-          borderRadius: 7,
+          borderRadius: getWidth(5),
         }}>
-        <Text
-          style={{
-            fontWeight: 'bold',
-            fontSize: 20,
-            color: colors.white,
-            lineHeight: 55,
-            textAlign: 'center',
-            width: '100%',
-            height: 55,
-            borderRadius: 7,
-          }}>
-          {title}
-        </Text>
+        <Text style={styles.buttonText}>{title}</Text>
       </LinearGradient>
     </TouchableOpacity>
   );
 };
+
+const styles = StyleSheet.create({
+  buttonText: {
+    fontFamily: fonts.bold,
+    fontSize: getWidth(25),
+    color: colors.white,
+    lineHeight: getHeight(79),
+    textAlign: 'center',
+    borderRadius: getWidth(5),
+  },
+});
 
 export default Button;
