@@ -36,7 +36,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -51,5 +51,17 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>AppleSDGothicNeoB.ttf</string>
+		<string>AppleSDGothicNeoEB.ttf</string>
+		<string>AppleSDGothicNeoH.ttf</string>
+		<string>AppleSDGothicNeoL.ttf</string>
+		<string>AppleSDGothicNeoM.ttf</string>
+		<string>AppleSDGothicNeoR.ttf</string>
+		<string>AppleSDGothicNeoSB.ttf</string>
+		<string>AppleSDGothicNeoT.ttf</string>
+		<string>AppleSDGothicNeoUL.ttf</string>
+	</array>
 </dict>
 </plist>
