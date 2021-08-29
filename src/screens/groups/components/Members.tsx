@@ -1,27 +1,18 @@
 import React from 'react';
 import {Text, View, StyleSheet, Image} from 'react-native';
-import {height, width, colors} from '../../constants/Index';
-import man from '../../assets/images/test/man.png';
-import woman from '../../assets/images/test/woman.png';
+import {height, width, colors} from '../../../constants/Index';
+import man from '../../../assets/images/test/man.png';
+import woman from '../../../assets/images/test/woman.png';
 
 const Members = () => {
   return (
     <>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'flex-start',
-          marginTop: 15,
-        }}>
+      <View style={styles.members}>
         <View>
           <Image style={styles.manPhoto} source={man} />
           <View>
             <Text style={styles.profileName}>김민수</Text>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'flex-start',
-              }}>
+            <View style={styles.memberInfo}>
               <Text>#ENTJ</Text>
               <Text>/</Text>
               <Text>고려대</Text>
@@ -33,11 +24,7 @@ const Members = () => {
           <Image style={styles.womanPhoto} source={woman} />
           <View>
             <Text style={styles.profileName}>김지은</Text>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'flex-start',
-              }}>
+            <View style={styles.memberInfo}>
               <Text>#ENTJ</Text>
               <Text>/</Text>
               <Text>연세대</Text>
@@ -48,11 +35,7 @@ const Members = () => {
           <Image style={styles.manPhoto} source={man} />
           <View>
             <Text style={styles.profileName}>김민수</Text>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'flex-start',
-              }}>
+            <View style={styles.memberInfo}>
               <Text>#ENTJ12</Text>
               <Text>/</Text>
               <Text>고려대</Text>
@@ -63,11 +46,7 @@ const Members = () => {
           <Image style={styles.womanPhoto} source={woman} />
           <View>
             <Text style={styles.profileName}>김지은</Text>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'flex-start',
-              }}>
+            <View style={styles.memberInfo}>
               <Text>#ENTJ</Text>
               <Text>/</Text>
               <Text>연세대</Text>
@@ -78,11 +57,7 @@ const Members = () => {
           <Image style={styles.manPhoto} source={man} />
           <View>
             <Text style={styles.profileName}>김민수</Text>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'flex-start',
-              }}>
+            <View style={styles.memberInfo}>
               <Text>#ENTJ</Text>
               <Text>/</Text>
               <Text>고려대</Text>
@@ -93,11 +68,7 @@ const Members = () => {
           <Image style={styles.womanPhoto} source={woman} />
           <View>
             <Text style={styles.profileName}>김지은</Text>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'flex-start',
-              }}>
+            <View style={styles.memberInfo}>
               <Text>#ENTJ</Text>
               <Text>/</Text>
               <Text>연세대</Text>
@@ -110,6 +81,11 @@ const Members = () => {
 };
 
 const styles = StyleSheet.create({
+  members: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    marginTop: 15,
+  },
   manPhoto: {
     borderRadius: 100,
     height: height * 80,
@@ -128,6 +104,10 @@ const styles = StyleSheet.create({
   },
   profileName: {
     marginLeft: 30,
+  },
+  memberInfo: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
   },
 });
 

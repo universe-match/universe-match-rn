@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Image, TouchableOpacity} from 'react-native';
-import heart from '../../assets/images/common/heart.png';
-import check from '../../assets/images/common/check.png';
+import heart from '../../../assets/images/common/heart.png';
+import check from '../../../assets/images/common/check.png';
 
 const GroupButtons = () => {
   return (

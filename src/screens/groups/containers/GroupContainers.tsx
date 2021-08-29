@@ -1,7 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
-import {Groups} from './Index';
-import {colors} from '../../constants/Index';
+import {Groups} from '../components/Index';
+import {colors} from '../../../constants/Index';
 
 const DATA = [
   {
@@ -9,7 +9,7 @@ const DATA = [
     title: '서울에서 만나요!',
     nickname: '김민수',
     area: '서울시',
-    old: '24',
+    age: '24',
     date: '8월9~20일',
   },
   {
@@ -17,7 +17,7 @@ const DATA = [
     title: '성남에서 만나요!',
     nickname: '김은지',
     area: '서울시',
-    old: '24',
+    age: '24',
     date: '8월9~20일',
   },
   {
@@ -25,14 +25,14 @@ const DATA = [
     title: '인천에서 만나요!',
     nickname: '김민수',
     area: '서울시',
-    old: '24',
+    age: '24',
     date: '8월9~20일',
   },
   {
     id: '58694a0f-3da1-471f-bd96-1455714e29d72',
     title: '강남에서 만나요!',
     nickname: '김은지',
-    old: '24',
+    age: '24',
     date: '8월9~20일',
   },
   {
@@ -40,7 +40,7 @@ const DATA = [
     title: '구로에서 만나요!',
     nickname: '김민수',
     area: '서울시',
-    old: '24',
+    age: '24',
     date: '8월9~20일',
   },
   {
@@ -53,11 +53,11 @@ const DATA = [
   },
 ];
 
-const GroupScreen = () => {
+const GroupContainers = () => {
   return (
     <View style={{backgroundColor: colors.white}}>
       <Groups groups={DATA} />
     </View>
   );
 };
-export default GroupScreen;
+export default GroupContainers;

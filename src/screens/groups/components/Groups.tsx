@@ -7,7 +7,7 @@ const Groups = ({groups}: any) => {
     <Group
       title={item.title}
       area={item.area}
-      old={item.old}
+      age={item.age}
       date={item.date}
     />
   );
