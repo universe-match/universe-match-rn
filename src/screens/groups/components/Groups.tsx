@@ -1,0 +1,24 @@
+import React from 'react';
+import {FlatList} from 'react-native';
+import {Group} from './Index';
+
+const Groups = ({groups}: any) => {
+  const renderGroup = ({item}: any) => (
+    <Group
+      title={item.title}
+      area={item.area}
+      age={item.age}
+      date={item.date}
+    />
+  );
+
+  return (
+    <FlatList
+      data={groups}
+      renderItem={renderGroup}
+      keyExtractor={item => item.id}
+    />
+  );
+};
+
+export default Groups;
