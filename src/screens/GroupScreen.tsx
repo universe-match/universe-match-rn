@@ -2,12 +2,12 @@ import React from 'react';
 import {SafeAreaView} from 'react-native';
 import Header from '../components/groupmatch/Header';
 
-import {AddGroupButton, GroupContents} from './groups/Index';
+import {AddGroupButton, GroupContainers} from './groups/components/Index';
 
 const GroupScreen = () => (
   <SafeAreaView>
     <Header />
-    <GroupContents />
+    <GroupContainers />
     <AddGroupButton />
   </SafeAreaView>
 );

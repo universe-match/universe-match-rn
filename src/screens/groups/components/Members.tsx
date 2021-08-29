@@ -1,8 +1,8 @@
 import React from 'react';
 import {Text, View, StyleSheet, Image} from 'react-native';
-import {height, width, colors} from '../../constants/Index';
-import man from '../../assets/images/test/man.png';
-import woman from '../../assets/images/test/woman.png';
+import {height, width, colors} from '../../../constants/Index';
+import man from '../../../assets/images/test/man.png';
+import woman from '../../../assets/images/test/woman.png';
 
 const Members = () => {
   return (

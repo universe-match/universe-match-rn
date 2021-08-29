@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Image, TouchableOpacity} from 'react-native';
-import {colors} from '../../constants/Index';
-import plus from '../../assets/images/common/plus.png';
+import {colors} from '../../../constants/Index';
+import plus from '../../../assets/images/common/plus.png';
 
 const AddGroupButton = () => {
   const clickHandler = () => {};

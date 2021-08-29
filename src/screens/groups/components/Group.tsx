@@ -6,23 +6,24 @@ import {
   ScrollView,
   TouchableHighlight,
 } from 'react-native';
-import {width, colors} from '../../constants/Index';
+import {width, colors} from '../../../constants/Index';
 import {Members, ProgressBar, GroupButtons} from './Index';
 
 const Group = ({title, area, old, date}: any) => {
-  const [flagBgc, setFlagBgc] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
   const handleClick = (flag: any) => {
-    setFlagBgc(!flag);
+    setIsActive(!flag);
   };
 
   return (
     <>
       <TouchableHighlight
         activeOpacity={0.7}
-        onPress={() => handleClick(flagBgc)}
+        onPress={() => handleClick(isActive)}
         underlayColor="#b0bac36b">
-        <View style={flagBgc ? styles.item2 : styles.item}>
+        <View
+          style={isActive ? {...styles.root, ...styles.active} : styles.root}>
           <View style={{left: 10, marginTop: 20}}>
             <View style={styles.topArea}>
               <Text
@@ -52,13 +53,13 @@ const Group = ({title, area, old, date}: any) => {
           <ProgressBar />
         </View>
       </TouchableHighlight>
-      {flagBgc && <GroupButtons />}
+      {isActive && <GroupButtons />}
     </>
   );
 };
 
 const styles = StyleSheet.create({
-  item: {
+  root: {
     backgroundColor: colors.white,
     borderColor: colors.green,
     borderRadius: 10,
@@ -68,16 +69,9 @@ const styles = StyleSheet.create({
     marginRight: 30,
     width: width * 300,
   },
-  item2: {
+  active: {
     backgroundColor: 'rgba(0,0,0,0.5)',
     zIndex: 100,
-    borderColor: colors.green,
-    borderRadius: 10,
-    marginVertical: 8,
-    borderWidth: 1,
-    marginLeft: 30,
-    marginRight: 30,
-    width: width * 300,
   },
   title: {
     fontSize: 32,

@@ -1,7 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
-import {Groups} from './Index';
-import {colors} from '../../constants/Index';
+import {Groups} from '../components/Index';
+import {colors} from '../../../constants/Index';
 
 const DATA = [
   {
@@ -53,11 +53,11 @@ const DATA = [
   },
 ];
 
-const GroupScreen = () => {
+const GroupContainers = () => {
   return (
     <View style={{backgroundColor: colors.white}}>
       <Groups groups={DATA} />
     </View>
   );
 };
-export default GroupScreen;
+export default GroupContainers;
