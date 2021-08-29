@@ -9,7 +9,7 @@ import {
 import {width, colors} from '../../../constants/Index';
 import {Members, ProgressBar, GroupButtons} from './Index';
 
-const Group = ({title, area, old, date}: any) => {
+const Group = ({title, area, age, date}: any) => {
   const [isActive, setIsActive] = useState(false);
 
   const handleClick = (flag: any) => {
@@ -24,21 +24,14 @@ const Group = ({title, area, old, date}: any) => {
         underlayColor="#b0bac36b">
         <View
           style={isActive ? {...styles.root, ...styles.active} : styles.root}>
-          <View style={{left: 10, marginTop: 20}}>
+          <View style={styles.groupInfos}>
             <View style={styles.topArea}>
-              <Text
-                style={{
-                  color: 'rgba(0, 0, 0, 1)',
-                  fontSize: 20,
-                  fontWeight: 'bold',
-                }}>
-                {title}
-              </Text>
-              <Text style={{right: 20, marginTop: 10}}>{area}</Text>
+              <Text style={styles.textTitle}>{title}</Text>
+              <Text style={styles.textArea}>{area}</Text>
             </View>
             <View style={styles.topArea}>
-              <Text>평균연령 {old}</Text>
-              <Text style={{right: 20}}>{date}</Text>
+              <Text>평균연령 {age}</Text>
+              <Text style={styles.textDate}>{date}</Text>
             </View>
             <ScrollView
               style={{width: width * 290}}
@@ -59,6 +52,10 @@ const Group = ({title, area, old, date}: any) => {
 };
 
 const styles = StyleSheet.create({
+  groupInfos: {
+    left: 10,
+    marginTop: 20,
+  },
   root: {
     backgroundColor: colors.white,
     borderColor: colors.green,
@@ -73,13 +70,25 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.5)',
     zIndex: 100,
   },
+  textTitle: {
+    color: 'rgba(0, 0, 0, 1)',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
   title: {
     fontSize: 32,
+  },
+  textArea: {
+    right: 20,
+    marginTop: 10,
   },
   topArea: {
     flexDirection: 'row',
     flex: 1,
     justifyContent: 'space-between',
+  },
+  textDate: {
+    right: 20,
   },
 });
 
