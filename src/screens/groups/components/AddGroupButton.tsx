@@ -1,18 +1,30 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {colors} from '../../../constants/Index';
 import plus from '../../../assets/images/common/plus.png';
+import CreateGroup from './CreateGroup';
 
 const AddGroupButton = () => {
-  const clickHandler = () => {};
+  const [isShowDialog, setShowDialog] = useState(false);
 
   return (
-    <TouchableOpacity
-      activeOpacity={0.7}
-      onPress={clickHandler}
-      style={styles.touchableOpacityStyle}>
-      <Image source={plus} style={styles.floatingButtonStyle} />
-    </TouchableOpacity>
+    <>
+      <TouchableOpacity
+        activeOpacity={0.7}
+        onPress={() => {
+          setShowDialog(true);
+        }}
+        style={styles.touchableOpacityStyle}>
+        <Image source={plus} style={styles.floatingButtonStyle} />
+      </TouchableOpacity>
+      {isShowDialog && (
+        <CreateGroup
+          onClose={() => {
+            setShowDialog(false);
+          }}
+        />
+      )}
+    </>
   );
 };
 const styles = StyleSheet.create({

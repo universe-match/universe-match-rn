@@ -5,6 +5,7 @@ import Group from './Group';
 import Groups from './Groups';
 import Members from './Members';
 import ProgressBar from './ProgressBar';
+import CreateGroup from './CreateGroup';
 
 export {
   AddGroupButton,
@@ -14,4 +15,5 @@ export {
   Groups,
   Members,
   ProgressBar,
+  CreateGroup,
 };

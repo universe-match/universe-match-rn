@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View, StyleSheet, Image} from 'react-native';
-import {height, width, colors} from '../../../constants/Index';
+import {getWidth, colors} from '../../../constants/Index';
 import man from '../../../assets/images/test/man.png';
 import woman from '../../../assets/images/test/woman.png';
 
@@ -88,16 +88,16 @@ const styles = StyleSheet.create({
   },
   manPhoto: {
     borderRadius: 100,
-    height: height * 80,
-    width: width * 80,
+    height: getWidth(120),
+    width: getWidth(120),
     marginLeft: 5,
     borderWidth: 1,
     borderColor: colors.stroke,
   },
   womanPhoto: {
     borderRadius: 100,
-    height: height * 80,
-    width: width * 80,
+    height: getWidth(120),
+    width: getWidth(120),
     marginLeft: 5,
     borderWidth: 1,
     borderColor: '#FFBAD6',
