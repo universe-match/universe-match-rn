@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@ptomasroos/react-native-multi-slider": "^2.2.2",
     "@react-native-community/checkbox": "^0.5.8",
     "@react-native-community/cli": "^5.0.1",
     "@react-native-community/masked-view": "^0.1.11",
