@@ -17,6 +17,8 @@ interface InputButton {
   isPassword?: boolean;
   isEditable?: boolean;
   style?: object;
+  inputStyle?: object;
+  buttonStyle?: object;
 }
 
 const InputButton = ({

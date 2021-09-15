@@ -19,7 +19,17 @@ const Button = ({title, onPress, style}: Button) => {
         style={{
           borderRadius: getWidth(5),
         }}>
-        <Text style={styles.buttonText}>{title}</Text>
+        <Text
+          style={[
+            styles.buttonText,
+            {
+              lineHeight: style?.height
+                ? style.height
+                : styles.buttonText.lineHeight,
+            },
+          ]}>
+          {title}
+        </Text>
       </LinearGradient>
     </TouchableOpacity>
   );
