@@ -1,35 +1,38 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   StyleSheet,
   TouchableOpacity,
   View,
-  Text,
   Image,
   ScrollView,
 } from 'react-native';
-import {fonts, getHeight, getWidth, colors} from '../../../../constants/Index';
-import {Personnel, Ratio, SelectGroup, SelectDay} from '../Index';
+import {getHeight, getWidth, colors} from '../../../../constants/Index';
+import {Personnel, Ratio, SelectGroup, Day, Place, Title} from '../Index';
 import RemoveIcon from '../../../../assets/images/common/remove.png';
 
 const CreateGroup = ({onClose}: any) => {
   return (
     <View style={styles.background}>
       <View style={styles.dialog}>
-        <View style={styles.header}>
-          <TouchableOpacity
-            activeOpacity={0.4}
-            onPress={onClose}
-            style={styles.closeWrapper}>
-            <Image source={RemoveIcon} style={styles.close} />
-          </TouchableOpacity>
-        </View>
+        <ScrollView>
+          <View style={styles.header}>
+            <TouchableOpacity
+              activeOpacity={0.4}
+              onPress={onClose}
+              style={styles.closeWrapper}>
+              <Image source={RemoveIcon} style={styles.close} />
+            </TouchableOpacity>
+          </View>
 
-        <View style={styles.content}>
-          <Personnel />
-          <Ratio />
-          <SelectGroup />
-          <SelectDay />
-        </View>
+          <View style={styles.content}>
+            <Personnel />
+            <Ratio />
+            <SelectGroup />
+            <Day />
+            <Place />
+            <Title />
+          </View>
+        </ScrollView>
       </View>
     </View>
   );
@@ -67,7 +70,6 @@ const styles = StyleSheet.create({
     width: getWidth(22),
     height: getHeight(22),
   },
-
   content: {
     top: getHeight(200),
     width: '100%',

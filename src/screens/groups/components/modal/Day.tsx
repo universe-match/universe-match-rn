@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, Image} from 'react-native';
 import {fonts, getHeight, getWidth, colors} from '../../../../constants/Index';
 
 import CalendarPicker from 'react-native-calendar-picker';
 import {Calendar} from 'react-native-calendars';
 
-const SelectDay = () => {
+import previousMonth from '../../../../assets/images/group/previousMonth.png';
+import nextMonth from '../../../../assets/images/group/nextMonth.png';
+
+const Day = () => {
   const [selectedStartDate, setSelectedStartDate] = useState('');
   const [selectedSEndDate, setSelectedEndDate] = useState('');
 
@@ -17,8 +20,8 @@ const SelectDay = () => {
           <Calendar
             style={{
               borderRadius: 17.7379,
-              width: getWidth(650),
-              height: getHeight(401),
+              //width: getWidth(650),
+              //height: getHeight(401),
             }}
             theme={{
               calendarBackground: 'rgba(94, 222, 180, 0.31)',
@@ -40,26 +43,26 @@ const SelectDay = () => {
             }}
           />
           {/* <CalendarPicker
-                  width={getWidth(650)}
-                  height={getHeight(401)}
-                  months={[
-                    '1',
-                    '2',
-                    '3',
-                    '4',
-                    '5',
-                    '6',
-                    '7',
-                    '8',
-                    '9',
-                    '10',
-                    '11',
-                    '12',
-                  ]}
-                  previousComponent={<Image source={previousMonth} />}
-                  nextComponent={<Image source={nextMonth} />}
-                  selectedDayColor={'#87C289'}
-                /> */}
+            width={getWidth(650)}
+            height={getHeight(401)}
+            months={[
+              '1',
+              '2',
+              '3',
+              '4',
+              '5',
+              '6',
+              '7',
+              '8',
+              '9',
+              '10',
+              '11',
+              '12',
+            ]}
+            previousComponent={<Image source={previousMonth} />}
+            nextComponent={<Image source={nextMonth} />}
+            selectedDayColor={'#87C289'}
+          /> */}
         </View>
       </View>
     </View>
@@ -68,8 +71,7 @@ const SelectDay = () => {
 
 const styles = StyleSheet.create({
   title: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: 'column',
   },
   titleText: {
     fontSize: getWidth(30),
@@ -83,4 +85,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SelectDay;
+export default Day;

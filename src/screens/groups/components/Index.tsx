@@ -9,7 +9,9 @@ import CreateGroup from './modal/CreateGroup';
 import Personnel from './modal/Personnel';
 import Ratio from './modal/Ratio';
 import SelectGroup from './modal/SelectGroup';
-import SelectDay from './modal/SelectDay';
+import Day from './modal/Day';
+import Place from './modal/Place';
+import Title from './modal/Title';
 
 export {
   AddGroupButton,
@@ -23,5 +25,7 @@ export {
   Personnel,
   Ratio,
   SelectGroup,
-  SelectDay,
+  Day,
+  Place,
+  Title,
 };
