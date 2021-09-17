@@ -5,7 +5,11 @@ import Group from './Group';
 import Groups from './Groups';
 import Members from './Members';
 import ProgressBar from './ProgressBar';
-import CreateGroup from './CreateGroup';
+import CreateGroup from './modal/CreateGroup';
+import Personnel from './modal/Personnel';
+import Ratio from './modal/Ratio';
+import SelectGroup from './modal/SelectGroup';
+import SelectDay from './modal/SelectDay';
 
 export {
   AddGroupButton,
@@ -16,4 +20,8 @@ export {
   Members,
   ProgressBar,
   CreateGroup,
+  Personnel,
+  Ratio,
+  SelectGroup,
+  SelectDay,
 };

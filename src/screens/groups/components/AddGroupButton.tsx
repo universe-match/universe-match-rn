@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {colors} from '../../../constants/Index';
 import plus from '../../../assets/images/common/plus.png';
-import CreateGroup from './CreateGroup';
+import CreateGroup from './modal/CreateGroup';
 
 const AddGroupButton = () => {
   const [isShowDialog, setShowDialog] = useState(false);
