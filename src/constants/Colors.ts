@@ -6,6 +6,8 @@ const colors = {
   gray2: '#94A3AD',
   gray3: '#D1D8DC',
   gray4: '#858585',
+  gray5: '#999999',
+  gray6: '#B0BAC3',
   gray: '#878787',
   silver: '#C2C2C2',
   charcoal: '#454545',
@@ -22,6 +24,8 @@ const colors = {
   green: '#5EDEB4',
   lightGreen: 'rgba(94, 222, 180, 0.17)',
   lightGray: '#B0BAC3',
+  lightGreen2: 'rgba(94, 222, 180, 0.31)',
+  pink: '#FFBAD6',
 };
 
 export default colors;
