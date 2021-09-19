@@ -13,64 +13,60 @@ import group from './src/assets/images/bottomTab/group.png';
 import myInfo from './src/assets/images/bottomTab/myInfo.png';
 import friends from './src/assets/images/bottomTab/friends.png';
 
-import {height, width, colors} from './src/constants/Index';
+import {getHeight, getWidth, colors} from './src/constants/Index';
 
 const Tab = createBottomTabNavigator();
+
+const tabs = [
+  {
+    name: 'Screen1',
+    label: '그룹',
+    image: group,
+    component: GroupScreen,
+  },
+  {
+    name: 'Screen2',
+    label: '채팅',
+    image: chat,
+    component: Screen2,
+  },
+  {
+    name: 'Screen3',
+    label: '친구',
+    image: friends,
+    component: Screen3,
+  },
+  {
+    name: 'Screen4',
+    label: '계정',
+    image: myInfo,
+    component: Screen4,
+  },
+];
 
 const App = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
         tabBarOptions={{
-          labelStyle: {fontSize: 18},
+          labelStyle: {fontSize: 15},
           activeTintColor: colors.focusTabBar,
           inactiveTintColor: 'black',
-          style: {height: height * 70},
+          style: {height: getHeight(110)},
         }}>
-        <Tab.Screen
-          name="Screen1"
-          options={{
-            tabBarLabel: '그룹',
-            tabBarIcon: ({color, size}) => (
-              <Image style={styles.tinyLogo} source={group} />
-            ),
-          }}
-          component={GroupScreen}
-        />
-        <Tab.Screen
-          name="Screen2"
-          options={{
-            tabBarLabel: '채팅',
-            tabBarIcon: ({color, size}) => (
-              <Image style={styles.tinyLogo} source={chat} />
-            ),
-          }}
-          component={Screen2}
-        />
-        <Tab.Screen
-          name="Screen3"
-          options={{
-            tabBarLabel: '친구',
-            tabBarIcon: ({color, size}) => (
-              <Image
-                resizeMode={'cover'}
-                style={{height: height * 25, width: width * 40}}
-                source={friends}
-              />
-            ),
-          }}
-          component={Screen3}
-        />
-        <Tab.Screen
-          name="Screen4"
-          options={{
-            tabBarLabel: '계정',
-            tabBarIcon: ({color, size}) => (
-              <Image style={styles.tinyLogo} source={myInfo} />
-            ),
-          }}
-          component={Screen4}
-        />
+        {tabs.map(({name, label, image, component}) => (
+          <Tab.Screen
+            key={name}
+            name={name}
+            options={{
+              tabBarLabel: `${label}`,
+              tabBarIcon: () => (
+                <Image style={styles.tinyLogo} source={image} />
+              ),
+            }}
+            component={component}
+          />
+        ))}
       </Tab.Navigator>
     </NavigationContainer>
   );
@@ -78,8 +74,8 @@ const App = () => {
 
 const styles = StyleSheet.create({
   tinyLogo: {
-    width: width * 20,
-    height: height * 20,
+    width: getWidth(40),
+    height: getHeight(40),
   },
 });
 export default App;

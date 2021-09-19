@@ -23,6 +23,7 @@ const colors = {
   yellow: '#FCE37F',
   green: '#5EDEB4',
   lightGreen: 'rgba(94, 222, 180, 0.17)',
+  lightGray: '#B0BAC3',
   lightGreen2: 'rgba(94, 222, 180, 0.31)',
   pink: '#FFBAD6',
 };

@@ -6,7 +6,7 @@ import {
   ScrollView,
   TouchableHighlight,
 } from 'react-native';
-import {width, colors} from '../../../constants/Index';
+import {getWidth, colors} from '../../../constants/Index';
 import {Members, ProgressBar, GroupButtons} from './Index';
 
 const Group = ({title, area, age, date}: any) => {
@@ -34,7 +34,7 @@ const Group = ({title, area, age, date}: any) => {
               <Text style={styles.textDate}>{date}</Text>
             </View>
             <ScrollView
-              style={{width: width * 290}}
+              style={{width: getWidth(580)}}
               horizontal={true}
               showsHorizontalScrollIndicator={true}
               onMomentumScrollEnd={() => {
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginLeft: 30,
     marginRight: 30,
-    width: width * 300,
+    width: getWidth(600),
   },
   active: {
     backgroundColor: 'rgba(0,0,0,0.5)',

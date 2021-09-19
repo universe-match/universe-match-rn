@@ -1,6 +1,6 @@
 import React from 'react';
-import {StyleSheet, Image, SafeAreaView, View, Text} from 'react-native';
-import {height, width, colors} from '../../constants/Index';
+import {StyleSheet, Image, SafeAreaView, View} from 'react-native';
+import {getWidth, getHeight, colors} from '../../constants/Index';
 import logo from '../../assets/images/common/logo.png';
 import search from '../../assets/images/common/search.png';
 import noti from '../../assets/images/common/noti.png';
@@ -41,13 +41,13 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   search: {
-    width: width * 25,
-    height: height * 25,
+    width: getWidth(42),
+    height: getHeight(43),
     top: 10,
   },
   noti: {
-    width: width * 20,
-    height: height * 25,
+    width: getWidth(42),
+    height: getHeight(43),
     left: 20,
     top: 8,
   },
