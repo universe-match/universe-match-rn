@@ -7,7 +7,15 @@ import {
   ScrollView,
 } from 'react-native';
 import {getHeight, getWidth, colors} from '../../../../constants/Index';
-import {Personnel, Ratio, SelectGroup, Day, Place, Title} from '../Index';
+import {
+  Personnel,
+  Ratio,
+  SelectGroup,
+  Day,
+  Place,
+  Title,
+  FriendInvitation,
+} from '../Index';
 import RemoveIcon from '../../../../assets/images/common/remove.png';
 
 const CreateGroup = ({onClose}: any) => {
@@ -31,6 +39,7 @@ const CreateGroup = ({onClose}: any) => {
             <Day />
             <Place />
             <Title />
+            <FriendInvitation />
           </View>
         </ScrollView>
       </View>

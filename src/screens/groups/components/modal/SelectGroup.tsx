@@ -1,11 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, TouchableOpacity, View, Text, Image} from 'react-native';
-import {fonts, getHeight, getWidth, colors} from '../../../../constants/Index';
+import {getHeight, getWidth, colors} from '../../../../constants/Index';
 
 import All from '../../../../assets/images/group/all.png';
 import School from '../../../../assets/images/group/school.png';
 
 const SelectGroup = () => {
+  const [isPress, setIsPress] = useState(false);
+
+  const handleClick = (values: any) => {
+    setIsPress(!values);
+  };
+
   return (
     <View style={styles.card}>
       <View style={styles.title}>
@@ -15,7 +21,13 @@ const SelectGroup = () => {
         </Text>
       </View>
       <View style={styles.buttons}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={
+            isPress
+              ? {...styles.button, ...styles.button_active}
+              : styles.button
+          }
+          onPress={() => handleClick(isPress)}>
           <Text style={styles.buttonText}>전체</Text>
           <Image source={All} style={styles.image} />
         </TouchableOpacity>
@@ -56,6 +68,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  button_active: {
+    backgroundColor: 'rgba(94, 222, 180, 0.31);',
   },
   buttonText: {
     //fontFamily: fonts.bold,

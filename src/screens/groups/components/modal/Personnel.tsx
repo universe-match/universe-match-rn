@@ -6,7 +6,11 @@ import MultiSlider from '@ptomasroos/react-native-multi-slider';
 const Personnel = () => {
   const [multiSliderValue, setMultiSliderValue] = useState([0, 4]);
 
-  const multiSliderValuesChange = (values: any) => setMultiSliderValue(values);
+  const multiSliderValuesChange = (values: any) => {
+    console.log(values);
+    setMultiSliderValue(values);
+  };
+
   return (
     <View style={styles.card}>
       <View style={styles.title}>

@@ -1,43 +1,57 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Text, Image} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 import {fonts, getHeight, getWidth, colors} from '../../../../constants/Index';
 
 import {Calendar} from 'react-native-calendars';
 
 const Day = () => {
-  const [selectedStartDate, setSelectedStartDate] = useState('');
-  const [selectedSEndDate, setSelectedEndDate] = useState('');
+  const [dates, setDates] = useState('');
+
+  const onDayPress = (value: any) => {
+    setDates(
+      value.year +
+        '-' +
+        value.dateString.split('-')[1] +
+        '-' +
+        value.dateString.split('-')[2],
+    );
+    console.log(dates);
+  };
 
   return (
     <View style={styles.card}>
       <View style={styles.title}>
         <Text style={styles.titleText}>기간</Text>
       </View>
-      <View style={styles.calendars}>
-        <Calendar
-          style={{
-            borderRadius: 17.7379,
-          }}
-          theme={{
-            calendarBackground: 'rgba(94, 222, 180, 0.31)',
-            textSectionTitleColor: '#b6c1cd',
-            textSectionTitleDisabledColor: '#d9e1e8',
-            selectedDayBackgroundColor: '#87C289',
-            selectedDayTextColor: '#ffffff',
-            dayTextColor: colors.white,
-            textDisabledColor: '#d9e1e8',
-            dotColor: 'blue',
-            selectedDotColor: '#ffffff',
-            arrowColor: '#87C289',
-            disabledArrowColor: '#d9e1e8',
-            monthTextColor: colors.black,
-            indicatorColor: 'blue',
-          }}
-          onDayPress={day => {
-            console.log('selected day', day);
-          }}
-        />
-      </View>
+      <Calendar
+        style={{
+          borderRadius: 17.7379,
+        }}
+        theme={{
+          calendarBackground: 'rgba(94, 222, 180, 0.31)',
+          textSectionTitleColor: '#b6c1cd',
+          textSectionTitleDisabledColor: '#d9e1e8',
+          selectedDayTextColor: '#ffffff',
+          dayTextColor: colors.white,
+          textDisabledColor: '#d9e1e8',
+          monthTextColor: colors.black,
+        }}
+        onDayPress={day => onDayPress(day)}
+        markingType={'period'}
+        markedDates={{
+          '2021-09-22': {
+            startingDay: true,
+            color: '#87C289',
+            textColor: colors.white,
+          },
+          '2021-09-23': {
+            selected: true,
+            endingDay: true,
+            color: '#87C289',
+            textColor: colors.white,
+          },
+        }}
+      />
     </View>
   );
 };
@@ -52,10 +66,6 @@ const styles = StyleSheet.create({
   },
   card: {
     marginBottom: getWidth(40),
-  },
-  calendars: {
-    backgroundColor: 'rgba(94, 222, 180, 0.31)',
-    borderRadius: 17.7379,
   },
 });
 

@@ -1,17 +1,29 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, TouchableOpacity, View, Text, Image} from 'react-native';
 import {getHeight, getWidth, colors} from '../../../../constants/Index';
 import Ratio_img1 from '../../../../assets/images/group/ratio_img1.png';
 import Ratio_img2 from '../../../../assets/images/group/ratio_img2.png';
 
 const Ratio = () => {
+  const [isPress, setIsPress] = useState(false);
+
+  const handleClick = (values: any) => {
+    setIsPress(!values);
+  };
+
   return (
     <View style={styles.card}>
       <View style={styles.title}>
         <Text style={styles.titleText}>비율</Text>
       </View>
       <View style={styles.buttons}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={
+            isPress
+              ? {...styles.button, ...styles.button_active}
+              : styles.button
+          }
+          onPress={() => handleClick(isPress)}>
           <Text style={styles.buttonText}>동성</Text>
           <Image source={Ratio_img1} style={styles.image} />
         </TouchableOpacity>
@@ -51,6 +63,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  button_active: {
+    backgroundColor: 'rgba(94, 222, 180, 0.31);',
   },
   buttonText: {
     fontSize: getWidth(30),

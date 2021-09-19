@@ -12,6 +12,7 @@ import SelectGroup from './modal/SelectGroup';
 import Day from './modal/Day';
 import Place from './modal/Place';
 import Title from './modal/Title';
+import FriendInvitation from './modal/FriendInvitation';
 
 export {
   AddGroupButton,
@@ -28,4 +29,5 @@ export {
   Day,
   Place,
   Title,
+  FriendInvitation,
 };
