@@ -49,10 +49,10 @@ const App = () => {
     <NavigationContainer>
       <Tab.Navigator
         tabBarOptions={{
-          labelStyle: {fontSize: 20},
+          labelStyle: {fontSize: 15},
           activeTintColor: colors.focusTabBar,
           inactiveTintColor: 'black',
-          style: {height: getHeight(100)},
+          style: {height: getHeight(110)},
         }}>
         {tabs.map(({name, label, image, component}) => (
           <Tab.Screen
@@ -74,8 +74,8 @@ const App = () => {
 
 const styles = StyleSheet.create({
   tinyLogo: {
-    width: getWidth(34),
-    height: getHeight(34),
+    width: getWidth(40),
+    height: getHeight(40),
   },
 });
 export default App;

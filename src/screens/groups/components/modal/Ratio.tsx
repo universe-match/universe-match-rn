@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, View, Text, Image} from 'react-native';
-import {fonts, getHeight, getWidth, colors} from '../../../../constants/Index';
+import {getHeight, getWidth, colors} from '../../../../constants/Index';
 import Ratio_img1 from '../../../../assets/images/group/ratio_img1.png';
 import Ratio_img2 from '../../../../assets/images/group/ratio_img2.png';
 
@@ -28,6 +28,7 @@ const Ratio = () => {
 const styles = StyleSheet.create({
   title: {
     flexDirection: 'column',
+    marginBottom: getWidth(14),
   },
   titleText: {
     fontSize: getWidth(30),
@@ -56,6 +57,8 @@ const styles = StyleSheet.create({
   },
   image: {
     marginLeft: getWidth(32),
+    width: getWidth(55),
+    height: getHeight(55),
   },
 });
 

@@ -39,6 +39,7 @@ const Personnel = () => {
 const styles = StyleSheet.create({
   title: {
     flexDirection: 'column',
+    marginBottom: getWidth(42),
   },
   titleText: {
     fontSize: getWidth(30),

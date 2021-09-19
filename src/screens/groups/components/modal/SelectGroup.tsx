@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
   title: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: getWidth(13),
   },
   titleText: {
     fontSize: getWidth(30),
@@ -62,6 +63,8 @@ const styles = StyleSheet.create({
   },
   image: {
     marginLeft: getWidth(32),
+    width: getWidth(55),
+    height: getHeight(55),
   },
   group_explan: {
     fontSize: getWidth(15),
