@@ -4,11 +4,11 @@ import Header from '../components/groupmatch/Header';
 
 import {AddGroupButton, GroupContainers} from './groups/components/Index';
 
-const GroupScreen = () => (
+const GroupScreen = ({navigation}:any) => (
   <SafeAreaView>
     <Header />
     <GroupContainers />
-    <AddGroupButton />
+    <AddGroupButton navigation={navigation} />
   </SafeAreaView>
 );
 
