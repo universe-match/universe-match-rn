@@ -17,7 +17,8 @@ import {getHeight, getWidth, colors} from './src/constants/Index';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import CreateGroup from './src/screens/groups/components/modal/CreateGroup';
-import MainScreen from './src/screens/MainScreen'
+import Invitation from './src/screens/groups/components/modal/Invitation';
+import MainScreen from './src/screens/MainScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -52,7 +53,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
-      {/* <Tab.Navigator
+        {/* <Tab.Navigator
         tabBarOptions={{
           labelStyle: {fontSize: 15},
           activeTintColor: colors.focusTabBar,
@@ -75,6 +76,7 @@ const App = () => {
       </Tab.Navigator> */}
         <Stack.Screen name="Main" component={MainScreen} />
         <Stack.Screen name="CreateGroup" component={CreateGroup} />
+        <Stack.Screen name="Invitation" component={Invitation} />
       </Stack.Navigator>
     </NavigationContainer>
   );

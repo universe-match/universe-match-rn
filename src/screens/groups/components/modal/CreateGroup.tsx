@@ -16,17 +16,17 @@ import {
   Title,
   FriendInvitation,
 } from '../Index';
+import Button from '../../../../components/form/Button';
 import RemoveIcon from '../../../../assets/images/common/remove.png';
 
-const CreateGroup = ({onClose}: any) => {
+const CreateGroup = ({onClose, navigation}: any) => {
   return (
     <View style={styles.background}>
       <View style={styles.dialog}>
         <ScrollView
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
-          style={{height:"100%"}}
-        >
+          style={{height: '100%'}}>
           <View style={styles.header}>
             <TouchableOpacity
               activeOpacity={0.4}
@@ -46,7 +46,8 @@ const CreateGroup = ({onClose}: any) => {
             <View style={styles.contentMargin}>
               <Place />
               <Title />
-              <FriendInvitation />
+              <FriendInvitation navigation={navigation} />
+              <Button title="확인" onPress={() => {}} />
             </View>
           </View>
         </ScrollView>
@@ -73,7 +74,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 0,
   },
-  contentMargin:{
+  contentMargin: {
     paddingLeft: getWidth(53),
     paddingRight: getWidth(53),
   },

@@ -4,7 +4,7 @@ import {colors} from '../../../constants/Index';
 import plus from '../../../assets/images/common/plus.png';
 import CreateGroup from './modal/CreateGroup';
 
-const AddGroupButton = ({navigation}:any) => {
+const AddGroupButton = ({navigation}: any) => {
   const [isShowDialog, setShowDialog] = useState(false);
 
   return (
@@ -12,7 +12,7 @@ const AddGroupButton = ({navigation}:any) => {
       <TouchableOpacity
         activeOpacity={0.7}
         onPress={() => {
-          navigation.navigate("CreateGroup")
+          navigation.navigate('CreateGroup');
         }}
         style={styles.touchableOpacityStyle}>
         <Image source={plus} style={styles.floatingButtonStyle} />
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   },
   floatingButtonStyle: {
     resizeMode: 'contain',
-    color:"red",
+    color: 'red',
     width: 50,
     height: 50,
   },

@@ -1,14 +1,20 @@
 import React from 'react';
-import {StyleSheet, View, Text, Image} from 'react-native';
+import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
 import Invitation from '../../../../assets/images/group/invitation.png';
 import {getWidth, getHeight} from '../../../../constants/Index';
 
-const FriendInvitation = () => {
+const FriendInvitation = ({navigation}: any) => {
   return (
     <View style={styles.card}>
       <View style={styles.title}>
         <Text style={styles.titleText}>친구초대</Text>
-        <Image source={Invitation} style={styles.image} />
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={() => {
+            navigation.navigate('Invitation');
+          }}>
+          <Image source={Invitation} style={styles.image} />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -28,8 +34,6 @@ const styles = StyleSheet.create({
   },
   image: {
     marginLeft: getWidth(32),
-    width: getWidth(43),
-    height: getHeight(31),
   },
 });
 
