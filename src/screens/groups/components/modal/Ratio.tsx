@@ -5,10 +5,10 @@ import Ratio_img1 from '../../../../assets/images/group/ratio_img1.png';
 import Ratio_img2 from '../../../../assets/images/group/ratio_img2.png';
 
 const Ratio = () => {
-  const [isPress, setIsPress] = useState(false);
+  const [isPress, setIsPress] = useState(null);
 
   const handleClick = (values: any) => {
-    setIsPress(!values);
+    setIsPress(values);
   };
 
   return (
@@ -19,16 +19,22 @@ const Ratio = () => {
       <View style={styles.buttons}>
         <TouchableOpacity
           style={
-            isPress
+            isPress === 'same'
               ? {...styles.button, ...styles.button_active}
               : styles.button
           }
-          onPress={() => handleClick(isPress)}>
+          onPress={() => handleClick('same')}>
           <Text style={styles.buttonText}>동성</Text>
           <Image source={Ratio_img1} style={styles.image} />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={
+            isPress === 'opposite'
+              ? {...styles.button, ...styles.button_active}
+              : styles.button
+          }
+          onPress={() => handleClick('opposite')}>
           <Text style={styles.buttonText}>이성</Text>
           <Image source={Ratio_img2} style={styles.image} />
         </TouchableOpacity>
