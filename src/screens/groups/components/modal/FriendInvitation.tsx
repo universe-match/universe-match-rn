@@ -1,16 +1,20 @@
 import React from 'react';
-import {StyleSheet, View, Text, Image} from 'react-native';
+import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
 import Invitation from '../../../../assets/images/group/invitation.png';
 import {getWidth, getHeight} from '../../../../constants/Index';
 
-const FriendInvitation = () => {
+const FriendInvitation = ({onPress}: any) => {
   return (
-    <View style={styles.card}>
-      <View style={styles.title}>
-        <Text style={styles.titleText}>친구초대</Text>
-        <Image source={Invitation} style={styles.image} />
+    <>
+      <View style={styles.card}>
+        <View style={styles.title}>
+          <Text style={styles.titleText}>친구초대</Text>
+          <TouchableOpacity onPress={() => onPress(true)}>
+            <Image source={Invitation} style={styles.image} />
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </>
   );
 };
 
@@ -28,8 +32,10 @@ const styles = StyleSheet.create({
   },
   image: {
     marginLeft: getWidth(32),
-    width: getWidth(43),
-    height: getHeight(31),
+  },
+  dialogInput: {
+    marginBottom: getHeight(23),
+    width: '100%',
   },
 });
 

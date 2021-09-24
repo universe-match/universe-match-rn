@@ -6,10 +6,10 @@ import All from '../../../../assets/images/group/all.png';
 import School from '../../../../assets/images/group/school.png';
 
 const SelectGroup = () => {
-  const [isPress, setIsPress] = useState(false);
+  const [isPress, setIsPress] = useState(null);
 
   const handleClick = (values: any) => {
-    setIsPress(!values);
+    setIsPress(values);
   };
 
   return (
@@ -23,16 +23,22 @@ const SelectGroup = () => {
       <View style={styles.buttons}>
         <TouchableOpacity
           style={
-            isPress
+            isPress === 'all'
               ? {...styles.button, ...styles.button_active}
               : styles.button
           }
-          onPress={() => handleClick(isPress)}>
+          onPress={() => handleClick('all')}>
           <Text style={styles.buttonText}>전체</Text>
           <Image source={All} style={styles.image} />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={
+            isPress === 'school'
+              ? {...styles.button, ...styles.button_active}
+              : styles.button
+          }
+          onPress={() => handleClick('school')}>
           <Text style={styles.buttonText}>학교</Text>
           <Image source={School} style={styles.image} />
         </TouchableOpacity>
