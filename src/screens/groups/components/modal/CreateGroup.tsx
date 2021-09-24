@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   TouchableOpacity,
   View,
   Image,
   ScrollView,
+  SafeAreaView,
 } from 'react-native';
 import {getHeight, getWidth, colors} from '../../../../constants/Index';
 import {
@@ -18,41 +19,56 @@ import {
 } from '../Index';
 import Button from '../../../../components/form/Button';
 import RemoveIcon from '../../../../assets/images/common/remove.png';
+import InvitationPopup from './InvitationPopup';
 
-const CreateGroup = ({onClose, navigation}: any) => {
+const CreateGroup = ({onClose}: any) => {
+  const [isShowDialog, setShowDialog] = useState(false);
+
+  const handlePress = (flag: any) => {
+    setShowDialog(flag);
+  };
   return (
-    <View style={styles.background}>
-      <View style={styles.dialog}>
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          showsHorizontalScrollIndicator={false}
-          style={{height: '100%'}}>
-          <View style={styles.header}>
-            <TouchableOpacity
-              activeOpacity={0.4}
-              onPress={onClose}
-              style={styles.closeWrapper}>
-              <Image source={RemoveIcon} style={styles.close} />
-            </TouchableOpacity>
-          </View>
+    <SafeAreaView>
+      <View style={styles.background}>
+        <View style={styles.dialog}>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
+            style={{height: '100%'}}>
+            <View style={styles.header}>
+              <TouchableOpacity
+                activeOpacity={0.4}
+                onPress={onClose}
+                style={styles.closeWrapper}>
+                <Image source={RemoveIcon} style={styles.close} />
+              </TouchableOpacity>
+            </View>
 
-          <View style={styles.content}>
-            <View style={styles.contentMargin}>
-              <Personnel />
-              <Ratio />
-              <SelectGroup />
+            <View style={styles.content}>
+              <View style={styles.contentMargin}>
+                <Personnel />
+                <Ratio />
+                <SelectGroup />
+                <Day />
+              </View>
+              <View style={styles.contentMargin}>
+                <Place />
+                <Title />
+                <FriendInvitation onPress={handlePress} />
+                <Button title="확인" onPress={() => {}} />
+              </View>
             </View>
-            <Day />
-            <View style={styles.contentMargin}>
-              <Place />
-              <Title />
-              <FriendInvitation navigation={navigation} />
-              <Button title="확인" onPress={() => {}} />
-            </View>
-          </View>
-        </ScrollView>
+          </ScrollView>
+        </View>
       </View>
-    </View>
+      {isShowDialog && (
+        <InvitationPopup
+          onClose={() => {
+            setShowDialog(false);
+          }}
+        />
+      )}
+    </SafeAreaView>
   );
 };
 

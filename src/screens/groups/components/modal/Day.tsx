@@ -3,26 +3,24 @@ import {StyleSheet, View, Text} from 'react-native';
 import {fonts, getHeight, getWidth, colors} from '../../../../constants/Index';
 import CalendarPicker from 'react-native-calendar-picker';
 
-
 const Day = () => {
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [selectedEndDate, setSelectedEndDate] = useState(null);
   const [selectDate, setSelectDate] = useState('');
   const minDate = new Date(); // Today
   const maxDate = new Date(2021, 9, 21);
-  const startDate  =  selectedStartDate ? selectedStartDate.toString() : '';
+  const startDate = selectedStartDate ? selectedStartDate.toString() : '';
   const endDate = selectedEndDate ? selectedEndDate.toString() : '';
   // const [sendStartDate,setSendStartDate] = useState(null);
   // const [sendEndDate,setSendEndDate] = useState(null);
-  const onDateChange =  (date:any, type:any) => {
+  const onDateChange = (date: any, type: any) => {
     if (type === 'END_DATE') {
-      setSelectedStartDate(date)
+      setSelectedStartDate(date);
     } else {
-      setSelectedStartDate(date)
-      setSelectedEndDate(null)
+      setSelectedStartDate(date);
+      setSelectedEndDate(null);
     }
-  }
-  
+  };
 
   return (
     <View style={styles.card}>
@@ -35,20 +33,29 @@ const Day = () => {
           allowRangeSelection={true}
           previousTitle="이전"
           nextTitle="다음"
-          months={['01월', '02월', '03월', '04월', '05월', '06월', '07월', '08월', '09월', '10월', '11월', '12월']}
-
+          months={[
+            '01월',
+            '02월',
+            '03월',
+            '04월',
+            '05월',
+            '06월',
+            '07월',
+            '08월',
+            '09월',
+            '10월',
+            '11월',
+            '12월',
+          ]}
           minDate={minDate}
           maxDate={maxDate}
           todayBackgroundColor="#f2e6ff"
           selectedDayColor="#87C289"
           selectedDayTextColor="#FFFFFF"
           onDateChange={onDateChange}
+          width={getWidth(600)}
         />
-
-        
       </View>
-      
-      
     </View>
   );
 };
@@ -64,12 +71,13 @@ const styles = StyleSheet.create({
   card: {
     marginBottom: getWidth(70),
   },
-  container:{
+  container: {
     flex: 1,
     backgroundColor: '#5EDEB44F',
-    marginTop: 20 ,
+    marginTop: 20,
     marginBottom: getWidth(40),
-  }
+    borderRadius: 17,
+  },
 });
 
 export default Day;
