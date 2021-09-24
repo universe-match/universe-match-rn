@@ -53,7 +53,7 @@ const InvitationPopup = ({onClose}: any) => {
             </Text>
           </Text>
           {isActive ? (
-            <View style={styles.dialogInput}>
+            <View style={styles.dialogContent}>
               <Input
                 placeholder="아이디 입력"
                 setValue={(value: string) => setId(value)}
@@ -62,7 +62,7 @@ const InvitationPopup = ({onClose}: any) => {
               />
             </View>
           ) : (
-            <View style={styles.dialogInput}>
+            <View style={styles.dialogContent}>
               <TouchableOpacity
                 style={
                   isPress
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     top: getHeight(150),
     width: '100%',
   },
-  dialogInput: {
+  dialogContent: {
     marginBottom: getWidth(23),
     alignItems: 'center',
   },

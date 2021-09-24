@@ -1,17 +1,17 @@
 import React from 'react';
-import {Image, StyleSheet} from 'react-native';
+import {Image} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
 import GroupScreen from './GroupScreen';
 import Screen2 from './Screen2';
 import Screen3 from './Screen3';
 import Screen4 from './Screen4';
-
-import chat from '../assets/images/bottomTab/chat.png';
 import group from '../assets/images/bottomTab/group.png';
-import myInfo from '../assets/images/bottomTab/myInfo.png';
+import chat from '../assets/images/bottomTab/chat.png';
 import friends from '../assets/images/bottomTab/friends.png';
-
+import myInfo from '../assets/images/bottomTab/myInfo.png';
 import {getHeight, colors} from '../constants/Index';
+
 const Tab = createBottomTabNavigator();
 const tabs = [
   {

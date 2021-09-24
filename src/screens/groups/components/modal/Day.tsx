@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-import {fonts, getHeight, getWidth, colors} from '../../../../constants/Index';
+import {getWidth} from '../../../../constants/Index';
 import CalendarPicker from 'react-native-calendar-picker';
 
 const Day = () => {
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [selectedEndDate, setSelectedEndDate] = useState(null);
-  const [selectDate, setSelectDate] = useState('');
   const minDate = new Date(); // Today
   const maxDate = new Date(2021, 9, 21);
   const startDate = selectedStartDate ? selectedStartDate.toString() : '';

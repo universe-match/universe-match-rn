@@ -21,7 +21,7 @@ import Button from '../../../../components/form/Button';
 import RemoveIcon from '../../../../assets/images/common/remove.png';
 import InvitationPopup from './InvitationPopup';
 
-const CreateGroup = ({onClose}: any) => {
+const CreateGroup = ({navigation}: any) => {
   const [isShowDialog, setShowDialog] = useState(false);
 
   const handlePress = (flag: any) => {
@@ -38,7 +38,9 @@ const CreateGroup = ({onClose}: any) => {
             <View style={styles.header}>
               <TouchableOpacity
                 activeOpacity={0.4}
-                onPress={onClose}
+                onPress={() => {
+                  navigation.goBack();
+                }}
                 style={styles.closeWrapper}>
                 <Image source={RemoveIcon} style={styles.close} />
               </TouchableOpacity>
@@ -74,7 +76,7 @@ const CreateGroup = ({onClose}: any) => {
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: '#00000040',
+    backgroundColor: colors.white,
   },
   dialog: {
     backgroundColor: colors.white,
