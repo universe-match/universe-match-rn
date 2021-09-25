@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {StyleSheet, TouchableOpacity, View, Text, Image} from 'react-native';
 import {getHeight, getWidth, colors} from '../../../../constants/Index';
-import Ratio_img1 from '../../../../assets/images/group/ratio_img1.png';
-import Ratio_img2 from '../../../../assets/images/group/ratio_img2.png';
+import Same from '../../../../assets/images/group/same_sex.png';
+import Opposite from '../../../../assets/images/group/opposite_sex.png';
 
 const Ratio = () => {
   const [isPress, setIsPress] = useState(null);
@@ -25,7 +25,7 @@ const Ratio = () => {
           }
           onPress={() => handleClick('same')}>
           <Text style={styles.buttonText}>동성</Text>
-          <Image source={Ratio_img1} style={styles.image} />
+          <Image source={Same} style={styles.image} />
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -36,7 +36,7 @@ const Ratio = () => {
           }
           onPress={() => handleClick('opposite')}>
           <Text style={styles.buttonText}>이성</Text>
-          <Image source={Ratio_img2} style={styles.image} />
+          <Image source={Opposite} style={styles.image} />
         </TouchableOpacity>
       </View>
     </View>

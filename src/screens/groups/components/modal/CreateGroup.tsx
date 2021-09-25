@@ -16,16 +16,21 @@ import {
   Place,
   Title,
   FriendInvitation,
+  InvitationPopup,
+  CreateGroupPopup,
 } from '../Index';
 import Button from '../../../../components/form/Button';
 import RemoveIcon from '../../../../assets/images/common/remove.png';
-import InvitationPopup from './InvitationPopup';
 
 const CreateGroup = ({navigation}: any) => {
-  const [isShowDialog, setShowDialog] = useState(false);
+  const [isShowFriendDialog, setShowFriendDialog] = useState(false);
+  const [isShowGroupDialog, setShowGroupDialog] = useState(false);
 
   const handlePress = (flag: any) => {
-    setShowDialog(flag);
+    setShowFriendDialog(flag);
+  };
+  const handleCreateGroup = (flag: any) => {
+    setShowGroupDialog(flag);
   };
   return (
     <SafeAreaView>
@@ -57,16 +62,23 @@ const CreateGroup = ({navigation}: any) => {
                 <Place />
                 <Title />
                 <FriendInvitation onPress={handlePress} />
-                <Button title="확인" onPress={() => {}} />
+                <Button title="방 만들기" onPress={handleCreateGroup} />
               </View>
             </View>
           </ScrollView>
         </View>
       </View>
-      {isShowDialog && (
+      {isShowFriendDialog && (
         <InvitationPopup
           onClose={() => {
-            setShowDialog(false);
+            setShowFriendDialog(false);
+          }}
+        />
+      )}
+      {isShowGroupDialog && (
+        <CreateGroupPopup
+          onClose={() => {
+            setShowGroupDialog(false);
           }}
         />
       )}
