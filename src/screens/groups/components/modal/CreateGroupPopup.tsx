@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   dialog: {
     backgroundColor: colors.white,
     width: getWidth(620),
-    height: getHeight(600),
+    height: getHeight(620),
     borderRadius: getWidth(10),
     paddingLeft: getWidth(63),
     paddingRight: getWidth(63),
