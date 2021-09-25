@@ -2,10 +2,7 @@ import React from 'react';
 import {Image} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import GroupScreen from './GroupScreen';
-import Screen2 from './Screen2';
-import Screen3 from './Screen3';
-import Screen4 from './Screen4';
+import {GroupScreen, ChatScreen, Screen3, Screen4} from './Index';
 import group from '../assets/images/bottomTab/group.png';
 import chat from '../assets/images/bottomTab/chat.png';
 import friends from '../assets/images/bottomTab/friends.png';
@@ -24,7 +21,7 @@ const tabs = [
     name: 'Screen2',
     label: '채팅',
     image: chat,
-    component: Screen2,
+    component: ChatScreen,
   },
   {
     name: 'Screen3',
