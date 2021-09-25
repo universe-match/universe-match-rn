@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {TouchableOpacity, StyleSheet, Image, Text, View} from 'react-native';
-import {fonts, getHeight, getWidth, colors} from '../../../../constants/Index';
+import {getHeight, getWidth, colors} from '../../../../constants/Index';
 import RemoveIcon from '../../../../assets/images/common/remove.png';
 import Button from '../../../../components/form/Button';
 import Input from '../../../../components/form/Input';

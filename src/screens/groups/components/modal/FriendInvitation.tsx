@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
 import Invitation from '../../../../assets/images/group/invitation.png';
-import {getWidth, getHeight} from '../../../../constants/Index';
+import {getWidth} from '../../../../constants/Index';
 
 const FriendInvitation = ({onPress}: any) => {
   return (
@@ -32,10 +32,6 @@ const styles = StyleSheet.create({
   },
   image: {
     marginLeft: getWidth(32),
-  },
-  dialogInput: {
-    marginBottom: getHeight(23),
-    width: '100%',
   },
 });
 

@@ -13,6 +13,8 @@ import Day from './modal/Day';
 import Place from './modal/Place';
 import Title from './modal/Title';
 import FriendInvitation from './modal/FriendInvitation';
+import InvitationPopup from './modal/InvitationPopup';
+import CreateGroupPopup from './modal/CreateGroupPopup';
 
 export {
   AddGroupButton,
@@ -30,4 +32,6 @@ export {
   Place,
   Title,
   FriendInvitation,
+  InvitationPopup,
+  CreateGroupPopup,
 };
