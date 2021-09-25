@@ -13,6 +13,7 @@ const colors = {
   charcoal: '#454545',
   dim_gray: '#6A6A6A',
   white: '#FFFFFF',
+  black2: '#000000',
   tap: '#939393',
   blue: '#2354D4',
   unCpl: '#C5C5C5',

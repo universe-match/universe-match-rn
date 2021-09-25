@@ -131,6 +131,7 @@ const styles = StyleSheet.create({
   titleText: {
     fontWeight: '400',
     fontSize: getWidth(30),
+    color: colors.black2,
   },
   titleText_active: {
     color: colors.green,
