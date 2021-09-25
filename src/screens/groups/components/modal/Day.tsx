@@ -10,8 +10,6 @@ const Day = () => {
   const maxDate = new Date(2021, 9, 21);
   const startDate = selectedStartDate ? selectedStartDate.toString() : '';
   const endDate = selectedEndDate ? selectedEndDate.toString() : '';
-  // const [sendStartDate,setSendStartDate] = useState(null);
-  // const [sendEndDate,setSendEndDate] = useState(null);
   const onDateChange = (date: any, type: any) => {
     if (type === 'END_DATE') {
       setSelectedStartDate(date);
@@ -73,8 +71,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#5EDEB44F',
-    marginTop: 20,
-    marginBottom: getWidth(40),
+    marginTop: getWidth(20),
+    marginBottom: getWidth(20),
     borderRadius: 17,
   },
 });
