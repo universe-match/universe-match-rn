@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, View, Text} from 'react-native';
+import {SafeAreaView} from 'react-native';
 import ChatContainers from './chat/containers/ChatContainers';
 const ChatScreen = () => {
   return (

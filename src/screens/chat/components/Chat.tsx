@@ -53,17 +53,17 @@ const Chat = ({title, area, age, date}: any) => {
 
 const styles = StyleSheet.create({
   groupInfos: {
-    left: 10,
-    marginTop: 20,
+    left: getWidth(10),
+    marginTop: getWidth(20),
   },
   root: {
-    backgroundColor: colors.white,
+    backgroundColor: 'rgba(223, 234, 230, 0.46)',
     borderColor: colors.green,
     borderRadius: 10,
     marginVertical: 8,
     borderWidth: 1,
-    marginLeft: 30,
-    marginRight: 30,
+    marginTop: getWidth(169),
+    marginLeft: getWidth(60),
     width: getWidth(600),
   },
   active: {
