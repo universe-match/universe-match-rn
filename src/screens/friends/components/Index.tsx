@@ -1,5 +1,5 @@
 import Friends from './Friends';
-import Friend from './Friend';
-import RequestFriends from './RequestFriends';
+import RequestFriend from './RequestFriend';
+import RequestFriendsInfo from './RequestFriendsInfo';
 
-export {Friends, Friend, RequestFriends};
+export {Friends, RequestFriend, RequestFriendsInfo};
