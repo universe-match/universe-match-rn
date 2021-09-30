@@ -1,10 +1,10 @@
 import React from 'react';
 import {FlatList} from 'react-native';
-import {RequestFriendsInfo, RequestFriend} from './Index';
+import {FriendsRequestNumber, FriendRequest} from './Index';
 
-const Friends = ({friend}: any) => {
+const FriendsRequest = ({friend}: any) => {
   const renderFriends = ({item}: any) => (
-    <RequestFriend
+    <FriendRequest
       profileName={item.profileName}
       age={item.age}
       mbti={item.mbti}
@@ -14,7 +14,7 @@ const Friends = ({friend}: any) => {
 
   return (
     <>
-      <RequestFriendsInfo />
+      <FriendsRequestNumber />
       <FlatList
         data={friend}
         renderItem={renderFriends}
@@ -24,4 +24,4 @@ const Friends = ({friend}: any) => {
   );
 };
 
-export default Friends;
+export default FriendsRequest;

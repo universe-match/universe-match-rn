@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text} from 'react-native';
 import {getWidth, colors} from '../../../constants/Index';
 
-const RequestFriendsInfo = () => {
+const FriendsRequestNumber = () => {
   return <Text style={styles.requestText}>“친구요청이 총 2건있습니다”</Text>;
 };
 
@@ -17,4 +17,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RequestFriendsInfo;
+export default FriendsRequestNumber;

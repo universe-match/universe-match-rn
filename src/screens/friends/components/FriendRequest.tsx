@@ -5,7 +5,7 @@ import man from '../../../assets/images/test/man.png';
 import check from '../../../assets/images/friend/check.png';
 import friendDelete from '../../../assets/images/friend/delete.png';
 
-const RequestFriend = ({profileName, age, mbti, school}: any) => {
+const FriendRequest = ({profileName, age, mbti, school}: any) => {
   return (
     <SafeAreaView style={styles.containers}>
       <View style={styles.friendInfos}>
@@ -77,4 +77,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RequestFriend;
+export default FriendRequest;
