@@ -1,5 +1,15 @@
+import FriendsRequestNumber from './FriendsRequestNumber';
 import FriendsRequest from './FriendsRequest';
 import FriendRequest from './FriendRequest';
-import FriendsRequestNumber from './FriendsRequestNumber';
+import Friends from './Friends';
+import Friend from './Friend';
+import AddFriendButton from './AddFriendButton';
 
-export {FriendsRequest, FriendRequest, FriendsRequestNumber};
+export {
+  FriendsRequestNumber,
+  FriendsRequest,
+  FriendRequest,
+  Friends,
+  Friend,
+  AddFriendButton,
+};

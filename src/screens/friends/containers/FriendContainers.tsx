@@ -1,6 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
-import {FriendsRequest} from '../components/Index';
+import {FriendsRequest, Friends} from '../components/Index';
 import {colors} from '../../../constants/Index';
 
 const DATA = [
@@ -24,6 +24,7 @@ const FriendContainers = () => {
   return (
     <View style={{backgroundColor: colors.white}}>
       <FriendsRequest friend={DATA} />
+      <Friends friend={DATA} />
     </View>
   );
 };
