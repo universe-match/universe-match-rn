@@ -9,11 +9,12 @@ import {
   Image,
 } from 'react-native';
 import {fonts, getHeight, getWidth, colors} from '../constants/Index';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import InputButton from '../components/form/InputButton';
 import BackIcon from '../assets/images/common/back.png';
 import RightIcon from '../assets/images/common/right.png';
 
-const SignUp = () => {
+const Setting = ({navigation}: any) => {
   const [name, setName] = useState('');
   const [birth, setBirth] = useState('');
   const [nickname, setNickname] = useState('');
@@ -23,6 +24,11 @@ const SignUp = () => {
   const onPress = useCallback((value: string): void => {
     console.log(value);
   }, []);
+
+  const handleLogOut = async () => {
+    await AsyncStorage.clear();
+    await navigation.navigate('SignIn');
+  };
 
   return (
     <SafeAreaView>
@@ -40,7 +46,7 @@ const SignUp = () => {
             <Text style={styles.itemText}>불편신고</Text>
             <Image style={styles.itemIcon} source={RightIcon} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.item}>
+          <TouchableOpacity style={styles.item} onPress={() => handleLogOut()}>
             <Text style={styles.itemText}>로그아웃</Text>
             <Image style={styles.itemIcon} source={RightIcon} />
           </TouchableOpacity>
@@ -117,4 +123,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignUp;
+export default Setting;

@@ -3,9 +3,7 @@ import {StyleSheet, View, Text} from 'react-native';
 import {getWidth} from '../../../../constants/Index';
 import Input from '../../../../components/form/Input';
 
-const Place = () => {
-  const [place, setPlace] = useState('');
-
+const Place = ({place, setPlace}: any) => {
   return (
     <View style={styles.card}>
       <View style={styles.title}>
@@ -34,4 +32,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Place;
+export default React.memo(Place);

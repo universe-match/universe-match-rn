@@ -9,13 +9,14 @@ import {
 import {getWidth, colors} from '../../../constants/Index';
 import {Members, ProgressBar, GroupButtons} from './Index';
 
-const Group = ({title, area, age, date}: any) => {
+const Group = ({title, area, fromDate, toDate, matchingList}: any) => {
   const [isActive, setIsActive] = useState(false);
 
   const handleClick = (flag: any) => {
     setIsActive(!flag);
   };
 
+  console.log('matchingList,', matchingList);
   return (
     <>
       <TouchableHighlight
@@ -30,8 +31,10 @@ const Group = ({title, area, age, date}: any) => {
               <Text style={styles.textArea}>{area}</Text>
             </View>
             <View style={styles.topArea}>
-              <Text>평균연령 {age}</Text>
-              <Text style={styles.textDate}>{date}</Text>
+              <Text>평균연령 </Text>
+              <Text style={styles.textDate}>
+                {fromDate}~{toDate}
+              </Text>
             </View>
             <ScrollView
               style={{width: getWidth(580)}}
@@ -40,7 +43,9 @@ const Group = ({title, area, age, date}: any) => {
               onMomentumScrollEnd={() => {
                 console.log('Scrolling is End');
               }}>
-              <Members />
+              {matchingList.map((member: any) => (
+                <Members member={member} />
+              ))}
             </ScrollView>
           </View>
           <ProgressBar />

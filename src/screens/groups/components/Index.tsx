@@ -11,7 +11,7 @@ import Ratio from './modal/Ratio';
 import SelectGroup from './modal/SelectGroup';
 import Day from './modal/Day';
 import Place from './modal/Place';
-import Title from './modal/Title';
+import InPutContainer from './modal/InPutContainer';
 import FriendInvitation from './modal/FriendInvitation';
 import InvitationPopup from './modal/InvitationPopup';
 import CreateGroupPopup from './modal/CreateGroupPopup';
@@ -30,7 +30,7 @@ export {
   SelectGroup,
   Day,
   Place,
-  Title,
+  InPutContainer,
   FriendInvitation,
   InvitationPopup,
   CreateGroupPopup,

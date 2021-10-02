@@ -6,23 +6,43 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {fonts, getHeight, getWidth, colors} from '../constants/Index';
 import Button from '../components/form/Button';
 import Input from '../components/form/Input';
 import Dialog from '../components/layer/Dialog';
+import axios from 'axios';
 
-const Login = () => {
+const Login = ({navigation}: any) => {
   const [isShowDialog, setShowDialog] = useState(false);
-  const [id, setId] = useState('');
+  // const [id, setId] = useState('');
+  const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
+
+  const handleLogin = () => {
+    AsyncStorage.clear();
+
+    axios
+      .post('/api/user/signin', {
+        userId: userId,
+        password: password,
+      })
+      .then(function (response) {
+        AsyncStorage.setItem('accessToken', response.data.token);
+        navigation.navigate('Main');
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
   return (
     <SafeAreaView>
       <View style={styles.container}>
         <View style={styles.login}>
           <Input
             placeholder="아이디를 입력해주세요"
-            setValue={(value: string) => setId(value)}
-            value={id}
+            setValue={(value: string) => setUserId(value)}
+            value={userId}
             style={{marginBottom: getHeight(12)}}
           />
           <Input
@@ -32,7 +52,7 @@ const Login = () => {
             value={password}
             style={{marginBottom: getHeight(25)}}
           />
-          <Button title="로그인" onPress={() => {}} />
+          <Button title="로그인" onPress={() => handleLogin()} />
           <View style={styles.buttonWrapper}>
             <TouchableOpacity
               style={[styles.button, styles.firstButton]}
@@ -46,7 +66,11 @@ const Login = () => {
               <Text style={styles.buttonText}>비밀번호 찾기</Text>
             </TouchableOpacity>
             <View style={styles.separator} />
-            <TouchableOpacity style={[styles.button, styles.lastButton]}>
+            <TouchableOpacity
+              style={[styles.button, styles.lastButton]}
+              onPress={() => {
+                navigation.navigate('SignUp');
+              }}>
               <Text style={styles.buttonText}>회원가입</Text>
             </TouchableOpacity>
           </View>

@@ -3,13 +3,13 @@ import {StyleSheet, View, Text} from 'react-native';
 import {getWidth} from '../../../../constants/Index';
 import Input from '../../../../components/form/Input';
 
-const Title = () => {
-  const [title, setTitle] = useState('');
+const InPutContainer = ({InputTitle, title, setTitle}: any) => {
+  // const [title, setTitle] = useState('');
 
   return (
     <View style={styles.card}>
       <View style={styles.title}>
-        <Text style={styles.titleText}>제목</Text>
+        <Text style={styles.titleText}>{InputTitle}</Text>
         <Input
           placeholder="성희롱적 표현과 욕설은 안내없이 삭제됩니다"
           setValue={(value: string) => setTitle(value)}
@@ -34,4 +34,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Title;
+export default React.memo(InPutContainer);

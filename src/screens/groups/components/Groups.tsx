@@ -2,19 +2,20 @@ import React from 'react';
 import {FlatList} from 'react-native';
 import {Group} from './Index';
 
-const Groups = ({groups}: any) => {
+const Groups = ({groupList}: any) => {
   const renderGroup = ({item}: any) => (
     <Group
       title={item.title}
-      area={item.area}
-      age={item.age}
-      date={item.date}
+      area={item.place}
+      fromDate={item.fromDate}
+      toDate={item.toDate}
+      matchingList={item.matchingList}
     />
   );
 
   return (
     <FlatList
-      data={groups}
+      data={groupList}
       renderItem={renderGroup}
       keyExtractor={item => item.id}
     />
