@@ -10,8 +10,7 @@ import {
 import Profile from './Profile';
 import SignIn from './SignIn';
 import Setting from './Setting';
-import SignUp from './SignUp';
-import StudentSignUp from './StudentSignUp';
+import SignUp from './signUp/SignUp';
 
 const Screen4 = ({navigation}: any) => {
   return (

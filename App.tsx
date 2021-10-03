@@ -6,8 +6,9 @@ import axios from 'axios';
 
 import CreateGroup from './src/screens/groups/components/modal/CreateGroup';
 import MainScreen from './src/screens/MainScreen';
-import SignUp from './src/screens/SignUp';
+import SignUp from './src/screens/signUp/SignUp';
 import SignIn from './src/screens/SignIn';
+import MultiStep from './src/screens/signUp/MultiStep';
 
 const Stack = createStackNavigator();
 
@@ -19,7 +20,7 @@ const App = () => {
     return result;
   });
 
-  axios.defaults.baseURL = 'http://192.168.0.121:9090';
+  axios.defaults.baseURL = 'http://192.168.0.65:9090';
   axios.interceptors.request.use(async function (config) {
     const token = await AsyncStorage.getItem('accessToken');
     console.log('token==', token);
@@ -38,7 +39,7 @@ const App = () => {
           <Stack.Screen name="SignIn1" component={SignIn} />
         )}
 
-        <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="SignUp" component={MultiStep} />
         <Stack.Screen name="Main" component={MainScreen} />
         <Stack.Screen name="SignIn" component={SignIn} />
         <Stack.Screen name="CreateGroup" component={CreateGroup} />
