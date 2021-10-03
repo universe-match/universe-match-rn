@@ -1,12 +1,19 @@
 import React from 'react';
-import {SafeAreaView, View, Text, StyleSheet, Image} from 'react-native';
-import {fonts, getHeight, getWidth, colors} from '../constants/Index';
-import InputButton from '../components/form/InputButton';
-import BackIcon from '../assets/images/common/back.png';
-import CameraIcon from '../assets/images/common/camera.png';
-import RemoveIcon from '../assets/images/common/remove.png';
+import {
+  SafeAreaView,
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Button,
+} from 'react-native';
+import {fonts, getHeight, getWidth, colors} from '../../constants/Index';
+import InputButton from '../../components/form/InputButton';
+import BackIcon from '../../assets/images/common/back.png';
+import CameraIcon from '../../assets/images/common/camera.png';
+import RemoveIcon from '../../assets/images/common/remove.png';
 
-const SignUp = () => {
+const SignUp = ({nextStep}: any) => {
   return (
     <SafeAreaView>
       <View style={styles.container}>
@@ -47,6 +54,12 @@ const SignUp = () => {
             setInputValue={() => {}}
             onPress={() => {}}
             style={{marginBottom: getHeight(37)}}
+          />
+          <Button
+            onPress={nextStep}
+            title="다음"
+            color={colors.green}
+            accessibilityLabel="Learn more about this purple button"
           />
         </View>
       </View>
