@@ -1,12 +1,18 @@
 import React, {useCallback, useState} from 'react';
+import {
+  SafeAreaView,
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Button,
+} from 'react-native';
+import {fonts, getHeight, getWidth, colors} from '../../constants/Index';
+import InputButton from '../../components/form/InputButton';
+import BackIcon from '../../assets/images/common/back.png';
+import RemoveIcon from '../../assets/images/common/remove.png';
 
-import {SafeAreaView, View, Text, StyleSheet, Image} from 'react-native';
-import {fonts, getHeight, getWidth, colors} from '../constants/Index';
-import InputButton from '../components/form/InputButton';
-import BackIcon from '../assets/images/common/back.png';
-import RemoveIcon from '../assets/images/common/remove.png';
-
-const SignUp = () => {
+const SignUp = ({nextStep}: any) => {
   const [name, setName] = useState('');
   const [birth, setBirth] = useState('');
   const [nickname, setNickname] = useState('');
@@ -66,7 +72,7 @@ const SignUp = () => {
               onPress={onPress}
             />
           </View>
-          <View>
+          <View style={{marginBottom: getHeight(37)}}>
             <InputButton
               placeholder="비밀번호를 입력해주세요"
               buttonContent="확인"
@@ -74,6 +80,14 @@ const SignUp = () => {
               inputValue={password}
               onPress={onPress}
               isPassword={true}
+            />
+          </View>
+          <View>
+            <Button
+              onPress={nextStep}
+              title="다음"
+              color={colors.green}
+              accessibilityLabel="Learn more about this purple button"
             />
           </View>
         </View>
@@ -127,6 +141,11 @@ const styles = StyleSheet.create({
   signUp: {
     paddingTop: getHeight(351),
     width: '80%',
+  },
+  bottom: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    marginBottom: 36,
   },
 });
 

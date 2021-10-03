@@ -3,9 +3,9 @@ import React, {useCallback} from 'react';
 import {RNCamera} from 'react-native-camera';
 
 import {SafeAreaView, View, Text, StyleSheet, Image} from 'react-native';
-import {fonts, getHeight, getWidth, colors} from '../constants/Index';
-import Button from '../components/form/Button';
-import BackIcon from '../assets/images/common/back.png';
+import {fonts, getHeight, getWidth, colors} from '../../constants/Index';
+import Button from '../../components/form/Button';
+import BackIcon from '../../assets/images/common/back.png';
 
 const UniversityImage = () => {
   const cameraRef = React.useRef<RNCamera | null>(null);
