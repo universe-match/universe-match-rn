@@ -1,18 +1,34 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import {getWidth} from '../../../../constants/Index';
 import CalendarPicker from 'react-native-calendar-picker';
 
-const Day = () => {
+function formatDate(date: any) {
+  var d = new Date(date),
+    month = '' + (d.getMonth() + 1),
+    day = '' + d.getDate(),
+    year = d.getFullYear();
+
+  if (month.length < 2) month = '0' + month;
+  if (day.length < 2) day = '0' + day;
+
+  return [year, month, day].join('');
+}
+const Day = ({setFromDate, setToDate}: any) => {
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [selectedEndDate, setSelectedEndDate] = useState(null);
   const minDate = new Date(); // Today
-  const maxDate = new Date(2021, 9, 21);
+  const maxDate = new Date(2099, 10, 21);
   const startDate = selectedStartDate ? selectedStartDate.toString() : '';
   const endDate = selectedEndDate ? selectedEndDate.toString() : '';
+
+  useEffect(() => {
+    setFromDate(formatDate(startDate));
+    setToDate(formatDate(endDate));
+  }, [startDate, endDate]);
   const onDateChange = (date: any, type: any) => {
     if (type === 'END_DATE') {
-      setSelectedStartDate(date);
+      setSelectedEndDate(date);
     } else {
       setSelectedStartDate(date);
       setSelectedEndDate(null);

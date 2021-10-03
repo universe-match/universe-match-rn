@@ -6,7 +6,10 @@ import {
   Image,
   ScrollView,
   SafeAreaView,
+  Alert,
 } from 'react-native';
+import axios from 'axios';
+import {CommonActions} from '@react-navigation/native';
 import {getHeight, getWidth, colors} from '../../../../constants/Index';
 import {
   Personnel,
@@ -14,7 +17,7 @@ import {
   SelectGroup,
   Day,
   Place,
-  Title,
+  InPutContainer,
   FriendInvitation,
   InvitationPopup,
   CreateGroupPopup,
@@ -23,14 +26,49 @@ import Button from '../../../../components/form/Button';
 import RemoveIcon from '../../../../assets/images/common/remove.png';
 
 const CreateGroup = ({navigation}: any) => {
-  const [isShowFriendDialog, setShowFriendDialog] = useState(false);
-  const [isShowGroupDialog, setShowGroupDialog] = useState(false);
+  const [isShowFriendDialog, setShowFriendDialog] = useState<boolean>(false);
+  const [isShowGroupDialog, setShowGroupDialog] = useState<boolean>(false);
+  const [title, setTitle] = useState<string>(''); //제목
+  const [content, setContent] = useState<string>(''); //내용
+  const [place, setPlace] = useState<string>('');
+  const [peopleLimit, setPeopleLimit] = useState<number>(0);
+  const [genderKind, setGenderKind] = useState<string>('');
+  const [fromDate, setFromDate] = useState<string>('');
+  const [toDate, setToDate] = useState<string>('');
+  const [friends, setFriends] = useState<Array<number>>([]);
+  const [groupKind, setGroupKind] = useState<string>('');
 
   const handlePress = (flag: any) => {
     setShowFriendDialog(flag);
   };
   const handleCreateGroup = (flag: any) => {
     setShowGroupDialog(flag);
+  };
+  const makeRoom = () => {
+    const sendRequest = {
+      title: title,
+      content: content,
+      place: place,
+      peopleLimit: peopleLimit,
+      genderKind: genderKind,
+      groupKind: groupKind,
+      fromDate: fromDate,
+      toDate: toDate,
+      friends: friends,
+    };
+    axios
+      .post('/api/matchroom', sendRequest)
+      .then(function (response) {
+        console.log('res=', response);
+        // navigation.navigate('Main');
+        navigation.dispatch(CommonActions.navigate('Main'));
+      })
+      .catch(error => {
+        if (error.response.data.status === 400) {
+          console.log(error.response.data.message);
+          Alert.alert(error.response.data.message);
+        }
+      });
   };
   return (
     <SafeAreaView>
@@ -53,14 +91,23 @@ const CreateGroup = ({navigation}: any) => {
 
             <View style={styles.content}>
               <View style={styles.contentMargin}>
-                <Personnel />
-                <Ratio />
-                <SelectGroup />
-                <Day />
+                <Personnel setPeopleLimit={setPeopleLimit} />
+                <Ratio setGenderKind={setGenderKind} />
+                <SelectGroup setGroupKind={setGroupKind} />
+                <Day setFromDate={setFromDate} setToDate={setToDate} />
               </View>
               <View style={styles.contentMargin}>
-                <Place />
-                <Title />
+                <Place place={place} setPlace={setPlace} />
+                <InPutContainer
+                  InputTitle={'제목'}
+                  title={title}
+                  setTitle={setTitle}
+                />
+                <InPutContainer
+                  InputTitle={'내용'}
+                  title={content}
+                  setTitle={setContent}
+                />
                 <FriendInvitation onPress={handlePress} />
                 <Button title="방 만들기" onPress={handleCreateGroup} />
               </View>
@@ -80,6 +127,13 @@ const CreateGroup = ({navigation}: any) => {
           onClose={() => {
             setShowGroupDialog(false);
           }}
+          title={title}
+          peopleLimit={peopleLimit}
+          genderKind={genderKind}
+          fromDate={fromDate}
+          toDate={toDate}
+          place={place}
+          makeRoom={makeRoom}
         />
       )}
     </SafeAreaView>

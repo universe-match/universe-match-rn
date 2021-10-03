@@ -3,12 +3,13 @@ import {StyleSheet, Platform, View, Text} from 'react-native';
 import {getHeight, getWidth, colors} from '../../../../constants/Index';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 
-const Personnel = () => {
+const Personnel = ({setPeopleLimit}: any) => {
   const [multiSliderValue, setMultiSliderValue] = useState([0, 4]);
 
   const multiSliderValuesChange = (values: any) => {
-    console.log(values);
+    const finalValue = values[1] - values[0];
     setMultiSliderValue(values);
+    setPeopleLimit(finalValue);
   };
 
   return (
@@ -111,4 +112,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Personnel;
+export default React.memo(Personnel);

@@ -5,11 +5,12 @@ import {getHeight, getWidth, colors} from '../../../../constants/Index';
 import All from '../../../../assets/images/group/all.png';
 import School from '../../../../assets/images/group/school.png';
 
-const SelectGroup = () => {
+const SelectGroup = ({setGroupKind}: any) => {
   const [isPress, setIsPress] = useState(null);
 
   const handleClick = (values: any) => {
     setIsPress(values);
+    setGroupKind(values);
   };
 
   return (
@@ -92,4 +93,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SelectGroup;
+export default React.memo(SelectGroup);

@@ -4,10 +4,11 @@ import {getHeight, getWidth, colors} from '../../../../constants/Index';
 import Same from '../../../../assets/images/group/same_sex.png';
 import Opposite from '../../../../assets/images/group/opposite_sex.png';
 
-const Ratio = () => {
+const Ratio = ({setGenderKind}: any) => {
   const [isPress, setIsPress] = useState(null);
 
   const handleClick = (values: any) => {
+    setGenderKind(values);
     setIsPress(values);
   };
 

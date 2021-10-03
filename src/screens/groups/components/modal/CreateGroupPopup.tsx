@@ -5,7 +5,16 @@ import RemoveIcon from '../../../../assets/images/common/remove.png';
 import Button from '../../../../components/form/Button';
 import man from '../../../../assets/images/test/man.png';
 
-const CreateGroupPopup = ({onClose}: any) => {
+const CreateGroupPopup = ({
+  onClose,
+  title,
+  peopleLimit,
+  genderKind,
+  fromDate,
+  toDate,
+  place,
+  makeRoom,
+}: any) => {
   return (
     <View style={styles.background}>
       <View style={styles.dialog}>
@@ -19,24 +28,23 @@ const CreateGroupPopup = ({onClose}: any) => {
         </View>
         <View style={styles.content}>
           <Text style={styles.title}>
-            <Text style={styles.titleText}>
-              “서울에서 만나요”가 만들어졌습니다
-            </Text>
+            <Text style={styles.titleText}>“{title}”가 만들어졌습니다</Text>
           </Text>
           <View style={styles.dialogContent}>
             <View style={styles.groupInfo}>
               <Image style={styles.manPhoto} source={man} />
               <View style={styles.groupIntoText}>
                 <Text style={styles.leaderName}>김민수</Text>
-                <Text>정원:6명</Text>
-                <Text>비율:이성</Text>
-                <Text>비율:이성</Text>
-                <Text>10월14~17일</Text>
-                <Text>장소:서울시</Text>
+                <Text>정원:{peopleLimit}명</Text>
+                <Text>비율:{genderKind === 'same' ? '동성' : '이성'}</Text>
+                <Text>
+                  {fromDate}~{toDate}
+                </Text>
+                <Text>장소:{place}</Text>
               </View>
             </View>
           </View>
-          <Button title="확인" onPress={() => {}} />
+          <Button title="확인" onPress={() => makeRoom()} />
         </View>
       </View>
     </View>
@@ -119,4 +127,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CreateGroupPopup;
+export default React.memo(CreateGroupPopup);

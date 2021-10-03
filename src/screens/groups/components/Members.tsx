@@ -4,23 +4,24 @@ import {getWidth, colors} from '../../../constants/Index';
 import man from '../../../assets/images/test/man.png';
 import woman from '../../../assets/images/test/woman.png';
 
-const Members = () => {
+const Members = ({member}: any) => {
+  console.log('member=', member);
   return (
     <>
       <View style={styles.members}>
         <View>
-          <Image style={styles.manPhoto} source={man} />
+          <Image style={styles.manPhoto} source={{uri: member.profileImg}} />
           <View>
-            <Text style={styles.profileName}>김민수</Text>
+            <Text style={styles.profileName}>{member.nickName}</Text>
             <View style={styles.memberInfo}>
-              <Text>#ENTJ</Text>
+              <Text>{member.mbti}</Text>
               <Text>/</Text>
-              <Text>고려대</Text>
+              <Text>{member.universeName}</Text>
             </View>
           </View>
         </View>
 
-        <View>
+        {/* <View>
           <Image style={styles.womanPhoto} source={woman} />
           <View>
             <Text style={styles.profileName}>김지은</Text>
@@ -74,7 +75,7 @@ const Members = () => {
               <Text>연세대</Text>
             </View>
           </View>
-        </View>
+        </View> */}
       </View>
     </>
   );
