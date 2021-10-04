@@ -2,7 +2,7 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {colors} from '../../../constants/Index';
 
-const ChatProgressBar = () => {
+const ChatRoomProcessBar = () => {
   return (
     <View style={styles.progressBar}>
       <View style={[styles.absoluteFill, {width: '75%'}]} />
@@ -32,4 +32,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ChatProgressBar;
+export default ChatRoomProcessBar;

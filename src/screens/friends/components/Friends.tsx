@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, View, Text, FlatList, Image} from 'react-native';
-import {Friend} from './Index';
+import {Friend, AddFriendButton} from './Index';
 import setting from '../../../assets/images/friend/setting.png';
 import {getWidth, colors, getHeight} from '../../../constants/Index';
 
@@ -28,6 +28,7 @@ const Friends = ({friend}: any) => {
         renderItem={renderFriends}
         keyExtractor={item => item.id}
       />
+      <AddFriendButton />
     </>
   );
 };

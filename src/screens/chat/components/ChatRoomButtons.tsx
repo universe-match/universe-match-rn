@@ -4,7 +4,7 @@ import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {getWidth, getHeight, colors} from '../../../constants/Index';
 import {ChatOutPopup} from './Index';
 
-const ChatButtons = () => {
+const ChatRoomButtons = ({navigation}: any) => {
   const [isShowDialog, setShowDialog] = useState(false);
 
   const handlePress = (flag: any) => {
@@ -12,7 +12,12 @@ const ChatButtons = () => {
   };
   return (
     <>
-      <TouchableOpacity activeOpacity={0.5} style={styles.chatButton}>
+      <TouchableOpacity
+        activeOpacity={0.5}
+        style={styles.chatButton}
+        onPress={() => {
+          navigation.navigate('Chatting');
+        }}>
         <Text style={styles.chatButtonText}>채팅하기</Text>
       </TouchableOpacity>
       <TouchableOpacity
@@ -62,4 +67,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ChatButtons;
+export default ChatRoomButtons;

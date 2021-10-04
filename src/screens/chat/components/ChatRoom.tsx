@@ -7,16 +7,23 @@ import {
   TouchableHighlight,
 } from 'react-native';
 import {getWidth, colors} from '../../../constants/Index';
-import {Members, ProgressBar, GroupButtons} from './Index';
+import {ChatMembers, ChatRoomProcessBar, ChatRoomButtons} from './Index';
 
-const Group = ({title, area, fromDate, toDate, matchingList}: any) => {
+const ChatRoom = ({
+  navigation,
+  title,
+  area,
+  fromDate,
+  toDate,
+  matchingList,
+}: any) => {
   const [isActive, setIsActive] = useState(false);
 
   const handleClick = (flag: any) => {
     setIsActive(!flag);
   };
 
-  //  console.log('matchingList,', matchingList);
+  console.log('matchingList,', matchingList);
   return (
     <>
       <TouchableHighlight
@@ -44,31 +51,31 @@ const Group = ({title, area, fromDate, toDate, matchingList}: any) => {
                 console.log('Scrolling is End');
               }}>
               {matchingList.map((member: any) => (
-                <Members member={member} />
+                <ChatMembers member={member} />
               ))}
             </ScrollView>
           </View>
-          <ProgressBar />
+          <ChatRoomProcessBar />
         </View>
       </TouchableHighlight>
-      {isActive && <GroupButtons />}
+      {isActive && <ChatRoomButtons navigation={navigation} />}
     </>
   );
 };
 
 const styles = StyleSheet.create({
   groupInfos: {
-    left: 10,
-    marginTop: 20,
+    left: getWidth(10),
+    marginTop: getWidth(20),
   },
   root: {
-    backgroundColor: colors.white,
+    backgroundColor: 'rgba(223, 234, 230, 0.46)',
     borderColor: colors.green,
     borderRadius: 10,
     marginVertical: 8,
     borderWidth: 1,
-    marginLeft: 30,
-    marginRight: 30,
+    marginTop: getWidth(169),
+    marginLeft: getWidth(60),
     width: getWidth(600),
   },
   active: {
@@ -97,4 +104,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Group;
+export default ChatRoom;
