@@ -1,94 +1,94 @@
-import React, {useState} from 'react';
-import {
-  Text,
-  View,
-  StyleSheet,
-  ScrollView,
-  TouchableHighlight,
-} from 'react-native';
-import {getWidth, colors} from '../../../constants/Index';
-import {ChatMembers, ChatProgressBar, ChatButtons} from './Index';
+import React from 'react';
+import {StyleSheet, View, Text, Image} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
-const Chat = ({title, area, age, date}: any) => {
-  const [isActive, setIsActive] = useState(false);
+import {getWidth, colors, getHeight} from '../../../constants/Index';
+import man from '../../../assets/images/test/man.png';
+import woman from '../../../assets/images/test/woman.png';
 
-  const handleClick = (flag: any) => {
-    setIsActive(!flag);
-  };
+const Chat = ({nickname, gender, message}: any) => {
+  if (nickname === '나') {
+    return (
+      <View style={styles.myMessage}>
+        <LinearGradient
+          useAngle={true}
+          angle={90}
+          colors={['#72EDC4', '#5EDEB4']}
+          style={{
+            borderRadius: getWidth(32),
+          }}>
+          <Text style={styles.text}>{message}</Text>
+        </LinearGradient>
+      </View>
+    );
+  }
 
   return (
-    <>
-      <TouchableHighlight
-        activeOpacity={0.7}
-        onPress={() => handleClick(isActive)}
-        underlayColor="#b0bac36b">
-        <View
-          style={isActive ? {...styles.root, ...styles.active} : styles.root}>
-          <View style={styles.groupInfos}>
-            <View style={styles.topArea}>
-              <Text style={styles.textTitle}>{title}</Text>
-              <Text style={styles.textArea}>{area}</Text>
-            </View>
-            <View style={styles.topArea}>
-              <Text>평균연령 {age}</Text>
-              <Text style={styles.textDate}>{date}</Text>
-            </View>
-            <ScrollView
-              style={{width: getWidth(580)}}
-              horizontal={true}
-              showsHorizontalScrollIndicator={true}
-              onMomentumScrollEnd={() => {
-                console.log('Scrolling is End');
-              }}>
-              <ChatMembers />
-            </ScrollView>
-          </View>
-          <ChatProgressBar />
-        </View>
-      </TouchableHighlight>
-      {isActive && <ChatButtons />}
-    </>
+    <View style={styles.message}>
+      <View style={styles.profileInfo}>
+        <Image
+          source={man}
+          style={
+            gender === 'man'
+              ? styles.photo
+              : {...styles.photo, ...styles.womanPhoto}
+          }
+        />
+        <Text>{nickname}</Text>
+      </View>
+      <LinearGradient
+        useAngle={true}
+        angle={90}
+        colors={
+          gender === 'man' ? ['#A1C4FF', '#75A4F4'] : ['#FFD8E8', '#FFBAD6']
+        }
+        style={{
+          borderRadius: getWidth(32),
+        }}>
+        <Text style={styles.text}>{message}</Text>
+      </LinearGradient>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  groupInfos: {
-    left: getWidth(10),
-    marginTop: getWidth(20),
+  profileInfo: {
+    flexDirection: 'row',
   },
-  root: {
-    backgroundColor: 'rgba(223, 234, 230, 0.46)',
-    borderColor: colors.green,
-    borderRadius: 10,
-    marginVertical: 8,
+  photo: {
+    borderRadius: 100,
+    height: getWidth(80),
+    width: getWidth(80),
+    marginLeft: 5,
     borderWidth: 1,
-    marginTop: getWidth(169),
-    marginLeft: getWidth(60),
-    width: getWidth(600),
+    borderColor: colors.stroke,
   },
-  active: {
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    zIndex: 100,
+  womanPhoto: {
+    borderColor: '#FFBAD6',
   },
-  textTitle: {
-    color: 'rgba(0, 0, 0, 1)',
-    fontSize: 20,
-    fontWeight: 'bold',
+  message: {
+    alignSelf: 'flex-start',
+    marginBottom: getWidth(20),
+    marginLeft: getWidth(49),
   },
-  title: {
-    fontSize: 32,
+  myMessage: {
+    alignSelf: 'flex-end',
+    marginBottom: getWidth(20),
+    marginRight: getWidth(41),
+  },
+  text: {
+    padding: getWidth(20),
+    textAlignVertical: 'center',
+    color: colors.white,
+    fontSize: getWidth(30),
+  },
+  image: {
+    width: getWidth(44),
+    height: getHeight(44),
+    marginLeft: getWidth(32),
   },
   textArea: {
-    right: 20,
-    marginTop: 10,
-  },
-  topArea: {
     flexDirection: 'row',
-    flex: 1,
-    justifyContent: 'space-between',
-  },
-  textDate: {
-    right: 20,
   },
 });
 

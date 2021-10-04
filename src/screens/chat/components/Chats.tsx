@@ -1,19 +1,23 @@
 import React from 'react';
-import {FlatList} from 'react-native';
-import Chat from './Chat';
+import {StyleSheet, View} from 'react-native';
 
-const Chats = ({chats}: any) => {
-  const renderGroup = ({item}: any) => (
-    <Chat title={item.title} area={item.area} age={item.age} date={item.date} />
-  );
+import {Chat} from './Index';
+import {getWidth} from '../../../constants/Index';
 
+const Chats = ({messages}: any) => {
   return (
-    <FlatList
-      data={chats}
-      renderItem={renderGroup}
-      keyExtractor={item => item.id}
-    />
+    <View style={styles.messages}>
+      {messages.map(({id, nickname, gender, message}: any) => (
+        <Chat key={id} nickname={nickname} gender={gender} message={message} />
+      ))}
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  messages: {
+    marginBottom: getWidth(52),
+  },
+});
 
 export default Chats;
