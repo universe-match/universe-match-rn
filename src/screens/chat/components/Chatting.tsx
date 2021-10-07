@@ -1,46 +1,103 @@
-import React, {useState} from 'react';
-import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
+import React, {useState, useEffect, useRef, ElementType} from 'react';
+import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
 import {Chats, ChatKeyborad} from './Index';
 import {getWidth, colors, getHeight} from '../../../constants/Index';
+import axios from 'axios';
 
 // 가 데이터
 const DATA = [
   {
     id: '1',
-    nickname: '김민수',
+    username: '김민수',
     gender: 'man',
     message: '안녕하세요1',
   },
   {
     id: '2',
-    nickname: '김은지',
+    username: '김은지',
     gender: 'woman',
     message: '안녕하세요2',
   },
   {
     id: '3',
-    nickname: '나',
+    username: '나',
     gender: 'man',
     message: '안녕하세요3',
   },
 ];
 
-const Chatting = ({navigation}: any) => {
+const Chatting = ({route, navigation}: any) => {
+  const scrollViewRef = useRef<ElementType>();
+  const {itemId} = route.params;
+  const [user, setUser] = useState<any>([]);
+  const [input, setInput] = useState({text: '', height: 40});
   const [messages, setMessages] = useState(DATA);
+  const ws = new WebSocket(`ws://192.168.0.121:9090/ws/chat/${itemId}`);
 
   // 메시지 전송 버튼 클릭 시 컴포넌트 리렌더링
-  const sendMesage = ({id, nickname, gender, message}: any) => {
-    setMessages([...messages, {id, nickname, gender, message}]);
+  // const sendMesage = ({id, nickname, gender, message}: any) => {
+  //   setMessages([...messages, {id, nickname, gender, message}]);
+  // };
+
+  useEffect(() => {
+    // 메세지 수신
+    ws.onmessage = evt => {
+      // console.log('edata',e.data)
+      const data = JSON.parse(evt.data);
+      setMessages((prevItems: any) => [...prevItems, data]);
+    };
+  }, []);
+
+  const sendMesage = (msg: string) => {
+    console.log('msg=', msg);
+    ws.send(
+      JSON.stringify({
+        username: user.nickname,
+        message: msg,
+        sessionId: '',
+        // sessionId 어떻게 보낼것인지
+        chatroomId: itemId,
+        type: 'message',
+      }),
+    );
+    // setInput({text: '', height: 40});
   };
+  const getMyInfo = async () => {
+    try {
+      await axios.get('/api/user/myinfo').then((response: any) => {
+        setUser(response.data);
+      });
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    // 에러 발생시
+    ws.onerror = e => {
+      console.log(e.message);
+    };
+    // 소켓 연결 해제
+    ws.onclose = e => {
+      console.log(e.code, e.reason);
+    };
+  }, []);
+  useEffect(() => {
+    getMyInfo();
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}>
-        <Chats messages={messages} />
+        showsHorizontalScrollIndicator={false}
+        ref={scrollViewRef}
+        onContentSizeChange={() => {
+          scrollViewRef.current.scrollToEnd({animated: true});
+        }}>
+        <Chats messages={messages} user={user} />
       </ScrollView>
-      <ChatKeyborad sendMesage={sendMesage} />
+      <View style={styles.bottomContainer}>
+        <ChatKeyborad sendMesage={sendMesage} />
+      </View>
     </SafeAreaView>
   );
 };
@@ -108,6 +165,12 @@ const styles = StyleSheet.create({
   buttonText: {
     color: colors.white,
     fontSize: getWidth(30),
+  },
+  bottomContainer: {
+    paddingHorizontal: getWidth(20),
+    paddingVertical: 20,
+    backgroundColor: colors.white,
+    flexDirection: 'row',
   },
 });
 

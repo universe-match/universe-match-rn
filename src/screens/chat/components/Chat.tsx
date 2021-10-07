@@ -6,8 +6,8 @@ import {getWidth, colors, getHeight} from '../../../constants/Index';
 import man from '../../../assets/images/test/man.png';
 import woman from '../../../assets/images/test/woman.png';
 
-const Chat = ({nickname, gender, message}: any) => {
-  if (nickname === '나') {
+const Chat = ({username, gender, message, user}: any) => {
+  if (username === user.nickname) {
     return (
       <View style={styles.myMessage}>
         <LinearGradient
@@ -34,7 +34,7 @@ const Chat = ({nickname, gender, message}: any) => {
               : {...styles.photo, ...styles.womanPhoto}
           }
         />
-        <Text>{nickname}</Text>
+        <Text>{username}</Text>
       </View>
       <LinearGradient
         useAngle={true}

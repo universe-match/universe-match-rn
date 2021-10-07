@@ -11,6 +11,7 @@ import {ChatMembers, ChatRoomProcessBar, ChatRoomButtons} from './Index';
 
 const ChatRoom = ({
   navigation,
+  id,
   title,
   area,
   fromDate,
@@ -58,7 +59,7 @@ const ChatRoom = ({
           <ChatRoomProcessBar />
         </View>
       </TouchableHighlight>
-      {isActive && <ChatRoomButtons navigation={navigation} />}
+      {isActive && <ChatRoomButtons navigation={navigation} id={id} />}
     </>
   );
 };

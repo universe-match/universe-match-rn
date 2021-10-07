@@ -21,10 +21,9 @@ const App = () => {
     return result;
   });
 
-  axios.defaults.baseURL = 'http://192.168.35.78:9090/';
+  axios.defaults.baseURL = 'http://192.168.0.121:9090/';
   axios.interceptors.request.use(async function (config) {
     const token = await AsyncStorage.getItem('accessToken');
-    console.log('token==', token);
     if (token) {
       config.headers.Authorization = 'Bearer ' + token;
     }

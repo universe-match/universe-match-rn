@@ -6,6 +6,7 @@ const ChatRooms = ({chatList, navigation}: any) => {
   console.log('chatList==', chatList);
   const renderChat = ({item}: any) => (
     <ChatRoom
+      id={item.id}
       title={item.matchRoomResponse.title}
       area={item.matchRoomResponse.place}
       fromDate={item.matchRoomResponse.fromDate}

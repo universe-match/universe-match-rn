@@ -23,7 +23,8 @@ const ChatKeyborad = ({sendMesage}: any) => {
   const [text, setText] = useState('');
 
   const handlePress = () => {
-    sendMesage({...data, message: text});
+    console.log('text==', text);
+    sendMesage(text);
     clearMesaage();
   };
 
