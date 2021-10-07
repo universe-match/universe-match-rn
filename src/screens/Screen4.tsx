@@ -15,6 +15,7 @@ import SignUp from './signUp/SignUp';
 const Screen4 = ({navigation}: any) => {
   return (
     <SafeAreaView>
+      {/* <Profile /> */}
       <Setting navigation={navigation} />
     </SafeAreaView>
   );

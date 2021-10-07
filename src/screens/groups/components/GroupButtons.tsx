@@ -3,13 +3,16 @@ import {StyleSheet, Image, TouchableOpacity} from 'react-native';
 import heart from '../../../assets/images/common/heart.png';
 import check from '../../../assets/images/common/check.png';
 
-const GroupButtons = () => {
+const GroupButtons = ({checkIn}: any) => {
   return (
     <>
       <TouchableOpacity activeOpacity={0.5} style={styles.heartButton}>
         <Image source={heart} />
       </TouchableOpacity>
-      <TouchableOpacity activeOpacity={0.5} style={styles.checkButton}>
+      <TouchableOpacity
+        activeOpacity={0.5}
+        style={styles.checkButton}
+        onPress={checkIn}>
         <Image source={check} />
       </TouchableOpacity>
     </>

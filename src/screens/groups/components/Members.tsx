@@ -5,12 +5,29 @@ import man from '../../../assets/images/test/man.png';
 import woman from '../../../assets/images/test/woman.png';
 
 const Members = ({member}: any) => {
-  console.log('member=', member);
+  console.log('member', member);
   return (
     <>
       <View style={styles.members}>
         <View>
-          <Image style={styles.manPhoto} source={{uri: member.profileImg}} />
+          {/* {member.userImages.length > 0 &&
+            member.userImages.map((item: any, index: number) => (
+              <View key={index}>
+                <Image
+                  style={styles.manPhoto}
+                  source={{uri: item.userImage[1]}}
+                  blurRadius={4}
+                />
+              </View>
+            ))} */}
+          <Image
+            style={styles.manPhoto}
+            source={{
+              uri:
+                member.userImages.length > 0 && member.userImages[0].userImage,
+            }}
+            blurRadius={4}
+          />
           <View>
             <Text style={styles.profileName}>{member.nickName}</Text>
             <View style={styles.memberInfo}>

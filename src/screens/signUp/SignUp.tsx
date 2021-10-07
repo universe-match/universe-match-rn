@@ -6,19 +6,27 @@ import {
   StyleSheet,
   Image,
   Button,
+  TouchableOpacity,
 } from 'react-native';
 import {fonts, getHeight, getWidth, colors} from '../../constants/Index';
 import InputButton from '../../components/form/InputButton';
 import BackIcon from '../../assets/images/common/back.png';
 import RemoveIcon from '../../assets/images/common/remove.png';
 
-const SignUp = ({nextStep}: any) => {
-  const [name, setName] = useState('');
-  const [birth, setBirth] = useState('');
-  const [nickname, setNickname] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
+const SignUp = ({
+  goToSignIn,
+  nextStep,
+  userid,
+  setUserid,
+  age,
+  setAge,
+  nickname,
+  setNickname,
+  email,
+  setEmail,
+  password,
+  setPassword,
+}: any) => {
   const onPress = useCallback((value: string): void => {
     console.log(value);
   }, []);
@@ -27,8 +35,12 @@ const SignUp = ({nextStep}: any) => {
     <SafeAreaView>
       <View style={styles.container}>
         <View style={styles.header}>
-          <Image style={styles.back} source={BackIcon} />
-          <Image source={RemoveIcon} style={styles.remove} />
+          <TouchableOpacity onPress={goToSignIn}>
+            <Image style={styles.back} source={BackIcon} />
+          </TouchableOpacity>
+          {/* <TouchableOpacity onPress={goToSignIn}>
+            <Image source={RemoveIcon} style={styles.remove} />
+          </TouchableOpacity> */}
         </View>
         <View style={styles.title}>
           <Text style={styles.titleText}>회원가입</Text>
@@ -36,19 +48,19 @@ const SignUp = ({nextStep}: any) => {
         <View style={styles.signUp}>
           <View style={{marginBottom: getHeight(37)}}>
             <InputButton
-              placeholder="이름을 입력해주세요"
-              buttonContent="확인"
-              setInputValue={setName}
-              inputValue={name}
+              placeholder="아이디를 입력해주세요"
+              buttonContent="중복확인"
+              setInputValue={setUserid}
+              inputValue={userid}
               onPress={onPress}
             />
           </View>
           <View style={{marginBottom: getHeight(37)}}>
             <InputButton
               placeholder="생년월일을 입력해주세요"
-              buttonContent="확인"
-              setInputValue={setBirth}
-              inputValue={birth}
+              buttonContent=""
+              setInputValue={setAge}
+              inputValue={age}
               onPress={onPress}
             />
           </View>
@@ -66,7 +78,7 @@ const SignUp = ({nextStep}: any) => {
           <View style={{marginBottom: getHeight(37)}}>
             <InputButton
               placeholder="이메일을 입력해주세요"
-              buttonContent="확인"
+              buttonContent=""
               setInputValue={setEmail}
               inputValue={email}
               onPress={onPress}
@@ -75,7 +87,7 @@ const SignUp = ({nextStep}: any) => {
           <View style={{marginBottom: getHeight(37)}}>
             <InputButton
               placeholder="비밀번호를 입력해주세요"
-              buttonContent="확인"
+              buttonContent=""
               setInputValue={setPassword}
               inputValue={password}
               onPress={onPress}

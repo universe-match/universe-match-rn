@@ -5,13 +5,34 @@ import {
   StyleSheet,
   ScrollView,
   TouchableHighlight,
+  Alert,
 } from 'react-native';
 import {getWidth, colors} from '../../../constants/Index';
+import axios from 'axios';
 import {Members, ProgressBar, GroupButtons} from './Index';
 
-const Group = ({title, area, fromDate, toDate, matchingList}: any) => {
+const Group = ({id, title, area, fromDate, toDate, matchingList}: any) => {
   const [isActive, setIsActive] = useState(false);
 
+  const checkIn = () => {
+    const sendRequest = {
+      mid: id,
+    };
+    axios
+      .post('/api/match', sendRequest)
+      .then(function (response) {
+        Alert.alert('방에 참여되었습니다');
+        // navigation.navigate('Main');
+        // navigation.dispatch(CommonActions.navigate('Main'));
+      })
+      .catch(error => {
+        console.log(error);
+        if (error.response.data.status === 400) {
+          console.log(error.response.data.message);
+          Alert.alert(error.response.data.message);
+        }
+      });
+  };
   const handleClick = (flag: any) => {
     setIsActive(!flag);
   };
@@ -51,7 +72,7 @@ const Group = ({title, area, fromDate, toDate, matchingList}: any) => {
           <ProgressBar />
         </View>
       </TouchableHighlight>
-      {isActive && <GroupButtons />}
+      {isActive && <GroupButtons checkIn={checkIn} />}
     </>
   );
 };

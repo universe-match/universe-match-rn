@@ -10,18 +10,18 @@ import SignUp from './src/screens/signUp/SignUp';
 import SignIn from './src/screens/SignIn';
 import MultiStep from './src/screens/signUp/MultiStep';
 import Chatting from './src/screens/chat/components/Chatting';
+import Profile from './src/screens/Profile';
 
 const Stack = createStackNavigator();
 
 const App = () => {
   const [isToken, setIsToken] = useState('');
-
   const token = AsyncStorage.getItem('accessToken', (err, result: any) => {
     setIsToken(result);
     return result;
   });
 
-  axios.defaults.baseURL = 'https://9c8f-175-197-191-183.ngrok.io/';
+  axios.defaults.baseURL = 'http://192.168.35.78:9090/';
   axios.interceptors.request.use(async function (config) {
     const token = await AsyncStorage.getItem('accessToken');
     console.log('token==', token);
@@ -37,7 +37,7 @@ const App = () => {
         {isToken ? (
           <Stack.Screen name="Main1" component={MainScreen} />
         ) : (
-          <Stack.Screen name="Main1" component={MainScreen} />
+          <Stack.Screen name="SignIn1" component={SignIn} />
         )}
 
         <Stack.Screen name="SignUp" component={MultiStep} />
@@ -45,6 +45,7 @@ const App = () => {
         <Stack.Screen name="SignIn" component={SignIn} />
         <Stack.Screen name="CreateGroup" component={CreateGroup} />
         <Stack.Screen name="Chatting" component={Chatting} />
+        <Stack.Screen name="Profile" component={Profile} />
       </Stack.Navigator>
     </NavigationContainer>
   );

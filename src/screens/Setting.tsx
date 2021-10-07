@@ -42,6 +42,12 @@ const Setting = ({navigation}: any) => {
             <Text style={styles.itemText}>아용약관</Text>
             <Image style={styles.itemIcon} source={RightIcon} />
           </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.item}
+            onPress={() => navigation.navigate('Profile')}>
+            <Text style={styles.itemText}>회원수정</Text>
+            <Image style={styles.itemIcon} source={RightIcon} />
+          </TouchableOpacity>
           <TouchableOpacity style={styles.item}>
             <Text style={styles.itemText}>불편신고</Text>
             <Image style={styles.itemIcon} source={RightIcon} />

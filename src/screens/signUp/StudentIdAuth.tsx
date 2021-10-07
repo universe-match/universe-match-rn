@@ -2,12 +2,19 @@ import React, {useCallback} from 'react';
 
 import {RNCamera} from 'react-native-camera';
 
-import {SafeAreaView, View, Text, StyleSheet, Image} from 'react-native';
+import {
+  SafeAreaView,
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import {fonts, getHeight, getWidth, colors} from '../../constants/Index';
 import Button from '../../components/form/Button';
 import BackIcon from '../../assets/images/common/back.png';
 
-const UniversityImage = () => {
+const UniversityImage = ({nextStep, prevStep, universeCertiImg}: any) => {
   const cameraRef = React.useRef<RNCamera | null>(null);
 
   const takePhoto = useCallback(async () => {
@@ -25,21 +32,29 @@ const UniversityImage = () => {
     <SafeAreaView>
       <View style={styles.container}>
         <View style={styles.header}>
-          <Image
-            style={{width: getWidth(15), height: getHeight(23)}}
-            source={BackIcon}
-          />
+          <TouchableOpacity onPress={prevStep}>
+            <Image
+              style={{width: getWidth(15), height: getHeight(23)}}
+              source={BackIcon}
+            />
+          </TouchableOpacity>
         </View>
         <View style={styles.content}>
           <View style={styles.title}>
             <Text style={styles.titleText}>본인확인이 진행중입니다.</Text>
           </View>
           <View style={styles.cameraWrapper}>
-            <RNCamera
+            {/* <RNCamera
               ref={cameraRef}
               style={styles.camera}
               type={RNCamera.Constants.Type.back}
               captureAudio={false}
+            /> */}
+            <Image
+              style={styles.imageArea}
+              source={{
+                uri: universeCertiImg,
+              }}
             />
           </View>
           <View style={{marginBottom: getHeight(34)}}>
@@ -47,8 +62,9 @@ const UniversityImage = () => {
               *본인 확인은 1~2일 내로 진행됩니다.
             </Text>
           </View>
+
           <Button
-            onPress={takePhoto}
+            onPress={() => nextStep()}
             style={{width: getWidth(470), height: getHeight(79)}}
             title="확인"
           />
@@ -100,6 +116,10 @@ const styles = StyleSheet.create({
   cameraWrapper: {
     marginBottom: getHeight(34),
     overflow: 'hidden',
+    width: getWidth(613),
+    height: getHeight(364),
+  },
+  imageArea: {
     width: getWidth(613),
     height: getHeight(364),
   },
