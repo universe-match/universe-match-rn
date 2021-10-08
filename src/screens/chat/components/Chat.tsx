@@ -6,14 +6,44 @@ import {getWidth, colors, getHeight} from '../../../constants/Index';
 import man from '../../../assets/images/test/man.png';
 import woman from '../../../assets/images/test/woman.png';
 
-const Chat = ({username, gender, message, user}: any) => {
+const Chat = ({id,username, gender, message, user}: any) => {
   if (username === user.nickname) {
     return (
-      <View style={styles.myMessage}>
+      <View style={styles.myMessage} key={id}>
+        {message !== undefined &&
         <LinearGradient
           useAngle={true}
           angle={90}
           colors={['#72EDC4', '#5EDEB4']}
+          style={{
+            borderRadius: getWidth(32),
+          }}>
+            <Text style={styles.text}>{message}</Text>
+        </LinearGradient>
+        }
+        
+      </View>
+    );
+  }else{
+    return (
+      <View style={styles.message}>
+        <View style={styles.profileInfo}>
+          <Image
+            source={man}
+            style={
+              gender === 'man'
+                ? styles.photo
+                : {...styles.photo, ...styles.womanPhoto}
+            }
+          />
+          <Text>{username}</Text>
+        </View>
+        <LinearGradient
+          useAngle={true}
+          angle={90}
+          colors={
+            gender === 'man' ? ['#A1C4FF', '#75A4F4'] : ['#FFD8E8', '#FFBAD6']
+          }
           style={{
             borderRadius: getWidth(32),
           }}>
@@ -23,32 +53,7 @@ const Chat = ({username, gender, message, user}: any) => {
     );
   }
 
-  return (
-    <View style={styles.message}>
-      <View style={styles.profileInfo}>
-        <Image
-          source={man}
-          style={
-            gender === 'man'
-              ? styles.photo
-              : {...styles.photo, ...styles.womanPhoto}
-          }
-        />
-        <Text>{username}</Text>
-      </View>
-      <LinearGradient
-        useAngle={true}
-        angle={90}
-        colors={
-          gender === 'man' ? ['#A1C4FF', '#75A4F4'] : ['#FFD8E8', '#FFBAD6']
-        }
-        style={{
-          borderRadius: getWidth(32),
-        }}>
-        <Text style={styles.text}>{message}</Text>
-      </LinearGradient>
-    </View>
-  );
+  
 };
 
 const styles = StyleSheet.create({

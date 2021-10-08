@@ -34,7 +34,7 @@ const ChatKeyborad = ({sendMesage}: any) => {
   };
   return (
     <View style={styles.textArea}>
-      <Image source={plus} style={styles.image} />
+      {/* <Image source={plus} style={styles.image} /> */}
       <TextInput
         style={styles.input}
         value={text}
@@ -57,9 +57,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   input: {
-    width: getWidth(484),
+    width: getWidth(610),
     height: getHeight(68),
-    marginLeft: getWidth(15),
+    marginLeft: getWidth(8),
     borderColor: colors.green,
     borderWidth: 1,
   },

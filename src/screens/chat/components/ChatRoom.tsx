@@ -26,7 +26,7 @@ const ChatRoom = ({
 
   console.log('matchingList,', matchingList);
   return (
-    <>
+    <View key={id}>
       <TouchableHighlight
         activeOpacity={0.7}
         onPress={() => handleClick(isActive)}
@@ -60,7 +60,7 @@ const ChatRoom = ({
         </View>
       </TouchableHighlight>
       {isActive && <ChatRoomButtons navigation={navigation} id={id} />}
-    </>
+    </View>
   );
 };
 

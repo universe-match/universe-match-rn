@@ -30,9 +30,9 @@ const Chatting = ({route, navigation}: any) => {
   const scrollViewRef = useRef<ElementType>();
   const {itemId} = route.params;
   const [user, setUser] = useState<any>([]);
-  const [input, setInput] = useState({text: '', height: 40});
+  // const [input, setInput] = useState({text: '', height: 40});
   const [messages, setMessages] = useState(DATA);
-  const ws = new WebSocket(`ws://192.168.0.121:9090/ws/chat/${itemId}`);
+  const ws = new WebSocket(`ws://3.34.191.212:9090/ws/chat/${itemId}`);
 
   // 메시지 전송 버튼 클릭 시 컴포넌트 리렌더링
   // const sendMesage = ({id, nickname, gender, message}: any) => {
@@ -49,17 +49,18 @@ const Chatting = ({route, navigation}: any) => {
   }, []);
 
   const sendMesage = (msg: string) => {
-    console.log('msg=', msg);
-    ws.send(
-      JSON.stringify({
-        username: user.nickname,
-        message: msg,
-        sessionId: '',
-        // sessionId 어떻게 보낼것인지
-        chatroomId: itemId,
-        type: 'message',
-      }),
-    );
+    if (msg !== undefined || msg !== '') {
+      ws.send(
+        JSON.stringify({
+          username: user.nickname,
+          message: msg,
+          sessionId: '',
+          // sessionId 어떻게 보낼것인지
+          chatroomId: itemId,
+          type: 'message',
+        }),
+      );
+    }
     // setInput({text: '', height: 40});
   };
   const getMyInfo = async () => {
@@ -105,6 +106,7 @@ const Chatting = ({route, navigation}: any) => {
 const styles = StyleSheet.create({
   container: {
     top: getWidth(100),
+    height: '100%',
   },
   profileInfo: {
     flexDirection: 'row',
@@ -167,11 +169,12 @@ const styles = StyleSheet.create({
     fontSize: getWidth(30),
   },
   bottomContainer: {
-    paddingHorizontal: getWidth(20),
-    paddingVertical: 20,
     backgroundColor: colors.white,
-    flexDirection: 'row',
+    position: 'relative',
+    bottom: 60,
+    left: 0,
+    right: 0,
   },
 });
 
-export default Chatting;
+export default Chatting
