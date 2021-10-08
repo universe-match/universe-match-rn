@@ -4,9 +4,10 @@ import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {getWidth, getHeight, colors} from '../../../constants/Index';
 import {ChatOutPopup} from './Index';
 
-const ChatRoomButtons = ({navigation}: any) => {
+const ChatRoomButtons = ({navigation, id}: any) => {
   const [isShowDialog, setShowDialog] = useState(false);
 
+  console.log('id=====', id);
   const handlePress = (flag: any) => {
     setShowDialog(flag);
   };
@@ -16,7 +17,9 @@ const ChatRoomButtons = ({navigation}: any) => {
         activeOpacity={0.5}
         style={styles.chatButton}
         onPress={() => {
-          navigation.navigate('Chatting');
+          navigation.navigate('Chatting', {
+            itemId: id,
+          });
         }}>
         <Text style={styles.chatButtonText}>채팅하기</Text>
       </TouchableOpacity>

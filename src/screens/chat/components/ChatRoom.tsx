@@ -11,6 +11,7 @@ import {ChatMembers, ChatRoomProcessBar, ChatRoomButtons} from './Index';
 
 const ChatRoom = ({
   navigation,
+  id,
   title,
   area,
   fromDate,
@@ -25,7 +26,7 @@ const ChatRoom = ({
 
   console.log('matchingList,', matchingList);
   return (
-    <>
+    <View key={id}>
       <TouchableHighlight
         activeOpacity={0.7}
         onPress={() => handleClick(isActive)}
@@ -58,8 +59,8 @@ const ChatRoom = ({
           <ChatRoomProcessBar />
         </View>
       </TouchableHighlight>
-      {isActive && <ChatRoomButtons navigation={navigation} />}
-    </>
+      {isActive && <ChatRoomButtons navigation={navigation} id={id} />}
+    </View>
   );
 };
 
