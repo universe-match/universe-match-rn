@@ -18,14 +18,22 @@ const AddFriendButton = () => {
 };
 const styles = StyleSheet.create({
   touchableOpacityStyle: {
-    width: 75,
-    height: 75,
-    right: 20,
-    bottom: 50,
+    position: 'absolute',
+    flexDirection: 'row',
+    width: getWidth(388),
+    height: getHeight(92),
+    top: getWidth(1047),
+    left: getWidth(166),
     backgroundColor: colors.green,
-    borderRadius: 50,
+    borderRadius: getWidth(31),
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  text: {},
+  text: {
+    color: colors.white,
+    fontSize: getWidth(36),
+    marginRight: getWidth(10),
+  },
   image: {
     width: getWidth(35),
     height: getHeight(25),

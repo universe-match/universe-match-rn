@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {colors} from '../../../constants/Index';
+import {colors, getHeight, getWidth} from '../../../constants/Index';
 
 const ProgressBar = () => {
   return (
@@ -12,18 +12,19 @@ const ProgressBar = () => {
 
 const styles = StyleSheet.create({
   progressBar: {
-    height: 15,
+    height: getHeight(20),
     width: '90%',
     backgroundColor: 'rgba(176, 186, 195, 0.45)',
     borderColor: 'rgba(176, 186, 195, 0.45)',
-    borderWidth: 2,
-    borderRadius: 5,
-    marginLeft: 20,
-    marginBottom: 20,
-    marginTop: 20,
+    borderWidth: getWidth(2),
+    borderRadius: getWidth(18),
+    marginLeft: getWidth(20),
+    marginBottom: getWidth(20),
+    marginTop: getWidth(20),
   },
   absoluteFill: {
     position: 'absolute',
+    borderRadius: getWidth(18),
     left: 0,
     right: 0,
     top: 0,
