@@ -7,7 +7,7 @@ import {
   TouchableHighlight,
   Alert,
 } from 'react-native';
-import {getWidth, colors} from '../../../constants/Index';
+import {getWidth, colors, getHeight} from '../../../constants/Index';
 import axios from 'axios';
 import {Members, ProgressBar, GroupButtons} from './Index';
 
@@ -43,7 +43,7 @@ const Group = ({id, title, area, fromDate, toDate, matchingList}: any) => {
       <TouchableHighlight
         activeOpacity={0.7}
         onPress={() => handleClick(isActive)}
-        underlayColor="#b0bac36b">
+        underlayColor="#B0BAC3">
         <View
           style={isActive ? {...styles.root, ...styles.active} : styles.root}>
           <View style={styles.groupInfos}>
@@ -52,7 +52,7 @@ const Group = ({id, title, area, fromDate, toDate, matchingList}: any) => {
               <Text style={styles.textArea}>{area}</Text>
             </View>
             <View style={styles.topArea}>
-              <Text>평균연령 </Text>
+              <Text style={{color: colors.gray4}}>평균연령: </Text>
               <Text style={styles.textDate}>
                 {fromDate}~{toDate}
               </Text>

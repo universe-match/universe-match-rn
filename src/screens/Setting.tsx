@@ -39,7 +39,7 @@ const Setting = ({navigation}: any) => {
         </View>
         <View style={styles.itemWrapper}>
           <TouchableOpacity style={styles.item}>
-            <Text style={styles.itemText}>아용약관</Text>
+            <Text style={styles.itemText}>이용약관</Text>
             <Image style={styles.itemIcon} source={RightIcon} />
           </TouchableOpacity>
           <TouchableOpacity

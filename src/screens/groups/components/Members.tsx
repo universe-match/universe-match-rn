@@ -1,8 +1,6 @@
 import React from 'react';
 import {Text, View, StyleSheet, Image} from 'react-native';
 import {getWidth, colors} from '../../../constants/Index';
-import man from '../../../assets/images/test/man.png';
-import woman from '../../../assets/images/test/woman.png';
 
 const Members = ({member}: any) => {
   console.log('member', member);
@@ -10,16 +8,6 @@ const Members = ({member}: any) => {
     <>
       <View style={styles.members}>
         <View>
-          {/* {member.userImages.length > 0 &&
-            member.userImages.map((item: any, index: number) => (
-              <View key={index}>
-                <Image
-                  style={styles.manPhoto}
-                  source={{uri: item.userImage[1]}}
-                  blurRadius={4}
-                />
-              </View>
-            ))} */}
           <Image
             style={styles.manPhoto}
             source={{
@@ -28,71 +16,15 @@ const Members = ({member}: any) => {
             }}
             blurRadius={4}
           />
-          <View>
-            <Text style={styles.profileName}>{member.nickName}</Text>
-            <View style={styles.memberInfo}>
-              <Text>{member.mbti}</Text>
-              <Text>/</Text>
-              <Text>{member.universeName}</Text>
+          <View style={styles.memberInfo}>
+            <Text style={styles.profileName}>{member.nickname}</Text>
+            <View style={styles.memberDetail}>
+              <Text style={styles.detailColor}>#{member.mbti}</Text>
+              <Text style={styles.detailColor}>/</Text>
+              <Text style={styles.detailColor}>{member.universeName}</Text>
             </View>
           </View>
         </View>
-
-        {/* <View>
-          <Image style={styles.womanPhoto} source={woman} />
-          <View>
-            <Text style={styles.profileName}>김지은</Text>
-            <View style={styles.memberInfo}>
-              <Text>#ENTJ</Text>
-              <Text>/</Text>
-              <Text>연세대</Text>
-            </View>
-          </View>
-        </View>
-        <View>
-          <Image style={styles.manPhoto} source={man} />
-          <View>
-            <Text style={styles.profileName}>김민수</Text>
-            <View style={styles.memberInfo}>
-              <Text>#ENTJ12</Text>
-              <Text>/</Text>
-              <Text>고려대</Text>
-            </View>
-          </View>
-        </View>
-        <View>
-          <Image style={styles.womanPhoto} source={woman} />
-          <View>
-            <Text style={styles.profileName}>김지은</Text>
-            <View style={styles.memberInfo}>
-              <Text>#ENTJ</Text>
-              <Text>/</Text>
-              <Text>연세대</Text>
-            </View>
-          </View>
-        </View>
-        <View>
-          <Image style={styles.manPhoto} source={man} />
-          <View>
-            <Text style={styles.profileName}>김민수</Text>
-            <View style={styles.memberInfo}>
-              <Text>#ENTJ</Text>
-              <Text>/</Text>
-              <Text>고려대</Text>
-            </View>
-          </View>
-        </View>
-        <View>
-          <Image style={styles.womanPhoto} source={woman} />
-          <View>
-            <Text style={styles.profileName}>김지은</Text>
-            <View style={styles.memberInfo}>
-              <Text>#ENTJ</Text>
-              <Text>/</Text>
-              <Text>연세대</Text>
-            </View>
-          </View>
-        </View> */}
       </View>
     </>
   );
@@ -102,10 +34,11 @@ const styles = StyleSheet.create({
   members: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    marginTop: 15,
+    marginTop: getWidth(15),
+    marginRight: getWidth(5),
   },
   manPhoto: {
-    borderRadius: 100,
+    borderRadius: getWidth(100),
     height: getWidth(120),
     width: getWidth(120),
     marginLeft: 5,
@@ -113,7 +46,7 @@ const styles = StyleSheet.create({
     borderColor: colors.stroke,
   },
   womanPhoto: {
-    borderRadius: 100,
+    borderRadius: getWidth(100),
     height: getWidth(120),
     width: getWidth(120),
     marginLeft: 5,
@@ -121,11 +54,20 @@ const styles = StyleSheet.create({
     borderColor: '#FFBAD6',
   },
   profileName: {
-    marginLeft: 30,
+    textAlign: 'center',
+    marginTop: getWidth(19),
+    marginBottom: getWidth(12),
   },
   memberInfo: {
+    justifyContent: 'center',
+    alignContent: 'center',
+  },
+  memberDetail: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
+  },
+  detailColor: {
+    color: '#767F88',
   },
 });
 
