@@ -31,7 +31,7 @@ const Chatting = ({route, navigation}: any) => {
   const {itemId} = route.params;
   const [user, setUser] = useState<any>([]);
   // const [input, setInput] = useState({text: '', height: 40});
-  const [messages, setMessages] = useState(DATA);
+  const [messages, setMessages] = useState('');
   const ws = new WebSocket(`ws://3.34.191.212:9090/ws/chat/${itemId}`);
 
   // 메시지 전송 버튼 클릭 시 컴포넌트 리렌더링
@@ -39,12 +39,28 @@ const Chatting = ({route, navigation}: any) => {
   //   setMessages([...messages, {id, nickname, gender, message}]);
   // };
 
+  const getPrevData = () => {
+    axios
+      .get(`/api/chatroom/${itemId}`)
+      .then(function (response) {
+        console.log('res==>', response);
+        setMessages(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   useEffect(() => {
     // 메세지 수신
     ws.onmessage = evt => {
       // console.log('edata',e.data)
       const data = JSON.parse(evt.data);
-      setMessages((prevItems: any) => [...prevItems, data]);
+      console.log('data==', data);
+      if (data.id !== undefined || data.id !== null) {
+        setMessages((prevItems: any) => [...prevItems, data]);
+      }
+      //
     };
   }, []);
 
@@ -52,6 +68,7 @@ const Chatting = ({route, navigation}: any) => {
     if (msg !== undefined || msg !== '') {
       ws.send(
         JSON.stringify({
+          userKey: user.id,
           username: user.nickname,
           message: msg,
           sessionId: '',
@@ -83,6 +100,7 @@ const Chatting = ({route, navigation}: any) => {
   }, []);
   useEffect(() => {
     getMyInfo();
+    getPrevData();
   }, []);
 
   return (
@@ -177,4 +195,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Chatting
+export default Chatting;

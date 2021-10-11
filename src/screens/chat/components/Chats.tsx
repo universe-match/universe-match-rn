@@ -6,15 +6,16 @@ import {getWidth} from '../../../constants/Index';
 const Chats = ({messages, user}: any) => {
   return (
     <View style={styles.messages}>
-      {messages.map(({id, username, gender, message}: any) => (
-        <Chat
-          id={id}
-          username={username}
-          gender={gender}
-          message={message}
-          user={user}
-        />
-      ))}
+      {messages.length > 0 &&
+        messages.map((item: any) => (
+          <Chat
+            id={item.id}
+            username={item.username}
+            gender={''}
+            message={item.message}
+            user={user}
+          />
+        ))}
     </View>
   );
 };
