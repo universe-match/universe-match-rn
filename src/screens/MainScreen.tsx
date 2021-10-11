@@ -59,6 +59,7 @@ const MainScreen = () => {
           key={name}
           name={name}
           options={{
+            unmountOnBlur: true,
             tabBarLabel: `${label}`,
             tabBarIcon: ({focused}) => {
               return <Image source={focused ? image_active : image} />;
