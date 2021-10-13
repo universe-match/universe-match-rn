@@ -2,7 +2,6 @@ import React, {useCallback, useState} from 'react';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import Button from '../components/form/Button';
 import MultiLineInput from '../components/form/MultiLineInput';
-
 import {
   SafeAreaView,
   ScrollView,
@@ -12,23 +11,32 @@ import {
   TouchableOpacity,
   TextInput,
   Image,
+  Alert,
+  Pressable,
 } from 'react-native';
 import {fonts, getHeight, getWidth, colors} from '../constants/Index';
 import RemoveIcon from '../assets/images/common/remove.png';
 import CameraIcon from '../assets/images/common/camera.png';
 import SettingIcon from '../assets/images/common/setting.png';
+import CancleModal from './groups/components/modal/CancelModel';
 
 const Profile = () => {
   const [isActive, setActive] = useState(false);
   const [isActive2, setActive2] = useState(false);
   const [keyword, setKeyword] = useState('');
   const [keywords, setKeywords] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
+
   const onPress = useCallback(() => {
     setKeywords(keywords.concat(keyword));
   }, [keywords, keyword]);
 
   return (
     <SafeAreaView>
+      <CancleModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+      />
       <ScrollView style={styles.container}>
         <View style={styles.pinkTopSection}>
           <TouchableOpacity style={styles.settingButton}>
@@ -36,12 +44,14 @@ const Profile = () => {
           </TouchableOpacity>
           <View style={styles.profileImageSection}>
             <View style={styles.profileImageWrapper}>
-              <Image
-                source={{
-                  uri: 'https://downloadwap.com/thumbs2/wallpapers/p2/2019/animals/28/e07af9a613027716.jpg',
-                }}
-                style={styles.profileImage}
-              />
+              <TouchableOpacity onPress={() => setModalVisible(true)}>
+                <Image
+                  source={{
+                    uri: 'https://downloadwap.com/thumbs2/wallpapers/p2/2019/animals/28/e07af9a613027716.jpg',
+                  }}
+                  style={styles.profileImage}
+                />
+              </TouchableOpacity>
             </View>
             <TouchableOpacity style={styles.editButton}>
               <Image source={CameraIcon} style={styles.editButtonImage} />

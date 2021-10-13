@@ -21,17 +21,17 @@ const data = {
 
 const ChatKeyborad = ({sendMesage}: any) => {
   const [text, setText] = useState('');
-
-  const handlePress = () => {
-    console.log('text==', text);
-    sendMesage(text);
-    clearMesaage();
-  };
-
   // 메시지 전송 시 text 초기화
   const clearMesaage = () => {
     setText('');
   };
+  const handlePress = () => {
+    if (text !== '') {
+      sendMesage(text);
+      clearMesaage();
+    }
+  };
+
   return (
     <View style={styles.textArea}>
       {/* <Image source={plus} style={styles.image} /> */}
