@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useState, useEffect} from 'react';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import Button from '../components/form/Button';
 import MultiLineInput from '../components/form/MultiLineInput';
@@ -11,31 +11,43 @@ import {
   TouchableOpacity,
   TextInput,
   Image,
-  Alert,
-  Pressable,
 } from 'react-native';
 import {fonts, getHeight, getWidth, colors} from '../constants/Index';
 import RemoveIcon from '../assets/images/common/remove.png';
 import CameraIcon from '../assets/images/common/camera.png';
 import SettingIcon from '../assets/images/common/setting.png';
 import CancleModal from './groups/components/modal/CancelModel';
+import axios from 'axios';
 
 const Profile = () => {
-  const [isActive, setActive] = useState(false);
-  const [isActive2, setActive2] = useState(false);
-  const [keyword, setKeyword] = useState('');
+  const [isActive, setActive] = useState<boolean>(false);
+  const [isActive2, setActive2] = useState<boolean>(false);
+  const [keyword, setKeyword] = useState<string>('');
   const [keywords, setKeywords] = useState([]);
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [user, setUser] = useState('');
 
   const onPress = useCallback(() => {
     setKeywords(keywords.concat(keyword));
   }, [keywords, keyword]);
 
+  useEffect(() => {
+    axios
+      .get('/api/user/myinfo')
+      .then(response => {
+        setUser(response.data);
+      })
+      .catch(response => {
+        console.log(response);
+      });
+  }, []);
   return (
     <SafeAreaView>
       <CancleModal
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
+        user={user}
+        setUser={setUser}
       />
       <ScrollView style={styles.container}>
         <View style={styles.pinkTopSection}>

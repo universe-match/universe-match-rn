@@ -11,6 +11,8 @@ import {
   Platform,
   TouchableOpacity,
   Alert,
+  ImageBackground,
+  TouchableHighlight,
 } from 'react-native';
 import {fonts, getHeight, getWidth, colors} from '../../constants/Index';
 import Button from '../../components/form/Button';
@@ -20,6 +22,7 @@ import InputButton from '../../components/form/InputButton';
 import BackIcon from '../../assets/images/common/back.png';
 import CameraIcon from '../../assets/images/common/camera.png';
 import RemoveIcon from '../../assets/images/common/remove.png';
+// import RemoveIcon from '../../assets/images/images/x.png';
 import axios from 'axios';
 
 const SignUp = ({
@@ -91,6 +94,9 @@ const SignUp = ({
       setWCheck(false);
     }
   };
+  const removePicture = (imageUri: string) => {
+    setImageSource(imageSource.filter((item: string) => item !== imageUri));
+  };
 
   return (
     <KeyboardAwareScrollView
@@ -128,12 +134,27 @@ const SignUp = ({
           <View style={styles.imageSection}>
             {imageSource.map((image: string, index: number) => (
               <View key={index}>
-                <Image
-                  style={styles.tinyLogo}
-                  source={{
-                    uri: image,
-                  }}
-                />
+                <ImageBackground
+                  source={{uri: image}}
+                  style={{height: 100, width: 100}}>
+                  <TouchableOpacity onPress={() => removePicture(image)}>
+                    <Image
+                      source={RemoveIcon}
+                      style={{
+                        height: 20,
+                        width: 20,
+                        marginTop: 10,
+                        marginLeft: 65,
+                      }}
+                    />
+                    {/* <Image
+                      style={styles.tinyLogo}
+                      source={{
+                        uri: image,
+                      }}
+                    /> */}
+                  </TouchableOpacity>
+                </ImageBackground>
               </View>
             ))}
           </View>
