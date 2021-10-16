@@ -11,7 +11,11 @@ const ChatMembers = ({member}: any) => {
     <>
       <View style={styles.members}>
         <View>
-          <Image style={styles.manPhoto} source={{uri: member.profileImg}} />
+          <Image
+            style={styles.manPhoto}
+            source={{uri: member.userImages[0].userImage}}
+            blurRadius={4}
+          />
           <View>
             <Text style={styles.profileName}>{member.nickName}</Text>
             <View style={styles.memberInfo}>

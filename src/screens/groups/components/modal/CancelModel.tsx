@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import {
   View,
   TouchableHighlight,
@@ -27,6 +27,7 @@ interface Props {
 const CancelModel = ({modalVisible, setModalVisible, user, setUser}: Props) => {
   //   const [modalVisible, setModalVisible] = useState(true);
   // const [profileImageList, setProfileImageList] = useState(user);
+  const [internetCheck, setInternetCheck] = useState(0);
 
   const removePicture = (image: string) => {
     setUser(user.userImages.filter((item: any) => item.userImage !== image));
@@ -63,6 +64,7 @@ const CancelModel = ({modalVisible, setModalVisible, user, setUser}: Props) => {
                 userImage: response.data.imgUrl,
               };
               // setUser(user.userImages.concat(userImageObj));
+              console.log('response.data.imgUrl==', user);
               user.userImages.push(userImageObj);
               setUser(user);
             })
@@ -73,6 +75,7 @@ const CancelModel = ({modalVisible, setModalVisible, user, setUser}: Props) => {
       },
     );
   }, [user]);
+  useEffect(() => {}, [user.userImages, user]);
 
   return (
     <View>
@@ -151,53 +154,18 @@ const CancelModel = ({modalVisible, setModalVisible, user, setUser}: Props) => {
                 accessibilityLabel="Learn more about this purple button"
               />
             </View>
-
-            {/* <View 
-              style={{
-                alignSelf: 'baseline',
-                backgroundColor: '#32C5E6',
-                width: 300,
-                flex: 1,
-                borderBottomLeftRadius: 20,
-                borderBottomRightRadius: 20,
-                flexDirection: 'row',
-              }}>
-              <TouchableHighlight
-                style={{
-                  flex: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-                onPress={() => {
-                  setModalVisible(!modalVisible);
-                }}>
-                <Text style={{color: 'white', fontSize: 15}}>취소</Text>
-              </TouchableHighlight>
-
-              <TouchableHighlight
-                style={{
-                  flex: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-                onPress={() => {
-                  setModalVisible(!modalVisible);
-                }}>
-                <Text style={{color: 'white', fontSize: 15}}>종료</Text>
-              </TouchableHighlight>
-            </View> */}
           </View>
         </View>
       </Modal>
 
-      <TouchableHighlight
+      {/* <TouchableHighlight
         onPress={() => {
           setModalVisible(true);
         }}>
         <Text>Show Modal</Text>
-      </TouchableHighlight>
+      </TouchableHighlight> */}
     </View>
   );
 };
 
-export default CancelModel;
+export default React.memo(CancelModel);

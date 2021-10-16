@@ -25,9 +25,10 @@ const Profile = () => {
   const [keyword, setKeyword] = useState<string>('');
   const [keywords, setKeywords] = useState([]);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState<any>('');
 
   const onPress = useCallback(() => {
+    setKeyword('');
     setKeywords(keywords.concat(keyword));
   }, [keywords, keyword]);
 
@@ -59,7 +60,7 @@ const Profile = () => {
               <TouchableOpacity onPress={() => setModalVisible(true)}>
                 <Image
                   source={{
-                    uri: 'https://downloadwap.com/thumbs2/wallpapers/p2/2019/animals/28/e07af9a613027716.jpg',
+                    uri: user.userImages[0].userImage,
                   }}
                   style={styles.profileImage}
                 />
@@ -69,6 +70,9 @@ const Profile = () => {
               <Image source={CameraIcon} style={styles.editButtonImage} />
             </TouchableOpacity>
             <View />
+            <View style={{marginLeft: 45, marginTop: 10}}>
+              <Text>김은지</Text>
+            </View>
           </View>
         </View>
         <View style={styles.profileSection}>
@@ -87,19 +91,36 @@ const Profile = () => {
             <View style={styles.mbtiButtonWrapper}>
               <View style={styles.mbtiButtonRow}>
                 <TouchableOpacity style={styles.mbtiButton}>
-                  <Text style={styles.mbtiButtonText}>E</Text>
+                  <Text style={styles.mbtiButtonText}>
+                    {user.mbti === undefined
+                      ? ''
+                      : user.mbti.substring(0, 1).toUpperCase()}
+                    {/* {user.mbti.substr(0, 1)} */}
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.mbtiButton}>
-                  <Text style={styles.mbtiButtonText}>N</Text>
+                  <Text style={styles.mbtiButtonText}>
+                    {user.mbti === undefined
+                      ? ''
+                      : user.mbti.substring(1, 2).toUpperCase()}
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.mbtiButton}>
-                  <Text style={styles.mbtiButtonText}>F</Text>
+                  <Text style={styles.mbtiButtonText}>
+                    {user.mbti === undefined
+                      ? ''
+                      : user.mbti.substring(2, 3).toUpperCase()}
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.mbtiButton}>
-                  <Text style={styles.mbtiButtonText}>P</Text>
+                  <Text style={styles.mbtiButtonText}>
+                    {user.mbti === undefined
+                      ? ''
+                      : user.mbti.substring(3, 4).toUpperCase()}
+                  </Text>
                 </TouchableOpacity>
               </View>
-              <View style={styles.mbtiButtonRow}>
+              {/* <View style={styles.mbtiButtonRow}>
                 <TouchableOpacity style={styles.mbtiActiveButton}>
                   <Text style={styles.mbtiButtonText}>I</Text>
                 </TouchableOpacity>
@@ -112,7 +133,7 @@ const Profile = () => {
                 <TouchableOpacity style={styles.mbtiButton}>
                   <Text style={styles.mbtiButtonText}>J</Text>
                 </TouchableOpacity>
-              </View>
+              </View> */}
             </View>
           </View>
           <View style={styles.sliderTitle}>
@@ -160,7 +181,7 @@ const Profile = () => {
               sliderLength={300}
             />
           </View>
-          <View>
+          {/* <View>
             <Text style={styles.bloodTitle}>혈액형</Text>
             <View style={styles.bloodButtonRow}>
               <TouchableOpacity style={styles.bloodButton}>
@@ -176,7 +197,7 @@ const Profile = () => {
                 <Text style={styles.bloodButtonText}>P</Text>
               </TouchableOpacity>
             </View>
-          </View>
+          </View> */}
           <View style={styles.sliderTitle}>
             <Text style={styles.sliderTitleText}>나이</Text>
             <Text style={styles.sliderLeftText}>18살</Text>
