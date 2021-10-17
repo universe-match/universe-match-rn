@@ -8,6 +8,7 @@ import Chatting from './Chatting';
 import Chats from './Chats';
 import Chat from './Chat';
 import ChatKeyborad from './ChatKeyborad';
+import ProfileView from './ProfileView';
 
 export {
   ChatRooms,
@@ -20,4 +21,5 @@ export {
   Chats,
   Chat,
   ChatKeyborad,
+  ProfileView,
 };

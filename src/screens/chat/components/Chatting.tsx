@@ -4,28 +4,6 @@ import {Chats, ChatKeyborad} from './Index';
 import {getWidth, colors, getHeight} from '../../../constants/Index';
 import axios from 'axios';
 
-// 가 데이터
-const DATA = [
-  {
-    id: '1',
-    username: '김민수',
-    gender: 'man',
-    message: '안녕하세요1',
-  },
-  {
-    id: '2',
-    username: '김은지',
-    gender: 'woman',
-    message: '안녕하세요2',
-  },
-  {
-    id: '3',
-    username: '나',
-    gender: 'man',
-    message: '안녕하세요3',
-  },
-];
-
 const Chatting = ({route, navigation}: any) => {
   const scrollViewRef = useRef<ElementType>();
   const {itemId} = route.params;

@@ -1,59 +1,73 @@
-import React from 'react';
-import {StyleSheet, View, Text, Image} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import {getWidth, colors, getHeight} from '../../../constants/Index';
+import {Chatting, ProfileView} from './Index';
 import man from '../../../assets/images/test/man.png';
-import woman from '../../../assets/images/test/woman.png';
 
-const Chat = ({id,username, gender, message, user}: any) => {
+const Chat = ({id, username, gender, message, user}: any) => {
+  const [isShowDialog, setShowDialog] = useState(false);
+
+  const handleClick = () => {
+    setShowDialog(true);
+  };
   if (username === user.nickname) {
     return (
       <View style={styles.myMessage} key={id}>
-        {message !== undefined &&
-        <LinearGradient
-          useAngle={true}
-          angle={90}
-          colors={['#72EDC4', '#5EDEB4']}
-          style={{
-            borderRadius: getWidth(32),
-          }}>
+        {message !== undefined && (
+          <LinearGradient
+            useAngle={true}
+            angle={90}
+            colors={['#72EDC4', '#5EDEB4']}
+            style={{
+              borderRadius: getWidth(32),
+            }}>
             <Text style={styles.text}>{message}</Text>
-        </LinearGradient>
-        }
-        
+          </LinearGradient>
+        )}
       </View>
     );
-  }else{
+  } else {
     return (
-      <View style={styles.message}>
-        <View style={styles.profileInfo}>
-          <Image
-            source={man}
-            style={
-              gender === 'man'
-                ? styles.photo
-                : {...styles.photo, ...styles.womanPhoto}
+      <>
+        <View style={styles.message}>
+          <TouchableOpacity onPress={handleClick}>
+            <View style={styles.profileInfo}>
+              <Image
+                source={man}
+                style={
+                  gender === 'man'
+                    ? styles.photo
+                    : {...styles.photo, ...styles.womanPhoto}
+                }
+              />
+              <Text>{username}</Text>
+            </View>
+          </TouchableOpacity>
+          <LinearGradient
+            useAngle={true}
+            angle={90}
+            colors={
+              gender === 'man' ? ['#A1C4FF', '#75A4F4'] : ['#FFD8E8', '#FFBAD6']
             }
-          />
-          <Text>{username}</Text>
+            style={{
+              borderRadius: getWidth(32),
+            }}>
+            <Text style={styles.text}>{message}</Text>
+          </LinearGradient>
         </View>
-        <LinearGradient
-          useAngle={true}
-          angle={90}
-          colors={
-            gender === 'man' ? ['#A1C4FF', '#75A4F4'] : ['#FFD8E8', '#FFBAD6']
-          }
-          style={{
-            borderRadius: getWidth(32),
-          }}>
-          <Text style={styles.text}>{message}</Text>
-        </LinearGradient>
-      </View>
+        {isShowDialog && (
+          <ProfileView
+            onClose={() => {
+              setShowDialog(false);
+            }}
+            userPhoto={man}
+          />
+        )}
+      </>
     );
   }
-
-  
 };
 
 const styles = StyleSheet.create({
