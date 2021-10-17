@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     right: getWidth(70),
-    top: getWidth(845),
+    top: getWidth(1045),
   },
   floatingButtonStyle: {
     resizeMode: 'contain',

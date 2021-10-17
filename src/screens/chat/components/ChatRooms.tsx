@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList,View} from 'react-native';
+import {FlatList, View} from 'react-native';
 import {ChatRoom} from './Index';
 
 const ChatRooms = ({chatList, navigation}: any) => {
@@ -15,15 +15,6 @@ const ChatRooms = ({chatList, navigation}: any) => {
         navigation={navigation}
       />
     </View>
-    // 테스트용
-    // <ChatRoom
-    //   title={item.title}
-    //   area={item.place}
-    //   fromDate={item.fromDate}
-    //   toDate={item.toDate}
-    //   navigation={navigation}
-    //   //matchingList={item.matchRoomResponse.matchingList}
-    // />
   );
 
   return (
