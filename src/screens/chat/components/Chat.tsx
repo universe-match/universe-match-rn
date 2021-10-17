@@ -6,8 +6,8 @@ import {getWidth, colors, getHeight} from '../../../constants/Index';
 import {Chatting, ProfileView} from './Index';
 import man from '../../../assets/images/test/man.png';
 
-const Chat = ({id, username, gender, message, user}: any) => {
-  const [isShowDialog, setShowDialog] = useState(false);
+const Chat = ({id, username, gender, message, user, setShowDialog}: any) => {
+  // const [isShowDialog, setShowDialog] = useState(false);
 
   const handleClick = () => {
     setShowDialog(true);
@@ -57,14 +57,14 @@ const Chat = ({id, username, gender, message, user}: any) => {
             <Text style={styles.text}>{message}</Text>
           </LinearGradient>
         </View>
-        {isShowDialog && (
+        {/* {isShowDialog && (
           <ProfileView
             onClose={() => {
               setShowDialog(false);
             }}
             userPhoto={man}
           />
-        )}
+        )} */}
       </>
     );
   }

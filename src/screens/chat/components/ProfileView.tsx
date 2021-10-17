@@ -38,11 +38,10 @@ const styles = StyleSheet.create({
   background: {
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
     position: 'absolute',
+    backgroundColor: colors.black,
     right: 0,
-    //top: 1,
-    bottom: 0,
+    top: -70,
     //zIndex: 1,
   },
   dialog: {

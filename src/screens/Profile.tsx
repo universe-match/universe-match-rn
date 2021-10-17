@@ -60,7 +60,7 @@ const Profile = () => {
               <TouchableOpacity onPress={() => setModalVisible(true)}>
                 <Image
                   source={{
-                    uri: user.userImages[0].userImage,
+                    uri: '',
                   }}
                   style={styles.profileImage}
                 />

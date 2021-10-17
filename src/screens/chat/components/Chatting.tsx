@@ -3,6 +3,8 @@ import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
 import {Chats, ChatKeyborad} from './Index';
 import {getWidth, colors, getHeight} from '../../../constants/Index';
 import axios from 'axios';
+import man from '../../../assets/images/test/man.png';
+import {ProfileView} from './Index';
 
 const Chatting = ({route, navigation}: any) => {
   const scrollViewRef = useRef<ElementType>();
@@ -10,6 +12,7 @@ const Chatting = ({route, navigation}: any) => {
   const [user, setUser] = useState<any>([]);
   // const [input, setInput] = useState({text: '', height: 40});
   const [messages, setMessages] = useState('');
+  const [isShowDialog, setShowDialog] = useState(false);
   const ws = new WebSocket(`ws://3.34.191.212:9090/ws/chat/${itemId}`);
 
   // 메시지 전송 버튼 클릭 시 컴포넌트 리렌더링
@@ -90,11 +93,19 @@ const Chatting = ({route, navigation}: any) => {
         onContentSizeChange={() => {
           scrollViewRef.current.scrollToEnd({animated: true});
         }}>
-        <Chats messages={messages} user={user} />
+        <Chats messages={messages} user={user} setShowDialog={setShowDialog} />
       </ScrollView>
       <View style={styles.bottomContainer}>
         <ChatKeyborad sendMesage={sendMesage} />
       </View>
+      {isShowDialog && (
+        <ProfileView
+          onClose={() => {
+            setShowDialog(false);
+          }}
+          userPhoto={man}
+        />
+      )}
     </SafeAreaView>
   );
 };
