@@ -64,7 +64,6 @@ const CancelModel = ({modalVisible, setModalVisible, user, setUser}: Props) => {
                 userImage: response.data.imgUrl,
               };
               // setUser(user.userImages.concat(userImageObj));
-              console.log('response.data.imgUrl==', user);
               user.userImages.push(userImageObj);
               setUser(user);
             })
@@ -75,7 +74,9 @@ const CancelModel = ({modalVisible, setModalVisible, user, setUser}: Props) => {
       },
     );
   }, [user]);
-  useEffect(() => {}, [user.userImages, user]);
+  useEffect(() => {
+    console.log(user);
+  }, [user.userImages, user]);
 
   return (
     <View>
@@ -128,7 +129,9 @@ const CancelModel = ({modalVisible, setModalVisible, user, setUser}: Props) => {
                 user.userImages.map((image: any, index: number) => (
                   <View style={{marginTop: 10}} key={index}>
                     <ImageBackground
-                      source={{uri: image.userImage}}
+                      source={{
+                        uri: Object.keys(image).length > 0 && image.userImage,
+                      }}
                       style={{height: 100, width: 100}}>
                       <TouchableOpacity
                         onPress={() => removePicture(image.userImage)}>

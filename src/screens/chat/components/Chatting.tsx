@@ -13,6 +13,7 @@ const Chatting = ({route, navigation}: any) => {
   // const [input, setInput] = useState({text: '', height: 40});
   const [messages, setMessages] = useState('');
   const [isShowDialog, setShowDialog] = useState(false);
+  const [otherUserId, setOtherUserId] = useState<string>('');
   const ws = new WebSocket(`ws://3.34.191.212:9090/ws/chat/${itemId}`);
 
   // 메시지 전송 버튼 클릭 시 컴포넌트 리렌더링
@@ -93,7 +94,12 @@ const Chatting = ({route, navigation}: any) => {
         onContentSizeChange={() => {
           scrollViewRef.current.scrollToEnd({animated: true});
         }}>
-        <Chats messages={messages} user={user} setShowDialog={setShowDialog} />
+        <Chats
+          messages={messages}
+          user={user}
+          setShowDialog={setShowDialog}
+          setOtherUserId={setOtherUserId}
+        />
       </ScrollView>
       <View style={styles.bottomContainer}>
         <ChatKeyborad sendMesage={sendMesage} />
@@ -104,6 +110,7 @@ const Chatting = ({route, navigation}: any) => {
             setShowDialog(false);
           }}
           userPhoto={man}
+          otherUserId={otherUserId}
         />
       )}
     </SafeAreaView>

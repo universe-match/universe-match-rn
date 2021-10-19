@@ -30,13 +30,13 @@ const tabs = [
     image_active: chat_active,
     component: ChatScreen,
   },
-  {
-    name: 'FriendScreen',
-    label: '친구',
-    image: friends,
-    image_active: friends_active,
-    component: FriendScreen,
-  },
+  // {
+  //   name: 'FriendScreen',
+  //   label: '친구',
+  //   image: friends,
+  //   image_active: friends_active,
+  //   component: FriendScreen,
+  // },
   {
     name: 'Screen4',
     label: '계정',

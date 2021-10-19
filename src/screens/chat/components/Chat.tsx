@@ -6,11 +6,21 @@ import {getWidth, colors, getHeight} from '../../../constants/Index';
 import {Chatting, ProfileView} from './Index';
 import man from '../../../assets/images/test/man.png';
 
-const Chat = ({id, username, gender, message, user, setShowDialog}: any) => {
+const Chat = ({
+  id,
+  username,
+  gender,
+  userKey,
+  message,
+  user,
+  setShowDialog,
+  setOtherUserId,
+}: any) => {
   // const [isShowDialog, setShowDialog] = useState(false);
 
-  const handleClick = () => {
+  const handleClick = (id: string) => {
     setShowDialog(true);
+    setOtherUserId(id);
   };
   if (username === user.nickname) {
     return (
@@ -32,7 +42,7 @@ const Chat = ({id, username, gender, message, user, setShowDialog}: any) => {
     return (
       <>
         <View style={styles.message}>
-          <TouchableOpacity onPress={handleClick}>
+          <TouchableOpacity onPress={() => handleClick(userKey)}>
             <View style={styles.profileInfo}>
               <Image
                 source={man}

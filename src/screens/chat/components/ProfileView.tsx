@@ -1,10 +1,26 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, TouchableOpacity, View, Image, Text} from 'react-native';
 import {getWidth, colors, getHeight} from '../../../constants/Index';
 import RemoveIcon from '../../../assets/images/common/remove.png';
 import big_man from '../../../assets/images/test/big_man.png';
+import axios from 'axios';
 
-const ProfileView = ({onClose}: any) => {
+const ProfileView = ({onClose, otherUserId}: any) => {
+  const [otherInfo, setOtherInfo] = useState<any>({});
+
+  const getOtherUserInfo = async () => {
+    await axios
+      .get(`/api/user/otherinfo/${otherUserId}`)
+      .then((response: any) => {
+        console.log(response);
+        setOtherInfo(response.data);
+      });
+  };
+  useEffect(() => {
+    getOtherUserInfo();
+    console.log('otherInfo=', otherInfo.length);
+  }, []);
+
   return (
     <View style={styles.background}>
       <View style={styles.dialog}>
@@ -18,14 +34,23 @@ const ProfileView = ({onClose}: any) => {
           </TouchableOpacity>
         </View>
         <View style={styles.content}>
-          <Image source={big_man} style={styles.photo} />
+          <Image
+            source={{
+              uri:
+                Object.keys(otherInfo).length !== 0 &&
+                otherInfo.userImages[0].userImage,
+            }}
+            style={styles.photo}
+          />
           <Text style={styles.profileInfo}>
-            고려대학교/경영학과/ESFJ/AB형/174CM
+            {Object.keys(otherInfo).length !== 0 && otherInfo.universeName}/
+            {Object.keys(otherInfo).length !== 0 && otherInfo.major}/
+            {Object.keys(otherInfo).length !== 0 && otherInfo.mbti}
           </Text>
           <View style={styles.introduces}>
             <Text style={styles.introduce}>자기소개:</Text>
             <Text style={styles.introduceDetail}>
-              축구를 좋아하는 24살 남자입니다! 취미는 영화보기입니당!
+              {Object.keys(otherInfo).length !== 0 && otherInfo.introduce}
             </Text>
           </View>
         </View>

@@ -42,6 +42,8 @@ const Profile = () => {
         console.log(response);
       });
   }, []);
+  console.log('user==', user);
+
   return (
     <SafeAreaView>
       <CancleModal
@@ -60,7 +62,9 @@ const Profile = () => {
               <TouchableOpacity onPress={() => setModalVisible(true)}>
                 <Image
                   source={{
-                    uri: '',
+                    uri:
+                      Object.keys(user).length > 0 &&
+                      user.userImages[0].userImage,
                   }}
                   style={styles.profileImage}
                 />
@@ -71,7 +75,7 @@ const Profile = () => {
             </TouchableOpacity>
             <View />
             <View style={{marginLeft: 45, marginTop: 10}}>
-              <Text>김은지</Text>
+              <Text>{user.nickname}</Text>
             </View>
           </View>
         </View>
