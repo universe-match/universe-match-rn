@@ -61,7 +61,8 @@ const GroupContainers = () => {
     axios
       .get('/api/matchroom')
       .then(function (response: any) {
-        setGroupList(response.data.content);
+        console.log('response=', response);
+        setGroupList(response.data);
       })
       .catch(function (error) {
         console.log(error);

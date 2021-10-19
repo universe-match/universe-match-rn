@@ -37,8 +37,9 @@ const ProfileView = ({onClose, otherUserId}: any) => {
           <Image
             source={{
               uri:
-                Object.keys(otherInfo).length !== 0 &&
-                otherInfo.userImages[0].userImage,
+                Object.keys(otherInfo).length > 0
+                  ? otherInfo.userImages[0].userImage
+                  : '',
             }}
             style={styles.photo}
           />

@@ -59,7 +59,6 @@ const CreateGroup = ({navigation}: any) => {
     axios
       .post('/api/matchroom', sendRequest)
       .then(function (response) {
-        console.log('res=', response);
         // navigation.navigate('Main');
         navigation.dispatch(CommonActions.navigate('Main'));
       })

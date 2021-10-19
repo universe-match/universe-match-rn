@@ -18,6 +18,7 @@ import CameraIcon from '../assets/images/common/camera.png';
 import SettingIcon from '../assets/images/common/setting.png';
 import CancleModal from './groups/components/modal/CancelModel';
 import axios from 'axios';
+import Slider from '@react-native-community/slider';
 
 const Profile = () => {
   const [isActive, setActive] = useState<boolean>(false);
@@ -26,6 +27,7 @@ const Profile = () => {
   const [keywords, setKeywords] = useState([]);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [user, setUser] = useState<any>('');
+  const [myValue, setMyValue] = useState<number>(0);
 
   const onPress = useCallback(() => {
     setKeyword('');
@@ -37,6 +39,7 @@ const Profile = () => {
       .get('/api/user/myinfo')
       .then(response => {
         setUser(response.data);
+        setUserProfileImg(response.data.userImages[0].userImage);
       })
       .catch(response => {
         console.log(response);
@@ -63,8 +66,9 @@ const Profile = () => {
                 <Image
                   source={{
                     uri:
-                      Object.keys(user).length > 0 &&
-                      user.userImages[0].userImage,
+                      Object.keys(user).length > 0
+                        ? user.userImages[0].userImage
+                        : '',
                   }}
                   style={styles.profileImage}
                 />
@@ -140,7 +144,7 @@ const Profile = () => {
               </View> */}
             </View>
           </View>
-          <View style={styles.sliderTitle}>
+          {/* <View style={styles.sliderTitle}>
             <Text style={styles.sliderTitleText}>키</Text>
             <Text style={styles.sliderLeftText}>140CM</Text>
             <Text style={styles.sliderRightText}>190CM</Text>
@@ -184,7 +188,7 @@ const Profile = () => {
               max={190}
               sliderLength={300}
             />
-          </View>
+          </View> */}
           {/* <View>
             <Text style={styles.bloodTitle}>혈액형</Text>
             <View style={styles.bloodButtonRow}>
@@ -205,8 +209,19 @@ const Profile = () => {
           <View style={styles.sliderTitle}>
             <Text style={styles.sliderTitleText}>나이</Text>
             <Text style={styles.sliderLeftText}>18살</Text>
-            <Text style={styles.sliderRightText}>30살</Text>
-            <MultiSlider
+            <Text style={styles.sliderRightText}>36살</Text>
+            <Slider
+              style={{height: 40, width: 300}}
+              value={myValue} // == this.state.value
+              onValueChange={value => setMyValue(value)} // 슬라이더를 움질일때 출력값 변환
+              minimumValue={18} // 최소값 설정
+              maximumValue={36} // 최대값 설정
+              maximumTrackTintColor={colors.green} // 값이 크면 빨간색
+              minimumTrackTintColor={colors.black} // 값이 작으면 파란색
+              step={1} // 1단위로 값이 변경
+            />
+            <Text> {myValue} </Text>
+            {/* <MultiSlider
               values={[10, 20]}
               allowOverlap={false}
               isMarkersSeparated={true}
@@ -245,7 +260,7 @@ const Profile = () => {
               min={18}
               max={30}
               sliderLength={300}
-            />
+            /> */}
           </View>
           <View style={styles.inputTitle}>
             <Text style={styles.inputTitleText}>성격</Text>

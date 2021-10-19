@@ -15,6 +15,7 @@
     "@react-native-community/checkbox": "^0.5.8",
     "@react-native-community/cli": "^5.0.1",
     "@react-native-community/masked-view": "^0.1.11",
+    "@react-native-community/slider": "^4.1.9",
     "@react-native-google-signin/google-signin": "^6.0.1",
     "@react-navigation/bottom-tabs": "^5.11.13",
     "@react-navigation/material-top-tabs": "^5.3.15",
