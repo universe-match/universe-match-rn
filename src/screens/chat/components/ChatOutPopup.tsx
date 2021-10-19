@@ -18,7 +18,7 @@ const ChatOutPopup = ({onClose}: any) => {
         </View>
         <View style={styles.content}>
           <Text style={styles.title}>
-            <Text style={styles.titleText}>나가기</Text>
+            <Text style={styles.titleText}></Text>
           </Text>
           <View style={styles.dialogContent}>
             <View style={styles.groupInfo}>

@@ -24,7 +24,6 @@ const ChatRoom = ({
     setIsActive(!flag);
   };
 
-  console.log('matchingList,', matchingList);
   return (
     <View key={id}>
       <TouchableHighlight

@@ -1,5 +1,6 @@
+import axios from 'axios';
 import React, {useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, Alert} from 'react-native';
 
 import {getWidth, getHeight, colors} from '../../../constants/Index';
 import {ChatOutPopup} from './Index';
@@ -9,7 +10,16 @@ const ChatRoomButtons = ({navigation, id}: any) => {
 
   console.log('id=====', id);
   const handlePress = (flag: any) => {
-    setShowDialog(flag);
+    // setShowDialog(flag);
+    axios
+      .delete(`api/match/${id}`)
+      .then((res: any) => {
+        console.log(res);
+        return Alert.alert('채팅방에서 나가셨습니다');
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
   return (
     <>
