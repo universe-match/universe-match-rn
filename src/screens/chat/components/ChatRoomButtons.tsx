@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     borderRadius: 10.9153,
     width: getWidth(237),
     height: getHeight(92),
-    top: getWidth(318),
+    top: getWidth(200),
     left: getWidth(100),
   },
   outButton: {
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     borderRadius: 10.9153,
     width: getWidth(237),
     height: getHeight(92),
-    top: getWidth(318),
+    top: getWidth(200),
     left: getWidth(380),
   },
   chatButtonText: {
