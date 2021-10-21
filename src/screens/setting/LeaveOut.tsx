@@ -1,16 +1,30 @@
 import React from 'react';
 import CheckBox from '@react-native-community/checkbox';
-import {SafeAreaView, View, Text, Image, StyleSheet} from 'react-native';
-import {colors, fonts, getHeight, getWidth} from '../../../constants/Index';
-import BackIcon from '../../../assets/images/common/back.png';
-import Button from '../../../components/form/Button';
+import {
+  SafeAreaView,
+  TouchableOpacity,
+  View,
+  Text,
+  Image,
+  StyleSheet,
+} from 'react-native';
+import {colors, fonts, getHeight, getWidth} from '../../constants/Index';
+import BackIcon from '../../assets/images/common/back.png';
+import Button from '../../components/form/Button';
 
-const LeaveOut = () => {
+const LeaveOut = ({navigation}: any) => {
   return (
     <SafeAreaView>
       <View style={styles.container}>
         <View style={styles.header}>
-          <Image style={styles.back} source={BackIcon} />
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => {
+              navigation.navigate('Main1');
+            }}
+            style={styles.touchableOpacityStyle}>
+            <Image style={styles.back} source={BackIcon} />
+          </TouchableOpacity>
           <Text style={styles.titleText}>회원탈퇴</Text>
         </View>
         <View style={styles.item}>
@@ -58,6 +72,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderBottomWidth: getWidth(1),
     borderBottomColor: colors.green,
+  },
+  touchableOpacityStyle: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: getWidth(220),
   },
   back: {
     position: 'absolute',

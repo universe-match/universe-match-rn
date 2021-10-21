@@ -13,7 +13,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import InputButton from '../components/form/InputButton';
 import BackIcon from '../assets/images/common/back.png';
 import RightIcon from '../assets/images/common/right.png';
-import LeaveOut from '../screens/setting/components/LeaveOut';
 
 const Setting = ({navigation}: any) => {
   const [name, setName] = useState('');
@@ -49,7 +48,9 @@ const Setting = ({navigation}: any) => {
             <Text style={styles.itemText}>회원수정</Text>
             <Image style={styles.itemIcon} source={RightIcon} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.item}>
+          <TouchableOpacity
+            style={styles.item}
+            onPress={() => navigation.navigate('Complaint')}>
             <Text style={styles.itemText}>불편신고</Text>
             <Image style={styles.itemIcon} source={RightIcon} />
           </TouchableOpacity>
