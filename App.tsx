@@ -11,6 +11,7 @@ import SignIn from './src/screens/SignIn';
 import MultiStep from './src/screens/signUp/MultiStep';
 import Chatting from './src/screens/chat/components/Chatting';
 import Profile from './src/screens/Profile';
+import LeaveOut from './src/screens/setting/components/LeaveOut';
 
 const Stack = createStackNavigator();
 
@@ -49,6 +50,7 @@ const App = () => {
           <Stack.Screen name="CreateGroup" component={CreateGroup} />
           <Stack.Screen name="Chatting" component={Chatting} />
           <Stack.Screen name="Profile" component={Profile} />
+          <Stack.Screen name="LeaveOut" component={LeaveOut} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
