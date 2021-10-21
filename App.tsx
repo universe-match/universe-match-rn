@@ -12,18 +12,26 @@ import MultiStep from './src/screens/signUp/MultiStep';
 import Chatting from './src/screens/chat/components/Chatting';
 import Profile from './src/screens/Profile';
 import {Complaint, LeaveOut} from './src/screens/setting/Index';
+import jwt_decode from 'jwt-decode';
 
 const Stack = createStackNavigator();
 
 const App = () => {
   const [isToken, setIsToken] = useState('');
-  const token = AsyncStorage.getItem('accessToken', (err, result: any) => {
+  const token: any = AsyncStorage.getItem('accessToken', (err, result: any) => {
     setIsToken(result);
     return result;
   });
-
-  //axios.defaults.baseURL = 'http://192.168.0.121:9090/';
-  axios.defaults.baseURL = 'http://3.34.191.212:9090/';
+  if (token) {
+    token.then((res: any) => {
+      var decodedJwt: any = jwt_decode(res);
+      if (decodedJwt.exp * 1000 < Date.now()) {
+        AsyncStorage.removeItem('accessToken');
+      }
+    });
+  }
+  axios.defaults.baseURL = 'http://192.168.0.10:9090/';
+  //axios.defaults.baseURL = 'http://3.34.191.212:9090/';
 
   axios.interceptors.request.use(async function (config) {
     const token = await AsyncStorage.getItem('accessToken');
