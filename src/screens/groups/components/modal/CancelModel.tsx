@@ -23,14 +23,25 @@ interface Props {
   setModalVisible: any;
   user: any;
   setUser: any;
+  profileImages: any;
+  setProfileImages: any;
 }
-const CancelModel = ({modalVisible, setModalVisible, user, setUser}: Props) => {
+const CancelModel = ({
+  modalVisible,
+  setModalVisible,
+  user,
+  setUser,
+  profileImages,
+  setProfileImages,
+}: Props) => {
   //   const [modalVisible, setModalVisible] = useState(true);
   // const [profileImageList, setProfileImageList] = useState(user);
   const [internetCheck, setInternetCheck] = useState(0);
 
+  console.log('profileImages==', profileImages);
   const removePicture = (image: string) => {
-    setUser(user.userImages.filter((item: any) => item.userImage !== image));
+    setProfileImages(profileImages.filter((item: any) => item !== image));
+    //setUser(user.userImages.filter((item: any) => console.log(item)));
   };
   const handlePress = () => {
     setModalVisible(false);
@@ -59,13 +70,12 @@ const CancelModel = ({modalVisible, setModalVisible, user, setUser}: Props) => {
           });
           axios
             .post('/user/image', fd)
-            .then(function (response) {
-              let userImageObj = {
+            .then(function (response: any) {
+              let userImageObj: any = {
                 userImage: response.data.imgUrl,
               };
-              // setUser(user.userImages.concat(userImageObj));
-              user.userImages.push(userImageObj);
-              setUser(user);
+
+              setProfileImages(profileImages.concat(response.data.imgUrl));
             })
             .catch(function (error) {
               console.log(error);
@@ -74,9 +84,7 @@ const CancelModel = ({modalVisible, setModalVisible, user, setUser}: Props) => {
       },
     );
   }, [user]);
-  useEffect(() => {
-    console.log(user);
-  }, [user.userImages, user]);
+  useEffect(() => {}, [user.userImages, user]);
 
   return (
     <View>
@@ -125,7 +133,28 @@ const CancelModel = ({modalVisible, setModalVisible, user, setUser}: Props) => {
                 display: 'flex',
                 flexDirection: 'row',
               }}>
-              {user.userImages &&
+              {profileImages.map((image: any, index: number) => (
+                <View style={{marginTop: 10}} key={index}>
+                  <ImageBackground
+                    source={{
+                      uri: image,
+                    }}
+                    style={{height: 100, width: 100}}>
+                    <TouchableOpacity onPress={() => removePicture(image)}>
+                      <Image
+                        source={RemoveIcon}
+                        style={{
+                          height: 40,
+                          width: 40,
+                          marginTop: 5,
+                          marginLeft: 65,
+                        }}
+                      />
+                    </TouchableOpacity>
+                  </ImageBackground>
+                </View>
+              ))}
+              {/* {user.userImages &&
                 user.userImages.map((image: any, index: number) => (
                   <View style={{marginTop: 10}} key={index}>
                     <ImageBackground
@@ -147,7 +176,7 @@ const CancelModel = ({modalVisible, setModalVisible, user, setUser}: Props) => {
                       </TouchableOpacity>
                     </ImageBackground>
                   </View>
-                ))}
+                ))} */}
             </View>
             <View>
               <Button

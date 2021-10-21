@@ -57,9 +57,6 @@ const SignUp = ({
           // console.log(response.assets);
           // setImageSource(imageSource.concat(response.assets[0]));
           console.log('imageSource.length=', imageSource.length);
-          if (imageSource.length > 3) {
-            return Alert.alert('5개 미만만 올릴수있습니다');
-          }
 
           const fd = new FormData();
           fd.append('image', {

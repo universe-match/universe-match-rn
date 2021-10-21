@@ -28,6 +28,8 @@ const Profile = () => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [user, setUser] = useState<any>('');
   const [myValue, setMyValue] = useState<number>(0);
+  const [introduce, setIntroduce] = useState<string>('');
+  const [profileImages, setProfileImages] = useState<any>([]);
 
   const onPress = useCallback(() => {
     setKeyword('');
@@ -38,14 +40,23 @@ const Profile = () => {
     axios
       .get('/api/user/myinfo')
       .then(response => {
+        response.data.userImages.map((item: any) => {
+          profileImages.push(item.userImage);
+        });
+        setProfileImages(profileImages);
         setUser(response.data);
-        setUserProfileImg(response.data.userImages[0].userImage);
       })
       .catch(response => {
         console.log(response);
       });
   }, []);
-  console.log('user==', user);
+
+  const onSubmit = () => {
+    user.introduce = introduce;
+    console.log(user);
+
+    console.log(profileImages);
+  };
 
   return (
     <SafeAreaView>
@@ -54,6 +65,8 @@ const Profile = () => {
         setModalVisible={setModalVisible}
         user={user}
         setUser={setUser}
+        profileImages={profileImages}
+        setProfileImages={setProfileImages}
       />
       <ScrollView style={styles.container}>
         <View style={styles.pinkTopSection}>
@@ -65,10 +78,7 @@ const Profile = () => {
               <TouchableOpacity onPress={() => setModalVisible(true)}>
                 <Image
                   source={{
-                    uri:
-                      Object.keys(user).length > 0
-                        ? user.userImages[0].userImage
-                        : '',
+                    uri: profileImages[0] === '' ? '' : profileImages[0],
                   }}
                   style={styles.profileImage}
                 />
@@ -262,7 +272,7 @@ const Profile = () => {
               sliderLength={300}
             /> */}
           </View>
-          <View style={styles.inputTitle}>
+          {/* <View style={styles.inputTitle}>
             <Text style={styles.inputTitleText}>성격</Text>
             <View style={styles.keywordInput}>
               <TextInput
@@ -292,7 +302,7 @@ const Profile = () => {
                 </View>
               ))}
             </View>
-          </View>
+          </View> */}
           <View style={styles.aboutSection}>
             <Text style={styles.inputTitleText}>자기소개</Text>
             <MultiLineInput
@@ -302,14 +312,14 @@ const Profile = () => {
               numberOfLines={10}
               value=""
               setValue={(value: string) => {
-                console.log(value);
+                setIntroduce(value);
               }}
             />
           </View>
           <Button
             style={styles.confirmButton}
             title="확인"
-            onPress={() => {}}
+            onPress={() => onSubmit()}
           />
         </View>
       </ScrollView>
