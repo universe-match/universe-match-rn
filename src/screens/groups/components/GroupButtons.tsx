@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, Image, TouchableOpacity} from 'react-native';
 import heart from '../../../assets/images/common/heart.png';
 import check from '../../../assets/images/common/check.png';
+import {getWidth} from '../../../constants/Index';
 
 const GroupButtons = ({checkIn}: any) => {
   return (
@@ -26,10 +27,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
     borderRadius: 22.6471,
-    width: 77,
-    height: 77,
-    top: 50,
-    left: 280,
+    width: getWidth(150),
+    height: getWidth(150),
+    top: getWidth(50),
+    right: getWidth(120),
   },
   checkButton: {
     position: 'absolute',
@@ -37,10 +38,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
     borderRadius: 22.6471,
-    width: 77,
-    height: 77,
-    top: 150,
-    left: 280,
+    width: getWidth(150),
+    height: getWidth(150),
+    bottom: getWidth(50),
+    right: getWidth(120),
   },
 });
 

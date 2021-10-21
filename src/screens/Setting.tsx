@@ -48,7 +48,9 @@ const Setting = ({navigation}: any) => {
             <Text style={styles.itemText}>회원수정</Text>
             <Image style={styles.itemIcon} source={RightIcon} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.item}>
+          <TouchableOpacity
+            style={styles.item}
+            onPress={() => navigation.navigate('Complaint')}>
             <Text style={styles.itemText}>불편신고</Text>
             <Image style={styles.itemIcon} source={RightIcon} />
           </TouchableOpacity>
@@ -64,7 +66,9 @@ const Setting = ({navigation}: any) => {
             <Text style={styles.itemText}>애플리케이션 알림</Text>
             <Image style={styles.itemIcon} source={RightIcon} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.item}>
+          <TouchableOpacity
+            style={styles.item}
+            onPress={() => navigation.navigate('LeaveOut')}>
             <Text style={styles.itemText}>회원탈퇴</Text>
             <Image style={styles.itemIcon} source={RightIcon} />
           </TouchableOpacity>

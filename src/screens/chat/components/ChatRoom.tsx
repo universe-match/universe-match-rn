@@ -32,13 +32,13 @@ const ChatRoom = ({
         underlayColor="#b0bac36b">
         <View
           style={isActive ? {...styles.root, ...styles.active} : styles.root}>
-          <View style={styles.groupInfos}>
+          <View style={styles.chatInfo}>
             <View style={styles.topArea}>
               <Text style={styles.textTitle}>{title}</Text>
               <Text style={styles.textArea}>{area}</Text>
             </View>
             <View style={styles.topArea}>
-              <Text>평균연령 </Text>
+              <Text style={{color: colors.gray4}}>평균연령: </Text>
               <Text style={styles.textDate}>
                 {fromDate}~{toDate}
               </Text>
@@ -64,7 +64,7 @@ const ChatRoom = ({
 };
 
 const styles = StyleSheet.create({
-  groupInfos: {
+  chatInfo: {
     left: getWidth(10),
     marginTop: getWidth(20),
   },
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginVertical: 8,
     borderWidth: 1,
-    marginTop: getWidth(169),
+    marginTop: getWidth(30),
     marginLeft: getWidth(60),
     width: getWidth(600),
   },

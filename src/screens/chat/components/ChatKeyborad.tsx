@@ -3,21 +3,11 @@ import {
   StyleSheet,
   View,
   Text,
-  Image,
   TextInput,
   TouchableOpacity,
 } from 'react-native';
 import {getWidth, colors, getHeight} from '../../../constants/Index';
 import plus from '../../../assets/images/chat/chatPlus.png';
-
-// 가 데이터
-
-const data = {
-  id: '3',
-  nickname: '나',
-  gender: 'man',
-  message: '',
-};
 
 const ChatKeyborad = ({sendMesage}: any) => {
   const [text, setText] = useState('');

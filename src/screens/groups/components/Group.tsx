@@ -37,7 +37,6 @@ const Group = ({id, title, area, fromDate, toDate, matchingList}: any) => {
     setIsActive(!flag);
   };
 
-  //  console.log('matchingList,', matchingList);
   return (
     <>
       <TouchableHighlight

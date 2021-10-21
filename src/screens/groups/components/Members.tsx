@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     borderRadius: getWidth(100),
     height: getWidth(120),
     width: getWidth(120),
-    marginLeft: 5,
+    marginLeft: getWidth(5),
     borderWidth: 1,
     borderColor: colors.stroke,
   },
