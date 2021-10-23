@@ -12,12 +12,13 @@ const Chat = ({
   gender,
   userKey,
   message,
+  profileUrl,
   user,
   setShowDialog,
   setOtherUserId,
 }: any) => {
   // const [isShowDialog, setShowDialog] = useState(false);
-
+  console.log('profileUrl===', profileUrl);
   const handleClick = (id: string) => {
     setShowDialog(true);
     setOtherUserId(id);
@@ -45,7 +46,7 @@ const Chat = ({
           <TouchableOpacity onPress={() => handleClick(userKey)}>
             <View style={styles.profileInfo}>
               <Image
-                source={man}
+                source={{uri: profileUrl === '' ? '' : profileUrl}}
                 style={
                   gender === 'man'
                     ? styles.photo

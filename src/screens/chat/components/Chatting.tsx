@@ -1,9 +1,13 @@
 import React, {useState, useEffect, useRef, ElementType} from 'react';
-import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
+import {
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  KeyboardAvoidingView,
+} from 'react-native';
 import {Chats, ChatKeyborad} from './Index';
 import {getWidth, colors, getHeight} from '../../../constants/Index';
 import axios from 'axios';
-import man from '../../../assets/images/test/man.png';
 import {ProfileView} from './Index';
 
 const Chatting = ({route, navigation}: any) => {
@@ -14,7 +18,7 @@ const Chatting = ({route, navigation}: any) => {
   const [messages, setMessages] = useState('');
   const [isShowDialog, setShowDialog] = useState(false);
   const [otherUserId, setOtherUserId] = useState<string>('');
-  const ws = new WebSocket(`ws://192.168.0.54:9090/ws/chat/${itemId}`);
+  const ws = new WebSocket(`ws://192.168.0.10:9090/ws/chat/${itemId}`);
 
   // 메시지 전송 버튼 클릭 시 컴포넌트 리렌더링
   // const sendMesage = ({id, nickname, gender, message}: any) => {
@@ -54,7 +58,7 @@ const Chatting = ({route, navigation}: any) => {
           username: user.nickname,
           message: msg,
           sessionId: '',
-          // sessionId 어떻게 보낼것인지
+          profileUrl: user.userImages[0].userImage,
           chatroomId: itemId,
           type: 'message',
         }),
@@ -85,34 +89,30 @@ const Chatting = ({route, navigation}: any) => {
     getPrevData();
   }, []);
 
+  const content = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
-        ref={scrollViewRef}
-        onContentSizeChange={() => {
-          scrollViewRef.current.scrollToEnd({animated: true});
-        }}>
-        <Chats
-          messages={messages}
-          user={user}
-          setShowDialog={setShowDialog}
-          setOtherUserId={setOtherUserId}
-        />
-      </ScrollView>
-      <View style={styles.bottomContainer}>
+      <KeyboardAvoidingView
+        style={styles.keyboardAvoidContainer}
+        behavior="padding">
+        <ScrollView
+          style={{flex: 1}}
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
+          ref={scrollViewRef}
+          onContentSizeChange={() => {
+            scrollViewRef.current.scrollToEnd({animated: true});
+          }}>
+          <Chats
+            messages={messages}
+            user={user}
+            setShowDialog={setShowDialog}
+            setOtherUserId={setOtherUserId}
+          />
+        </ScrollView>
         <ChatKeyborad sendMesage={sendMesage} />
-      </View>
-      {isShowDialog && (
-        <ProfileView
-          onClose={() => {
-            setShowDialog(false);
-          }}
-          userPhoto={man}
-          otherUserId={otherUserId}
-        />
-      )}
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
@@ -121,6 +121,9 @@ const styles = StyleSheet.create({
   container: {
     top: getWidth(100),
     height: '100%',
+  },
+  keyboardAvoidContainer: {
+    flex: 1,
   },
   profileInfo: {
     flexDirection: 'row',
@@ -184,7 +187,7 @@ const styles = StyleSheet.create({
   },
   bottomContainer: {
     backgroundColor: colors.white,
-    position: 'relative',
+    // position: 'relative',
     bottom: 60,
     left: 0,
     right: 0,

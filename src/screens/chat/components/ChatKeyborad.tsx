@@ -5,11 +5,12 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  Button,
 } from 'react-native';
 import {getWidth, colors, getHeight} from '../../../constants/Index';
 import plus from '../../../assets/images/chat/chatPlus.png';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import { Input,NativeBaseProvider} from "native-base"
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {Input, NativeBaseProvider} from 'native-base';
 const ChatKeyborad = ({sendMesage}: any) => {
   const [text, setText] = useState('');
   // 메시지 전송 시 text 초기화
@@ -26,14 +27,12 @@ const ChatKeyborad = ({sendMesage}: any) => {
   return (
     <View style={styles.textArea}>
       {/* <Image source={plus} style={styles.image} /> */}
-      <KeyboardAwareScrollView>
-        <TextInput
-          style={styles.input}
-          value={text}
-          onChangeText={value => setText(value)}
-          autoFocus={true}
-        />
-      </KeyboardAwareScrollView>
+      <TextInput
+        style={styles.input}
+        value={text}
+        onChangeText={value => setText(value)}
+        autoFocus={true}
+      />
       <TouchableOpacity style={styles.button} onPress={handlePress}>
         <Text style={styles.buttonText}>전송</Text>
       </TouchableOpacity>
@@ -51,11 +50,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   input: {
-    width: getWidth(610),
-    height: getHeight(68),
+    width: '85%',
+    // width: getWidth(610),
+    height: getHeight(80),
     marginLeft: getWidth(8),
     borderColor: colors.green,
     borderWidth: 1,
+    marginBottom: 40,
   },
   button: {
     backgroundColor: colors.green,

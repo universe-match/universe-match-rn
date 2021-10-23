@@ -1,11 +1,11 @@
-import React, {useState,useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   View,
   TouchableOpacity,
   Text,
   StyleSheet,
-  Alert
+  Alert,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {fonts, getHeight, getWidth, colors} from '../constants/Index';
@@ -21,16 +21,16 @@ const Login = ({navigation}: any) => {
   // const [id, setId] = useState('');
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
-  const [token,setToken] = useState("");
+  const [token, setToken] = useState('');
 
   const handleLogin = () => {
     AsyncStorage.clear();
-    console.log(token)
+    console.log('token==', token);
     axios
       .post('/api/user/signin', {
         userId: userId,
         password: password,
-        fcmToken:token
+        fcmToken: token,
       })
       .then(function (response) {
         AsyncStorage.setItem('accessToken', response.data.token);
@@ -40,24 +40,22 @@ const Login = ({navigation}: any) => {
         console.log(error);
       });
   };
-  
-  // useEffect(() => {
-  //   checkToken() 
 
-  // },[])  
-  const test1 = async () =>{
+  // useEffect(() => {
+  //   checkToken()
+
+  // },[])
+  const test1 = async () => {
     await messaging().requestPermission();
     await messaging().registerDeviceForRemoteMessages();
-  }
+  };
   const getFcmToken = async () => {
     const fcmToken = await messaging().getToken();
-    setToken(fcmToken)
+    setToken(fcmToken);
     console.log('🚒fcm token', fcmToken);
   };
-  
-  
-  useEffect(() => {
 
+  useEffect(() => {
     getFcmToken();
   }, []);
 
@@ -66,15 +64,15 @@ const Login = ({navigation}: any) => {
   //   let msgToken =messaging().getToken()
   //   // remote()
   //   // checkToken()
-    
+
   //   // Listen to whether the token changes
-    
-  //   msgToken.then((item:any)=>{  
+
+  //   msgToken.then((item:any)=>{
   //     console.log('token==',item)
   //     setToken(item)
   //   })
   // },[])
-  
+
   return (
     <SafeAreaView>
       <View style={styles.container}>
