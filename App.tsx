@@ -1,8 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
+import {
+  Alert
+} from 'react-native';
 import {ModalPortal} from 'react-native-modals';
 import CreateGroup from './src/screens/groups/components/modal/CreateGroup';
 import MainScreen from './src/screens/MainScreen';
@@ -13,6 +16,8 @@ import Chatting from './src/screens/chat/components/Chatting';
 import Profile from './src/screens/Profile';
 import {Complaint, LeaveOut} from './src/screens/setting/Index';
 import jwt_decode from 'jwt-decode';
+import messaging from '@react-native-firebase/messaging';
+
 
 const Stack = createStackNavigator();
 
@@ -30,7 +35,7 @@ const App = () => {
       }
     });
   }
-  axios.defaults.baseURL = 'http://192.168.0.10:9090/';
+  axios.defaults.baseURL = 'http://192.168.0.54:9090/';
   //axios.defaults.baseURL = 'http://3.34.191.212:9090/';
 
   axios.interceptors.request.use(async function (config) {
@@ -40,6 +45,26 @@ const App = () => {
     }
     return config;
   });
+  async function requestUserPermission() {
+    const authStatus = await messaging().requestPermission();
+    const enabled =
+      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+  
+    if (enabled) {
+      // console.log('Authorization status:', authStatus);
+    }
+  }
+  messaging().setBackgroundMessageHandler(async remoteMessage => {
+    console.log('Message handled in the background!', remoteMessage);
+  });
+  useEffect(() => {
+    const unsubscribe = messaging().onMessage(async remoteMessage => {
+      Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+    });
+    requestUserPermission();
+    return unsubscribe;
+  }, []);
 
   return (
     <>

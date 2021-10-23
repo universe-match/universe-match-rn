@@ -7,6 +7,7 @@ import {
   Image,
   Button,
   TouchableOpacity,
+  ScrollView
 } from 'react-native';
 import {fonts, getHeight, getWidth, colors} from '../../constants/Index';
 import InputButton from '../../components/form/InputButton';
@@ -33,6 +34,7 @@ const SignUp = ({
 
   return (
     <SafeAreaView>
+      <ScrollView>
       <View style={styles.container}>
         <View style={styles.header}>
           <TouchableOpacity onPress={goToSignIn}>
@@ -104,6 +106,7 @@ const SignUp = ({
           </View>
         </View>
       </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

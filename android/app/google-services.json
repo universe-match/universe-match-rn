@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "502505824793",
+    "project_id": "universematch-dddee",
+    "storage_bucket": "universematch-dddee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:502505824793:android:ff2a2d49684b24bc820088",
+        "android_client_info": {
+          "package_name": "com.universe_matching"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "502505824793-4olr6ofq2t838rm58n3vl57g4dbgfhuq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCid2kJ9ty81kd8KL3qRhd5QtNL2IFtJ0Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "502505824793-4olr6ofq2t838rm58n3vl57g4dbgfhuq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
