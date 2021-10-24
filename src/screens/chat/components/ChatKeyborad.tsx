@@ -5,12 +5,9 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  Button,
 } from 'react-native';
 import {getWidth, colors, getHeight} from '../../../constants/Index';
 import plus from '../../../assets/images/chat/chatPlus.png';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {Input, NativeBaseProvider} from 'native-base';
 const ChatKeyborad = ({sendMesage}: any) => {
   const [text, setText] = useState('');
   // 메시지 전송 시 text 초기화
@@ -51,7 +48,6 @@ const styles = StyleSheet.create({
   },
   input: {
     width: '85%',
-    // width: getWidth(610),
     height: getHeight(80),
     marginLeft: getWidth(8),
     borderColor: colors.green,
@@ -61,7 +57,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: colors.green,
     width: getWidth(102),
-    height: getHeight(68),
+    height: getHeight(80),
     alignItems: 'center',
     justifyContent: 'center',
   },

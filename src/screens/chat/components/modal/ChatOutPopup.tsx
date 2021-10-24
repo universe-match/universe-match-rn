@@ -1,8 +1,8 @@
 import React from 'react';
 import {TouchableOpacity, StyleSheet, Image, Text, View} from 'react-native';
-import {getHeight, getWidth, colors} from '../../../constants/Index';
-import RemoveIcon from '../../../assets/images/common/remove.png';
-import Button from '../../../components/form/Button';
+import {getHeight, getWidth, colors} from '../../../../constants/Index';
+import RemoveIcon from '../../../../assets/images/common/remove.png';
+import Button from '../../../../components/form/Button';
 
 const ChatOutPopup = ({onClose}: any) => {
   return (
@@ -18,7 +18,7 @@ const ChatOutPopup = ({onClose}: any) => {
         </View>
         <View style={styles.content}>
           <Text style={styles.title}>
-            <Text style={styles.titleText}></Text>
+            <Text style={styles.titleText} />
           </Text>
           <View style={styles.dialogContent}>
             <View style={styles.groupInfo}>

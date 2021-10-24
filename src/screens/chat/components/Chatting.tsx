@@ -1,6 +1,8 @@
 import React, {useState, useEffect, useRef, ElementType} from 'react';
 import {
   SafeAreaView,
+  TouchableOpacity,
+  Image,
   ScrollView,
   StyleSheet,
   KeyboardAvoidingView,
@@ -8,8 +10,9 @@ import {
 } from 'react-native';
 import {Chats, ChatKeyborad} from './Index';
 import {getWidth, colors, getHeight} from '../../../constants/Index';
+import setting from '../../../assets/images/chat/setting.png';
 import axios from 'axios';
-import {ProfileView} from './Index';
+import {KickOutPopup} from './Index';
 
 const Chatting = ({route, navigation}: any) => {
   const scrollViewRef = useRef<ElementType>();
@@ -25,6 +28,9 @@ const Chatting = ({route, navigation}: any) => {
   // const sendMesage = ({id, nickname, gender, message}: any) => {
   //   setMessages([...messages, {id, nickname, gender, message}]);
   // };
+  const handleClick = () => {
+    setShowDialog(true);
+  };
 
   const getPrevData = () => {
     axios
@@ -91,9 +97,11 @@ const Chatting = ({route, navigation}: any) => {
   }, []);
 
   const content = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
   return (
     <SafeAreaView style={styles.container}>
+      <TouchableOpacity onPress={() => handleClick()}>
+        <Image source={setting} style={styles.setting} />
+      </TouchableOpacity>
       <KeyboardAvoidingView
         style={styles.keyboardAvoidContainer}
         behavior={Platform.OS === 'ios' ? 'padding' : ''}>
@@ -114,6 +122,13 @@ const Chatting = ({route, navigation}: any) => {
         </ScrollView>
         <ChatKeyborad sendMesage={sendMesage} />
       </KeyboardAvoidingView>
+      {isShowDialog && (
+        <KickOutPopup
+          onClose={() => {
+            setShowDialog(false);
+          }}
+        />
+      )}
     </SafeAreaView>
   );
 };
@@ -122,6 +137,11 @@ const styles = StyleSheet.create({
   container: {
     top: getWidth(100),
     height: '100%',
+  },
+  setting: {
+    width: getWidth(42),
+    height: getWidth(42),
+    left: getWidth(630),
   },
   keyboardAvoidContainer: {
     flex: 1,
