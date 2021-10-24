@@ -7,12 +7,14 @@ import {
   Image,
   Button,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+  Alert,
 } from 'react-native';
 import {fonts, getHeight, getWidth, colors} from '../../constants/Index';
 import InputButton from '../../components/form/InputButton';
 import BackIcon from '../../assets/images/common/back.png';
 import RemoveIcon from '../../assets/images/common/remove.png';
+import axios from 'axios';
 
 const SignUp = ({
   goToSignIn,
@@ -28,84 +30,94 @@ const SignUp = ({
   password,
   setPassword,
 }: any) => {
-  const onPress = useCallback((value: string): void => {
-    console.log(value);
-  }, []);
+  const CheckUserId = (): void => {
+    axios
+      .get(`/api/user/${userid}`)
+      .then(function (response) {
+        console.log('response==', response);
+        Alert.alert(response.data);
+      })
+      .catch(function (error) {
+        if (error.response.data.status === 400) {
+          Alert.alert(error.response.data.message);
+        }
+      });
+  };
 
   return (
     <SafeAreaView>
       <ScrollView>
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <TouchableOpacity onPress={goToSignIn}>
-            <Image style={styles.back} source={BackIcon} />
-          </TouchableOpacity>
-          {/* <TouchableOpacity onPress={goToSignIn}>
+        <View style={styles.container}>
+          <View style={styles.header}>
+            <TouchableOpacity onPress={goToSignIn}>
+              <Image style={styles.back} source={BackIcon} />
+            </TouchableOpacity>
+            {/* <TouchableOpacity onPress={goToSignIn}>
             <Image source={RemoveIcon} style={styles.remove} />
           </TouchableOpacity> */}
+          </View>
+          <View style={styles.title}>
+            <Text style={styles.titleText}>회원가입</Text>
+          </View>
+          <View style={styles.signUp}>
+            <View style={{marginBottom: getHeight(37)}}>
+              <InputButton
+                placeholder="아이디를 입력해주세요"
+                buttonContent="중복확인"
+                setInputValue={setUserid}
+                inputValue={userid}
+                onPress={CheckUserId}
+              />
+            </View>
+            <View style={{marginBottom: getHeight(37)}}>
+              <InputButton
+                placeholder="생년월일을 입력해주세요"
+                buttonContent=""
+                setInputValue={setAge}
+                inputValue={age}
+                onPress={() => {}}
+              />
+            </View>
+            <View style={{marginBottom: getHeight(37)}}>
+              <InputButton
+                placeholder="닉네임을 입력해주세요"
+                buttonContent="중복확인"
+                setInputValue={setNickname}
+                inputValue={nickname}
+                onPress={() => {}}
+              />
+              {/* 경고 */}
+              <Text style={styles.warn}>사용중인 닉네임 입니다</Text>
+            </View>
+            <View style={{marginBottom: getHeight(37)}}>
+              <InputButton
+                placeholder="이메일을 입력해주세요"
+                buttonContent=""
+                setInputValue={setEmail}
+                inputValue={email}
+                onPress={() => {}}
+              />
+            </View>
+            <View style={{marginBottom: getHeight(37)}}>
+              <InputButton
+                placeholder="비밀번호를 입력해주세요"
+                buttonContent=""
+                setInputValue={setPassword}
+                inputValue={password}
+                onPress={() => {}}
+                isPassword={true}
+              />
+            </View>
+            <View>
+              <Button
+                onPress={nextStep}
+                title="다음"
+                color={colors.green}
+                accessibilityLabel="Learn more about this purple button"
+              />
+            </View>
+          </View>
         </View>
-        <View style={styles.title}>
-          <Text style={styles.titleText}>회원가입</Text>
-        </View>
-        <View style={styles.signUp}>
-          <View style={{marginBottom: getHeight(37)}}>
-            <InputButton
-              placeholder="아이디를 입력해주세요"
-              buttonContent="중복확인"
-              setInputValue={setUserid}
-              inputValue={userid}
-              onPress={onPress}
-            />
-          </View>
-          <View style={{marginBottom: getHeight(37)}}>
-            <InputButton
-              placeholder="생년월일을 입력해주세요"
-              buttonContent=""
-              setInputValue={setAge}
-              inputValue={age}
-              onPress={onPress}
-            />
-          </View>
-          <View style={{marginBottom: getHeight(37)}}>
-            <InputButton
-              placeholder="닉네임을 입력해주세요"
-              buttonContent="중복확인"
-              setInputValue={setNickname}
-              inputValue={nickname}
-              onPress={onPress}
-            />
-            {/* 경고 */}
-            <Text style={styles.warn}>사용중인 닉네임 입니다</Text>
-          </View>
-          <View style={{marginBottom: getHeight(37)}}>
-            <InputButton
-              placeholder="이메일을 입력해주세요"
-              buttonContent=""
-              setInputValue={setEmail}
-              inputValue={email}
-              onPress={onPress}
-            />
-          </View>
-          <View style={{marginBottom: getHeight(37)}}>
-            <InputButton
-              placeholder="비밀번호를 입력해주세요"
-              buttonContent=""
-              setInputValue={setPassword}
-              inputValue={password}
-              onPress={onPress}
-              isPassword={true}
-            />
-          </View>
-          <View>
-            <Button
-              onPress={nextStep}
-              title="다음"
-              color={colors.green}
-              accessibilityLabel="Learn more about this purple button"
-            />
-          </View>
-        </View>
-      </View>
       </ScrollView>
     </SafeAreaView>
   );

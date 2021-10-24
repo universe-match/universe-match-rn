@@ -3,6 +3,7 @@ import {FlatList, View} from 'react-native';
 import {Group} from './Index';
 
 const Groups = ({groupList}: any) => {
+  console.log('groupList==', groupList);
   const renderGroup = ({item}: any) => (
     <Group
       id={item.id}
@@ -11,6 +12,8 @@ const Groups = ({groupList}: any) => {
       fromDate={item.fromDate}
       toDate={item.toDate}
       matchingList={item.matchingList}
+      matchRoomLen={item.matchRoomLen}
+      peopleLimit={item.peopleLimit}
     />
   );
 

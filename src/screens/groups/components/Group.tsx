@@ -11,7 +11,16 @@ import {getWidth, colors, getHeight} from '../../../constants/Index';
 import axios from 'axios';
 import {Members, ProgressBar, GroupButtons} from './Index';
 
-const Group = ({id, title, area, fromDate, toDate, matchingList}: any) => {
+const Group = ({
+  id,
+  title,
+  area,
+  fromDate,
+  toDate,
+  matchingList,
+  matchRoomLen,
+  peopleLimit,
+}: any) => {
   const [isActive, setIsActive] = useState(false);
 
   const checkIn = () => {
@@ -68,7 +77,7 @@ const Group = ({id, title, area, fromDate, toDate, matchingList}: any) => {
               ))}
             </ScrollView>
           </View>
-          <ProgressBar />
+          <ProgressBar matchRoomLen={matchRoomLen} peopleLimit={peopleLimit} />
         </View>
       </TouchableHighlight>
       {isActive && <GroupButtons checkIn={checkIn} />}
