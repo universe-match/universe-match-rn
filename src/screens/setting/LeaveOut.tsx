@@ -22,6 +22,7 @@ const LeaveOut = ({navigation}: any) => {
             onPress={() => {
               navigation.navigate('Main1');
             }}
+            hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
             style={styles.touchableOpacityStyle}>
             <Image style={styles.back} source={BackIcon} />
           </TouchableOpacity>
