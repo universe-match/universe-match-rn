@@ -62,7 +62,9 @@ const Setting = ({navigation}: any) => {
             <Text style={styles.itemText}>앱 업데이트 정보</Text>
             <Image style={styles.itemIcon} source={RightIcon} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.item}>
+          <TouchableOpacity
+            style={styles.item}
+            onPress={() => navigation.navigate('Alarm')}>
             <Text style={styles.itemText}>애플리케이션 알림</Text>
             <Image style={styles.itemIcon} source={RightIcon} />
           </TouchableOpacity>
