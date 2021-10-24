@@ -103,7 +103,7 @@ const SignUp = ({
           {universeCertiImg === '' ? (
             <Button
               onPress={() => {}}
-              title="다음"
+              title="학생증을 등록해주세요."
               color={colors.gray}
               accessibilityLabel="Learn more about this purple button"
             />
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   header: {
-    position: 'absolute',
+    // position: 'absolute',
     display: 'flex',
     flexDirection: 'row',
     width: '80%',

@@ -252,7 +252,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   header: {
-    position: 'absolute',
     display: 'flex',
     flexDirection: 'row',
     width: '80%',

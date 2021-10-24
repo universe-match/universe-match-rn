@@ -24,7 +24,7 @@ const MultiStep = ({navigation}: any) => {
   const prevStep = () => {
     setStep(step - 1);
   };
-  const nextStep = (): void => {
+  const nextStep = () => {
     setStep(step + 1);
   };
   const goToSignIn = () => {
@@ -46,7 +46,6 @@ const MultiStep = ({navigation}: any) => {
       introduce: introduce,
       userImages: imageSource,
     };
-    console.log(sendData);
 
     axios
       .post('/api/user/signup', sendData)

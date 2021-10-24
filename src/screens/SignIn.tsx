@@ -37,7 +37,9 @@ const Login = ({navigation}: any) => {
         navigation.navigate('Main');
       })
       .catch(function (error) {
-        console.log(error);
+        if (error.response.data.status === 400) {
+          Alert.alert(error.response.data.message);
+        }
       });
   };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList} from 'react-native';
+import {FlatList, View} from 'react-native';
 import {Group} from './Index';
 
 const Groups = ({groupList}: any) => {
@@ -15,11 +15,13 @@ const Groups = ({groupList}: any) => {
   );
 
   return (
-    <FlatList
-      data={groupList}
-      renderItem={renderGroup}
-      keyExtractor={item => item.id}
-    />
+    <View style={{marginBottom: 130}}>
+      <FlatList
+        data={groupList}
+        renderItem={renderGroup}
+        keyExtractor={item => item.id}
+      />
+    </View>
   );
 };
 

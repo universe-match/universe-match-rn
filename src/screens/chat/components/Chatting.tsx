@@ -4,6 +4,7 @@ import {
   ScrollView,
   StyleSheet,
   KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import {Chats, ChatKeyborad} from './Index';
 import {getWidth, colors, getHeight} from '../../../constants/Index';
@@ -18,7 +19,7 @@ const Chatting = ({route, navigation}: any) => {
   const [messages, setMessages] = useState('');
   const [isShowDialog, setShowDialog] = useState(false);
   const [otherUserId, setOtherUserId] = useState<string>('');
-  const ws = new WebSocket(`ws://192.168.0.10:9090/ws/chat/${itemId}`);
+  const ws = new WebSocket(`ws://192.168.0.65:9090/ws/chat/${itemId}`);
 
   // 메시지 전송 버튼 클릭 시 컴포넌트 리렌더링
   // const sendMesage = ({id, nickname, gender, message}: any) => {
@@ -95,7 +96,7 @@ const Chatting = ({route, navigation}: any) => {
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
         style={styles.keyboardAvoidContainer}
-        behavior="padding">
+        behavior={Platform.OS === 'ios' ? 'padding' : ''}>
         <ScrollView
           style={{flex: 1}}
           showsVerticalScrollIndicator={false}

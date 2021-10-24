@@ -32,7 +32,7 @@ const App = () => {
       }
     });
   }
-  axios.defaults.baseURL = 'http://192.168.0.10:9090/';
+  axios.defaults.baseURL = 'http://192.168.0.65:9090/';
   //axios.defaults.baseURL = 'http://3.34.191.212:9090/';
 
   axios.interceptors.request.use(async function (config) {
