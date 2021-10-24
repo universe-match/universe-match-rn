@@ -12,7 +12,7 @@ import {Chats, ChatKeyborad} from './Index';
 import {getWidth, colors, getHeight} from '../../../constants/Index';
 import setting from '../../../assets/images/chat/setting.png';
 import axios from 'axios';
-import {KickOutPopup} from './Index';
+import {ProfileView, KickOutPopup} from './Index';
 
 const Chatting = ({route, navigation}: any) => {
   const scrollViewRef = useRef<ElementType>();
@@ -21,6 +21,7 @@ const Chatting = ({route, navigation}: any) => {
   // const [input, setInput] = useState({text: '', height: 40});
   const [messages, setMessages] = useState('');
   const [isShowDialog, setShowDialog] = useState(false);
+  const [isShowKickOutDialog, setShowKickOutDialog] = useState(false);
   const [otherUserId, setOtherUserId] = useState<string>('');
   const ws = new WebSocket(`ws://192.168.0.65:9090/ws/chat/${itemId}`);
 
@@ -29,7 +30,7 @@ const Chatting = ({route, navigation}: any) => {
   //   setMessages([...messages, {id, nickname, gender, message}]);
   // };
   const handleClick = () => {
-    setShowDialog(true);
+    setShowKickOutDialog(true);
   };
 
   const getPrevData = () => {
@@ -122,8 +123,15 @@ const Chatting = ({route, navigation}: any) => {
         </ScrollView>
         <ChatKeyborad sendMesage={sendMesage} />
       </KeyboardAvoidingView>
-      {isShowDialog && (
+      {isShowKickOutDialog && (
         <KickOutPopup
+          onClose={() => {
+            setShowKickOutDialog(false);
+          }}
+        />
+      )}
+      {isShowDialog && (
+        <ProfileView
           onClose={() => {
             setShowDialog(false);
           }}
