@@ -23,7 +23,7 @@ const Chatting = ({route, navigation}: any) => {
   const [isShowDialog, setShowDialog] = useState(false);
   const [isShowKickOutDialog, setShowKickOutDialog] = useState(false);
   const [otherUserId, setOtherUserId] = useState<string>('');
-  const ws = new WebSocket(`ws://192.168.0.65:9090/ws/chat/${itemId}`);
+  const ws = new WebSocket(`ws://192.168.0.10:9090/ws/chat/${itemId}`);
 
   // 메시지 전송 버튼 클릭 시 컴포넌트 리렌더링
   // const sendMesage = ({id, nickname, gender, message}: any) => {
@@ -37,7 +37,6 @@ const Chatting = ({route, navigation}: any) => {
     axios
       .get(`/api/chatroom/${itemId}`)
       .then(function (response) {
-        console.log('res==>', response);
         setMessages(response.data);
       })
       .catch(function (error) {
@@ -50,7 +49,6 @@ const Chatting = ({route, navigation}: any) => {
     ws.onmessage = evt => {
       // console.log('edata',e.data)
       const data = JSON.parse(evt.data);
-      console.log('data==', data);
       if (data.id !== undefined || data.id !== null) {
         setMessages((prevItems: any) => [...prevItems, data]);
       }
@@ -96,7 +94,6 @@ const Chatting = ({route, navigation}: any) => {
     getMyInfo();
     getPrevData();
   }, []);
-
   const content = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   return (
     <SafeAreaView style={styles.container}>
@@ -128,6 +125,7 @@ const Chatting = ({route, navigation}: any) => {
           onClose={() => {
             setShowKickOutDialog(false);
           }}
+          chatRoomId={route.params.itemId}
         />
       )}
       {isShowDialog && (
@@ -135,6 +133,7 @@ const Chatting = ({route, navigation}: any) => {
           onClose={() => {
             setShowDialog(false);
           }}
+          otherUserId={otherUserId}
         />
       )}
     </SafeAreaView>

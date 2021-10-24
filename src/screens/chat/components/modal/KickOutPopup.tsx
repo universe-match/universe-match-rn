@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   TouchableOpacity,
   StyleSheet,
@@ -7,12 +7,44 @@ import {
   TextInput,
   View,
 } from 'react-native';
+import axios from 'axios';
 import CheckBox from '@react-native-community/checkbox';
 import {getHeight, getWidth, colors, fonts} from '../../../../constants/Index';
 import RemoveIcon from '../../../../assets/images/common/remove.png';
 import Button from '../../../../components/form/Button';
 
-const KickOutPopup = ({onClose}: any) => {
+const KickOutPopup = ({onClose, chatRoomId}: any) => {
+  const [users, setUsers] = useState<any>([]);
+  const [toggleCheckBox, setToggleCheckBox] = useState(false);
+  const [checkedState, setCheckedState] = useState(
+    new Array(users.length).fill(false),
+  );
+  useEffect(() => {
+    axios.get(`/api/chatroom/info/${chatRoomId}`).then((response: any) => {
+      setUsers(response.data);
+      setCheckedState(new Array(response.data.length).fill(false));
+    });
+  }, []);
+
+  const handleChangeValue = (newValue: any, position: number) => {
+    const updatedCheckedState = checkedState.map((item, index) =>
+      index === position ? !item : item,
+    );
+    setCheckedState(updatedCheckedState);
+
+    updatedCheckedState.map((item, index) => {
+      users[index].checked = item;
+    });
+  };
+  const onSend = () => {
+    const resUser = users.filter((item: any) => item.checked === true);
+    const userIds: any = [];
+    resUser.map((item: any) => {
+      userIds.push(item.id);
+    });
+
+    console.log(userIds);
+  };
   return (
     <View style={styles.background}>
       <View style={styles.dialog}>
@@ -29,7 +61,27 @@ const KickOutPopup = ({onClose}: any) => {
           <Text style={styles.titleTextDetail}>
             강퇴는 한달에 3번만 진행할수 있습니다 신중히 선택해주세요
           </Text>
-          <View style={styles.checkBoxWrapper}>
+          {users.map((item: any, index: number) => (
+            <View style={styles.checkBoxWrapper}>
+              <CheckBox
+                disabled={false}
+                value={checkedState[index]}
+                onValueChange={(newValue: any) =>
+                  handleChangeValue(newValue, index)
+                }
+                style={[
+                  styles.checkBox,
+                  {
+                    marginRight: getWidth(17),
+                  },
+                ]}
+                tintColors={{true: colors.green, false: 'black'}}
+              />
+              <Text style={styles.checkBoxText}>{item.nickname}</Text>
+            </View>
+          ))}
+
+          {/* <View style={styles.checkBoxWrapper}>
             <CheckBox
               onValueChange={() => {}}
               style={[
@@ -42,6 +94,19 @@ const KickOutPopup = ({onClose}: any) => {
             />
             <Text style={styles.checkBoxText}>김민수</Text>
           </View>
+          <View style={styles.checkBoxWrapper}>
+            <CheckBox
+              onValueChange={() => {}}
+              style={[
+                styles.checkBox,
+                {
+                  marginRight: getWidth(17),
+                },
+              ]}
+              tintColors={{true: colors.green, false: 'black'}}
+            />
+            <Text style={styles.checkBoxText}>김민수</Text>
+          </View> */}
           <View style={styles.inputArea}>
             <TextInput
               style={styles.textArea}
@@ -51,7 +116,7 @@ const KickOutPopup = ({onClose}: any) => {
               *채팅방 정원의 2/3가 동의할 시에 강퇴됩니다
             </Text>
           </View>
-          <Button title="확인" onPress={() => {}} />
+          <Button title="확인" onPress={() => onSend()} />
         </View>
       </View>
     </View>
@@ -112,8 +177,7 @@ const styles = StyleSheet.create({
     height: getHeight(35),
     display: 'flex',
     flexDirection: 'row',
-    marginTop: getWidth(118),
-    marginBottom: getHeight(38),
+    marginTop: getWidth(18),
   },
   checkBox: {
     height: getHeight(35),

@@ -3,7 +3,6 @@ import {View, StyleSheet} from 'react-native';
 import {colors, getHeight, getWidth} from '../../../constants/Index';
 
 const ProgressBar = ({matchRoomLen, peopleLimit}: any) => {
-  console.log('percent', (matchRoomLen / peopleLimit) * 100);
   return (
     <View style={styles.progressBar}>
       <View

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, StyleSheet, Image} from 'react-native';
+import {Text, View, StyleSheet, Image, Platform} from 'react-native';
 import {getWidth, colors} from '../../../constants/Index';
 
 const ChatMembers = ({member}: any) => {
@@ -12,7 +12,7 @@ const ChatMembers = ({member}: any) => {
           <Image
             style={styles.manPhoto}
             source={{uri: member.userImages[0].userImage}}
-            blurRadius={4}
+            blurRadius={Platform.OS == 'ios' ? 10 : 25}
           />
           <View style={styles.memberInfo}>
             <Text style={styles.profileName}>{member.nickname}</Text>

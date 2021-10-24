@@ -9,6 +9,7 @@ const ProfileView = ({onClose, otherUserId}: any) => {
   const [otherInfo, setOtherInfo] = useState<any>({});
 
   const getOtherUserInfo = async () => {
+    console.log('otherUserId===', otherUserId);
     await axios
       .get(`/api/user/otherinfo/${otherUserId}`)
       .then((response: any) => {
@@ -18,7 +19,6 @@ const ProfileView = ({onClose, otherUserId}: any) => {
   };
   useEffect(() => {
     getOtherUserInfo();
-    console.log('otherInfo=', otherInfo.length);
   }, []);
 
   return (

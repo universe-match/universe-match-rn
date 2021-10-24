@@ -11,7 +11,6 @@ const GroupContainers = () => {
     axios
       .get('/api/matchroom')
       .then(function (response: any) {
-        console.log('response=', response);
         setGroupList(response.data);
       })
       .catch(function (error) {
@@ -24,7 +23,7 @@ const GroupContainers = () => {
 
   return (
     <View style={{backgroundColor: colors.white}}>
-      <Groups groupList={groupList} />
+      <Groups groupList={groupList} getMatchRommList={getMatchRommList} />
     </View>
   );
 };
