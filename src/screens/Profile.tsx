@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   TextInput,
   Image,
+  Alert,
 } from 'react-native';
 import {fonts, getHeight, getWidth, colors} from '../constants/Index';
 import RemoveIcon from '../assets/images/common/remove.png';
@@ -30,6 +31,7 @@ const Profile = () => {
   const [myValue, setMyValue] = useState<number>(0);
   const [introduce, setIntroduce] = useState<string>('');
   const [profileImages, setProfileImages] = useState<any>([]);
+  const [nickName, setNickName] = useState<string>('');
 
   const onPress = useCallback(() => {
     setKeyword('');
@@ -45,6 +47,8 @@ const Profile = () => {
         });
         setProfileImages(profileImages);
         setUser(response.data);
+        setNickName(response.data.nickname);
+        setIntroduce(response.data.introduce);
       })
       .catch(response => {
         console.log(response);
@@ -54,7 +58,20 @@ const Profile = () => {
   const onSubmit = () => {
     user.introduce = introduce;
     console.log(user);
-
+    const userRequest = {
+      id: user.id,
+      introduce: user.introduce,
+      userImages: profileImages,
+      nickname: nickName,
+    };
+    axios
+      .patch('/api/user/myinfo/update', userRequest)
+      .then(response => {
+        Alert.alert(response.data);
+      })
+      .catch(response => {
+        console.log(response);
+      });
     console.log(profileImages);
   };
 
@@ -64,7 +81,6 @@ const Profile = () => {
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
         user={user}
-        setUser={setUser}
         profileImages={profileImages}
         setProfileImages={setProfileImages}
       />
@@ -216,7 +232,7 @@ const Profile = () => {
               </TouchableOpacity>
             </View>
           </View> */}
-          <View style={styles.sliderTitle}>
+          {/* <View style={styles.sliderTitle}>
             <Text style={styles.sliderTitleText}>나이</Text>
             <Text style={styles.sliderLeftText}>18살</Text>
             <Text style={styles.sliderRightText}>36살</Text>
@@ -231,47 +247,8 @@ const Profile = () => {
               step={1} // 1단위로 값이 변경
             />
             <Text> {myValue} </Text>
-            {/* <MultiSlider
-              values={[10, 20]}
-              allowOverlap={false}
-              isMarkersSeparated={true}
-              customMarkerLeft={e => {
-                return (
-                  <View>
-                    <View style={styles.sliderMarker} />
-                    {isActive2 && (
-                      <Text style={styles.sliderMarkerText}>
-                        {e.currentValue}살
-                      </Text>
-                    )}
-                  </View>
-                );
-              }}
-              customMarkerRight={e => {
-                return (
-                  <View>
-                    <View style={styles.sliderMarker} />
-                    {isActive2 && (
-                      <Text style={styles.sliderMarkerText}>
-                        {e.currentValue}살
-                      </Text>
-                    )}
-                  </View>
-                );
-              }}
-              selectedStyle={styles.sliderSelectedStyle}
-              trackStyle={styles.sliderTrackStyle}
-              onValuesChangeStart={() => {
-                setActive2(true);
-              }}
-              onValuesChangeFinish={() => {
-                setActive2(false);
-              }}
-              min={18}
-              max={30}
-              sliderLength={300}
-            /> */}
-          </View>
+            
+          </View> */}
           {/* <View style={styles.inputTitle}>
             <Text style={styles.inputTitleText}>성격</Text>
             <View style={styles.keywordInput}>
@@ -303,6 +280,19 @@ const Profile = () => {
               ))}
             </View>
           </View> */}
+          <View style={styles.inputTitle}>
+            <Text style={styles.inputTitleText}>닉네임</Text>
+            <View style={styles.keywordInput}>
+              <TextInput
+                style={styles.keywordTextInput}
+                placeholder="닉네임을 입력해주세요"
+                onChangeText={value => setNickName(value)}
+                defaultValue={nickName}
+                placeholderTextColor={colors.gray4}
+                value={nickName}
+              />
+            </View>
+          </View>
           <View style={styles.aboutSection}>
             <Text style={styles.inputTitleText}>자기소개</Text>
             <MultiLineInput
@@ -310,7 +300,7 @@ const Profile = () => {
               textAlignVertical="center"
               placeholder="자기소개를 입력해주세요"
               numberOfLines={10}
-              value=""
+              value={introduce}
               setValue={(value: string) => {
                 setIntroduce(value);
               }}

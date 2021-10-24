@@ -22,7 +22,6 @@ interface Props {
   modalVisible: boolean;
   setModalVisible: any;
   user: any;
-  setUser: any;
   profileImages: any;
   setProfileImages: any;
 }
@@ -30,7 +29,7 @@ const CancelModel = ({
   modalVisible,
   setModalVisible,
   user,
-  setUser,
+
   profileImages,
   setProfileImages,
 }: Props) => {
@@ -181,7 +180,7 @@ const CancelModel = ({
             <View>
               <Button
                 onPress={handlePress}
-                title="수정하기"
+                title="확인"
                 color="#841584"
                 accessibilityLabel="Learn more about this purple button"
               />
