@@ -3,16 +3,15 @@ import {
   SafeAreaView,
   View,
   TouchableOpacity,
-  Text,
   TextInput,
   Image,
   StyleSheet,
 } from 'react-native';
 import {colors, fonts, getHeight, getWidth} from '../../constants/Index';
 import BackIcon from '../../assets/images/common/back.png';
-import Button from '../../components/form/Button';
+import GroupSearch from '../../assets/images/common/groupSearch.png';
 
-const Complaint = ({navigation}: any) => {
+const Search = ({navigation}: any) => {
   return (
     <SafeAreaView>
       <View style={styles.container}>
@@ -26,16 +25,13 @@ const Complaint = ({navigation}: any) => {
             style={styles.backButton}>
             <Image style={styles.back} source={BackIcon} />
           </TouchableOpacity>
-          <Text style={styles.title}>불편신고 접수</Text>
-        </View>
-        <View style={styles.content}>
-          <TextInput style={styles.textArea} />
-          <Button
-            title="불편신고 접수하기"
-            style={styles.button}
-            onPress={() => {}}
+          <TextInput
+            style={styles.title}
+            placeholder="그룹의 방제를 입력해주세요"
           />
+          <Image source={GroupSearch} style={styles.search} />
         </View>
+        <View style={styles.content} />
       </View>
     </SafeAreaView>
   );
@@ -62,35 +58,30 @@ const styles = StyleSheet.create({
   backButton: {
     alignItems: 'center',
     justifyContent: 'center',
-    right: getWidth(200),
+    right: getWidth(100),
   },
   back: {
     position: 'absolute',
     left: 0,
+    top: 0,
     width: getWidth(15),
     height: getHeight(23),
   },
   title: {
-    fontFamily: fonts.bold,
     fontSize: getWidth(30),
+    width: getWidth(360),
+    textAlign: 'center',
+  },
+  search: {
+    width: getWidth(36),
+    height: getHeight(31.34),
+    left: getWidth(80),
   },
   content: {
     display: 'flex',
     alignItems: 'center',
     top: getWidth(250),
   },
-  textArea: {
-    width: getWidth(556),
-    height: getHeight(262),
-    borderWidth: 1,
-    borderColor: colors.green,
-    borderRadius: 10,
-    marginBottom: getWidth(38),
-  },
-
-  button: {
-    width: getWidth(470),
-  },
 });
 
-export default Complaint;
+export default Search;

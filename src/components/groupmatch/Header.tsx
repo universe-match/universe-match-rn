@@ -1,11 +1,17 @@
 import React from 'react';
-import {StyleSheet, Image, SafeAreaView, View} from 'react-native';
+import {
+  StyleSheet,
+  Image,
+  SafeAreaView,
+  View,
+  TouchableOpacity,
+} from 'react-native';
 import {getWidth, getHeight, colors} from '../../constants/Index';
 import logo from '../../assets/images/common/logo.png';
 import search from '../../assets/images/common/search.png';
 import noti from '../../assets/images/common/noti.png';
 
-const Header = () => {
+const Header = ({navigation}: any) => {
   return (
     <SafeAreaView style={styles.background}>
       <View style={styles.Area}>
@@ -14,8 +20,14 @@ const Header = () => {
         </View>
         <View style={styles.rightArea}>
           <View style={{flexDirection: 'row', flex: 2}}>
-            <Image style={styles.search} source={search} />
-            <Image style={styles.noti} source={noti} />
+            <TouchableOpacity
+              activeOpacity={0.5}
+              onPress={() => navigation.navigate('Search')}>
+              <Image style={styles.search} source={search} />
+            </TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.5}>
+              <Image style={styles.noti} source={noti} />
+            </TouchableOpacity>
           </View>
         </View>
       </View>

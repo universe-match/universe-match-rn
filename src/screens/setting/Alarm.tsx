@@ -21,17 +21,17 @@ const Alarm = ({navigation}: any) => {
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={() => {
-              navigation.navigate('Main1');
+              navigation.navigate('Main');
             }}
             hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
-            style={styles.touchableOpacityStyle}>
+            style={styles.backButton}>
             <Image style={styles.back} source={BackIcon} />
           </TouchableOpacity>
-          <Text style={styles.titleText}>알람 설정</Text>
+          <Text style={styles.title}>알람 설정</Text>
         </View>
-        <View style={styles.item}>
-          <View style={styles.itemText}>
-            <Text style={styles.text}>알림허용</Text>
+        <View style={styles.content}>
+          <View style={styles.item}>
+            <Text style={styles.itemText}>알림허용</Text>
             <Text style={styles.textDetail}>
               알림 메시지, 소리, 진동을 포함한 앱의 알림을 받습니다.
             </Text>
@@ -39,7 +39,7 @@ const Alarm = ({navigation}: any) => {
           <Switch
             trackColor={{false: colors.gray4, true: colors.green}}
             thumbColor={isEnabled ? colors.white : colors.white}
-            ios_backgroundColor={colors.green}
+            ios_backgroundColor={colors.gray4}
             onValueChange={toggleSwitch}
             value={isEnabled}
           />
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: getWidth(1),
     borderBottomColor: colors.green,
   },
-  touchableOpacityStyle: {
+  backButton: {
     alignItems: 'center',
     justifyContent: 'center',
     right: getWidth(200),
@@ -78,20 +78,20 @@ const styles = StyleSheet.create({
     width: getWidth(15),
     height: getHeight(23),
   },
-  titleText: {
+  title: {
     fontFamily: fonts.bold,
     fontSize: getWidth(30),
   },
-  item: {
+  content: {
     flexDirection: 'row',
     marginTop: getHeight(267),
     marginLeft: getWidth(30),
     marginRight: getWidth(30),
   },
-  itemText: {
+  item: {
     flexDirection: 'column',
   },
-  text: {
+  itemText: {
     fontSize: getWidth(30),
     fontFamily: fonts.bold,
     color: colors.black,

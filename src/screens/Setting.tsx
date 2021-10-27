@@ -1,5 +1,4 @@
-import React, {useCallback, useState} from 'react';
-
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   TouchableOpacity,
@@ -8,9 +7,9 @@ import {
   StyleSheet,
   Image,
 } from 'react-native';
+
 import {fonts, getHeight, getWidth, colors} from '../constants/Index';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import InputButton from '../components/form/InputButton';
 import BackIcon from '../assets/images/common/back.png';
 import RightIcon from '../assets/images/common/right.png';
 
@@ -20,10 +19,6 @@ const Setting = ({navigation}: any) => {
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const onPress = useCallback((value: string): void => {
-    console.log(value);
-  }, []);
 
   const handleLogOut = async () => {
     await AsyncStorage.clear();
@@ -38,7 +33,9 @@ const Setting = ({navigation}: any) => {
           <Text style={styles.titleText}>환경설정</Text>
         </View>
         <View style={styles.itemWrapper}>
-          <TouchableOpacity style={styles.item}>
+          <TouchableOpacity
+            style={styles.item}
+            onPress={() => navigation.navigate('Terms')}>
             <Text style={styles.itemText}>이용약관</Text>
             <Image style={styles.itemIcon} source={RightIcon} />
           </TouchableOpacity>
