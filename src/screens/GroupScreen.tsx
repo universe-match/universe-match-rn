@@ -6,7 +6,7 @@ import {AddGroupButton, GroupContainers} from './groups/components/Index';
 
 const GroupScreen = ({navigation}: any) => (
   <SafeAreaView>
-    <Header />
+    <Header navigation={navigation} />
     <GroupContainers />
     <AddGroupButton navigation={navigation} />
   </SafeAreaView>

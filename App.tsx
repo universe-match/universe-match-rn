@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import {Alert} from 'react-native';
 import {ModalPortal} from 'react-native-modals';
+import Search from './src/components/groupmatch/Search';
 import CreateGroup from './src/screens/groups/components/modal/CreateGroup';
 import MainScreen from './src/screens/MainScreen';
 import SignUp from './src/screens/signUp/SignUp';
@@ -77,6 +78,7 @@ const App = () => {
           <Stack.Screen name="SignUp" component={MultiStep} />
           <Stack.Screen name="Main" component={MainScreen} />
           <Stack.Screen name="SignIn" component={SignIn} />
+          <Stack.Screen name="Search" component={Search} />
           <Stack.Screen name="CreateGroup" component={CreateGroup} />
           <Stack.Screen name="Chatting" component={Chatting} />
           <Stack.Screen name="Profile" component={Profile} />
