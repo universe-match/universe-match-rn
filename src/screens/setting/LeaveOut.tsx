@@ -23,13 +23,13 @@ const LeaveOut = ({navigation}: any) => {
               navigation.navigate('Main1');
             }}
             hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
-            style={styles.touchableOpacityStyle}>
+            style={styles.backButton}>
             <Image style={styles.back} source={BackIcon} />
           </TouchableOpacity>
-          <Text style={styles.titleText}>회원탈퇴</Text>
+          <Text style={styles.title}>회원탈퇴</Text>
         </View>
-        <View style={styles.item}>
-          <Text style={styles.itemText}>
+        <View style={styles.content}>
+          <Text style={styles.text}>
             {`
             그동안 OOOO를 이용해주셔서 감사합니다. 
             개인정보는 모두 삭제 될 예정이며 삭제된 계정은 
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: getWidth(1),
     borderBottomColor: colors.green,
   },
-  touchableOpacityStyle: {
+  backButton: {
     alignItems: 'center',
     justifyContent: 'center',
     right: getWidth(220),
@@ -85,16 +85,16 @@ const styles = StyleSheet.create({
     width: getWidth(15),
     height: getHeight(23),
   },
-  titleText: {
+  title: {
     fontFamily: fonts.bold,
     fontSize: getWidth(30),
   },
-  item: {
+  content: {
     display: 'flex',
     alignItems: 'center',
     top: getWidth(428),
   },
-  itemText: {
+  text: {
     textAlign: 'center',
     fontFamily: fonts.bold,
     marginRight: getWidth(60),

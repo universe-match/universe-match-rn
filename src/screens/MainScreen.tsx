@@ -1,9 +1,8 @@
 import React from 'react';
 import {Image} from 'react-native';
-
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import {GroupScreen, ChatScreen, FriendScreen, Screen4} from './Index';
+import {GroupScreen, ChatScreen, FriendScreen, MyInfoScreen} from './Index';
 import group from '../assets/images/bottomTab/group.png';
 import group_active from '../assets/images/bottomTab/group_active.png';
 import chat from '../assets/images/bottomTab/chat.png';
@@ -38,11 +37,11 @@ const tabs = [
   //   component: FriendScreen,
   // },
   {
-    name: 'Screen4',
+    name: 'MyInfoScreen',
     label: '계정',
     image: myInfo,
     image_active: myInfo_active,
-    component: Screen4,
+    component: MyInfoScreen,
   },
 ];
 const MainScreen = () => {

@@ -22,10 +22,10 @@ const Terms = ({navigation}: any) => {
               navigation.navigate('Main');
             }}
             hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
-            style={styles.touchableOpacityStyle}>
+            style={styles.backButton}>
             <Image style={styles.back} source={BackIcon} />
           </TouchableOpacity>
-          <Text style={styles.titleText}>이용약관</Text>
+          <Text style={styles.title}>이용약관</Text>
         </View>
         <ScrollView
           style={styles.content}
@@ -366,10 +366,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: getWidth(1),
     borderBottomColor: colors.green,
   },
-  touchableOpacityStyle: {
+  backButton: {
     alignItems: 'center',
     justifyContent: 'center',
-    right: getWidth(200),
+    right: getWidth(210),
   },
   back: {
     position: 'absolute',
@@ -377,7 +377,7 @@ const styles = StyleSheet.create({
     width: getWidth(15),
     height: getHeight(23),
   },
-  titleText: {
+  title: {
     fontFamily: fonts.bold,
     fontSize: getWidth(30),
   },

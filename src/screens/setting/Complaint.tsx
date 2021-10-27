@@ -23,12 +23,12 @@ const Complaint = ({navigation}: any) => {
               navigation.navigate('Main');
             }}
             hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
-            style={styles.touchableOpacityStyle}>
+            style={styles.backButton}>
             <Image style={styles.back} source={BackIcon} />
           </TouchableOpacity>
-          <Text style={styles.titleText}>불편신고 접수</Text>
+          <Text style={styles.title}>불편신고 접수</Text>
         </View>
-        <View style={styles.item}>
+        <View style={styles.content}>
           <TextInput style={styles.textArea} />
           <Button
             title="불편신고 접수하기"
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: getWidth(1),
     borderBottomColor: colors.green,
   },
-  touchableOpacityStyle: {
+  backButton: {
     alignItems: 'center',
     justifyContent: 'center',
     right: getWidth(200),
@@ -70,11 +70,11 @@ const styles = StyleSheet.create({
     width: getWidth(15),
     height: getHeight(23),
   },
-  titleText: {
+  title: {
     fontFamily: fonts.bold,
     fontSize: getWidth(30),
   },
-  item: {
+  content: {
     display: 'flex',
     alignItems: 'center',
     top: getWidth(250),

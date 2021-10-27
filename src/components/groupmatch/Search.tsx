@@ -22,16 +22,16 @@ const Search = ({navigation}: any) => {
               navigation.navigate('Main');
             }}
             hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
-            style={styles.touchableOpacityStyle}>
+            style={styles.backButton}>
             <Image style={styles.back} source={BackIcon} />
           </TouchableOpacity>
           <TextInput
-            style={styles.titleText}
+            style={styles.title}
             placeholder="그룹의 방제를 입력해주세요"
           />
           <Image source={GroupSearch} style={styles.search} />
         </View>
-        <View style={styles.item} />
+        <View style={styles.content} />
       </View>
     </SafeAreaView>
   );
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: getWidth(1),
     borderBottomColor: colors.green,
   },
-  touchableOpacityStyle: {
+  backButton: {
     alignItems: 'center',
     justifyContent: 'center',
     right: getWidth(100),
@@ -67,9 +67,9 @@ const styles = StyleSheet.create({
     width: getWidth(15),
     height: getHeight(23),
   },
-  titleText: {
+  title: {
     fontSize: getWidth(30),
-    width: getWidth(340),
+    width: getWidth(360),
     textAlign: 'center',
   },
   search: {
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     height: getHeight(31.34),
     left: getWidth(80),
   },
-  item: {
+  content: {
     display: 'flex',
     alignItems: 'center',
     top: getWidth(250),

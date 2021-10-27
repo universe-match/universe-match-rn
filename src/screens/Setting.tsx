@@ -1,5 +1,4 @@
-import React, {useCallback, useState} from 'react';
-
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   TouchableOpacity,
@@ -8,9 +7,9 @@ import {
   StyleSheet,
   Image,
 } from 'react-native';
+
 import {fonts, getHeight, getWidth, colors} from '../constants/Index';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import InputButton from '../components/form/InputButton';
 import BackIcon from '../assets/images/common/back.png';
 import RightIcon from '../assets/images/common/right.png';
 
@@ -20,10 +19,6 @@ const Setting = ({navigation}: any) => {
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const onPress = useCallback((value: string): void => {
-    console.log(value);
-  }, []);
 
   const handleLogOut = async () => {
     await AsyncStorage.clear();
