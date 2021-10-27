@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   View,
@@ -6,12 +6,14 @@ import {
   TextInput,
   Image,
   StyleSheet,
+  TouchableHighlight,
 } from 'react-native';
 import {colors, fonts, getHeight, getWidth} from '../../constants/Index';
 import BackIcon from '../../assets/images/common/back.png';
 import GroupSearch from '../../assets/images/common/groupSearch.png';
 
 const Search = ({navigation}: any) => {
+  const [search, setSearch] = useState<string>('');
   return (
     <SafeAreaView>
       <View style={styles.container}>
@@ -28,8 +30,17 @@ const Search = ({navigation}: any) => {
           <TextInput
             style={styles.title}
             placeholder="그룹의 방제를 입력해주세요"
+            onChangeText={(v: string) => setSearch(v)}
+            value={search}
           />
-          <Image source={GroupSearch} style={styles.search} />
+          <TouchableHighlight
+            onPress={() => {
+              navigation.navigate('GroupScreen', {
+                search: search,
+              });
+            }}>
+            <Image source={GroupSearch} />
+          </TouchableHighlight>
         </View>
         <View style={styles.content} />
       </View>

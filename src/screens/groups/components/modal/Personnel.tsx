@@ -3,7 +3,7 @@ import {StyleSheet, Platform, View, Text} from 'react-native';
 import {getHeight, getWidth, colors} from '../../../../constants/Index';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 
-const Personnel = ({setPeopleLimit}: any) => {
+const Personnel = ({peopleLimit, setPeopleLimit}: any) => {
   const [multiSliderValue, setMultiSliderValue] = useState([0, 4]);
 
   const multiSliderValuesChange = (values: any) => {
@@ -32,8 +32,11 @@ const Personnel = ({setPeopleLimit}: any) => {
           allowOverlap={false}
           minMarkerOverlapDistance={10}
         />
+
         <View style={styles.labelWrapper}>
           <Text style={styles.labelText1}>최소 2명</Text>
+          <Text style={styles.labelText1}>{peopleLimit}</Text>
+
           <Text style={styles.labelText2}>최소 8명</Text>
         </View>
       </View>

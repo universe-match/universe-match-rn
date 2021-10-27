@@ -31,7 +31,7 @@ const CreateGroup = ({navigation}: any) => {
   const [title, setTitle] = useState<string>(''); //제목
   const [content, setContent] = useState<string>(''); //내용
   const [place, setPlace] = useState<string>('');
-  const [peopleLimit, setPeopleLimit] = useState<number>(0);
+  const [peopleLimit, setPeopleLimit] = useState<number>(5);
   const [genderKind, setGenderKind] = useState<string>('');
   const [fromDate, setFromDate] = useState<string>('');
   const [toDate, setToDate] = useState<string>('');
@@ -90,7 +90,10 @@ const CreateGroup = ({navigation}: any) => {
 
             <View style={styles.content}>
               <View style={styles.contentMargin}>
-                <Personnel setPeopleLimit={setPeopleLimit} />
+                <Personnel
+                  peopleLimit={peopleLimit}
+                  setPeopleLimit={setPeopleLimit}
+                />
                 <Ratio setGenderKind={setGenderKind} />
                 <SelectGroup setGroupKind={setGroupKind} />
                 <Day setFromDate={setFromDate} setToDate={setToDate} />

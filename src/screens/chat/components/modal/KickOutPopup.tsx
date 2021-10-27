@@ -6,12 +6,15 @@ import {
   Text,
   TextInput,
   View,
+  Alert,
 } from 'react-native';
 import axios from 'axios';
 import CheckBox from '@react-native-community/checkbox';
 import {getHeight, getWidth, colors, fonts} from '../../../../constants/Index';
 import RemoveIcon from '../../../../assets/images/common/remove.png';
 import Button from '../../../../components/form/Button';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import jwt_decode from 'jwt-decode';
 
 const KickOutPopup = ({onClose, chatRoomId}: any) => {
   const [users, setUsers] = useState<any>([]);
@@ -21,6 +24,7 @@ const KickOutPopup = ({onClose, chatRoomId}: any) => {
   );
   useEffect(() => {
     axios.get(`/api/chatroom/info/${chatRoomId}`).then((response: any) => {
+      console.log('response.data==', response.data);
       setUsers(response.data);
       setCheckedState(new Array(response.data.length).fill(false));
     });
@@ -36,14 +40,26 @@ const KickOutPopup = ({onClose, chatRoomId}: any) => {
       users[index].checked = item;
     });
   };
-  const onSend = () => {
+  const onSend = async () => {
     const resUser = users.filter((item: any) => item.checked === true);
     const userIds: any = [];
-    resUser.map((item: any) => {
+    await resUser.map((item: any) => {
       userIds.push(item.id);
     });
+    const sendData = {
+      ids: userIds,
+      chatroomId: chatRoomId,
+    };
+    console.log(sendData);
 
-    console.log(userIds);
+    await axios
+      .patch(`/api/chatroom/ban`, sendData)
+      .then(res => res)
+      .catch(error => {
+        if (error.response.data.status === 400) {
+          Alert.alert(error.response.data.message);
+        }
+      });
   };
   return (
     <View style={styles.background}>

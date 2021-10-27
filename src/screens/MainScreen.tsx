@@ -44,7 +44,7 @@ const tabs = [
     component: MyInfoScreen,
   },
 ];
-const MainScreen = () => {
+const MainScreen = ({navigation, route}: any) => {
   return (
     <Tab.Navigator
       tabBarOptions={{
