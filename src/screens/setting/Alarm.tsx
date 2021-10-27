@@ -21,7 +21,7 @@ const Alarm = ({navigation}: any) => {
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={() => {
-              navigation.navigate('Main1');
+              navigation.navigate('Main');
             }}
             hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
             style={styles.touchableOpacityStyle}>
@@ -39,7 +39,7 @@ const Alarm = ({navigation}: any) => {
           <Switch
             trackColor={{false: colors.gray4, true: colors.green}}
             thumbColor={isEnabled ? colors.white : colors.white}
-            ios_backgroundColor={colors.green}
+            ios_backgroundColor={colors.gray4}
             onValueChange={toggleSwitch}
             value={isEnabled}
           />

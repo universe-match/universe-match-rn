@@ -38,7 +38,9 @@ const Setting = ({navigation}: any) => {
           <Text style={styles.titleText}>환경설정</Text>
         </View>
         <View style={styles.itemWrapper}>
-          <TouchableOpacity style={styles.item}>
+          <TouchableOpacity
+            style={styles.item}
+            onPress={() => navigation.navigate('Terms')}>
             <Text style={styles.itemText}>이용약관</Text>
             <Image style={styles.itemIcon} source={RightIcon} />
           </TouchableOpacity>

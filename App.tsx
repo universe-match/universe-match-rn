@@ -12,7 +12,7 @@ import SignIn from './src/screens/SignIn';
 import MultiStep from './src/screens/signUp/MultiStep';
 import Chatting from './src/screens/chat/components/Chatting';
 import Profile from './src/screens/Profile';
-import {Complaint, LeaveOut, Alarm} from './src/screens/setting/Index';
+import {Terms, Complaint, Alarm, LeaveOut} from './src/screens/setting/Index';
 import jwt_decode from 'jwt-decode';
 import messaging from '@react-native-firebase/messaging';
 
@@ -80,6 +80,7 @@ const App = () => {
           <Stack.Screen name="CreateGroup" component={CreateGroup} />
           <Stack.Screen name="Chatting" component={Chatting} />
           <Stack.Screen name="Profile" component={Profile} />
+          <Stack.Screen name="Terms" component={Terms} />
           <Stack.Screen name="Alarm" component={Alarm} />
           <Stack.Screen name="Complaint" component={Complaint} />
           <Stack.Screen name="LeaveOut" component={LeaveOut} />
