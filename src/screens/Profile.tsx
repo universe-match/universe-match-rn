@@ -72,7 +72,6 @@ const Profile = () => {
       .catch(response => {
         console.log(response);
       });
-    console.log(profileImages);
   };
 
   return (

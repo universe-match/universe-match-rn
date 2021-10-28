@@ -18,7 +18,6 @@ const Chat = ({
   setOtherUserId,
 }: any) => {
   // const [isShowDialog, setShowDialog] = useState(false);
-  console.log('profileUrl===', profileUrl);
   const handleClick = (id: string) => {
     setShowDialog(true);
     setOtherUserId(id);

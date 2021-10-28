@@ -26,6 +26,7 @@
     "@react-navigation/stack": "^5.14.9",
     "@types/react-native-modals": "^0.19.2",
     "@types/react-native-vector-icons": "^6.4.8",
+    "@types/sockjs-client": "^1.5.1",
     "axios": "^0.21.1",
     "i": "^0.3.7",
     "jwt-decode": "^3.1.2",
@@ -49,8 +50,11 @@
     "react-native-svg": "^12.1.1",
     "react-native-svg-transformer": "^0.14.3",
     "react-native-tab-view": "^2.16.0",
+    "react-stomp": "^5.1.0",
+    "sockjs-client": "^1.5.2",
     "styled-components": "^5.3.3",
-    "styled-system": "^5.1.5"
+    "styled-system": "^5.1.5",
+    "webstomp-client": "^1.2.6"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
