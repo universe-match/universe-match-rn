@@ -3,8 +3,6 @@ import {Text, View, StyleSheet, Image, Platform} from 'react-native';
 import {getWidth, colors} from '../../../constants/Index';
 
 const ChatMembers = ({member}: any) => {
-  console.log('member=', member);
-
   return (
     <>
       <View style={styles.members}>

@@ -11,7 +11,6 @@ const ChatContainers = ({navigation}: any) => {
     axios
       .get('/api/chatroom')
       .then(function (response: any) {
-        console.log('ff', response.data);
         setChatList(response.data);
       })
       .catch(function (error) {

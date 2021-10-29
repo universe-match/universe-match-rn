@@ -22,11 +22,11 @@ const Chatting = ({route, navigation}: any) => {
   const {itemId} = route.params;
   const [user, setUser] = useState<any>([]);
   // const [input, setInput] = useState({text: '', height: 40});
-  const [messages, setMessages] = useState('');
+  const [messages, setMessages] = useState<any>('');
   const [isShowDialog, setShowDialog] = useState(false);
   const [isShowKickOutDialog, setShowKickOutDialog] = useState(false);
   const [otherUserId, setOtherUserId] = useState<string>('');
-  const ws = new WebSocket(`ws://192.168.0.65:9090/ws/chat/${itemId}`);
+  const ws = new WebSocket(`ws://192.168.0.10:9090/ws/chat/${itemId}`);
   var connected = false;
   var stompClient: any = '';
   // 메시지 전송 버튼 클릭 시 컴포넌트 리렌더링
@@ -41,6 +41,7 @@ const Chatting = ({route, navigation}: any) => {
     axios
       .get(`/api/chatroom/${itemId}`)
       .then(function (response) {
+        console.log('message', response.data);
         setMessages(response.data);
       })
       .catch(function (error) {
@@ -98,7 +99,7 @@ const Chatting = ({route, navigation}: any) => {
     getMyInfo();
     getPrevData();
   }, []);
-  var socket = new SockJS('http://192.168.0.65:9090/stomp');
+  var socket = new SockJS('http://192.168.0.10:9090/stomp');
 
   function stompConnect() {
     stompClient = Stomp.over(socket);
@@ -123,6 +124,20 @@ const Chatting = ({route, navigation}: any) => {
           navigation.navigate('Main');
         }
       });
+      stompClient.subscribe(
+        `/topic/chatroom/enter/${itemId}`,
+        function (msg: any) {
+          const arr = JSON.parse(msg.body);
+          setMessages((prevItems: any) => [...prevItems, arr]);
+        },
+      );
+      stompClient.subscribe(
+        `/topic/chatroom/exit/${itemId}`,
+        function (msg: any) {
+          const arr = JSON.parse(msg.body);
+          setMessages((prevItems: any) => [...prevItems, arr]);
+        },
+      );
     });
   }
   function sendName() {

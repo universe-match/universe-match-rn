@@ -22,7 +22,7 @@ const Chat = ({
     setShowDialog(true);
     setOtherUserId(id);
   };
-  if (username === user.nickname) {
+  if (userKey === user.id) {
     return (
       <View style={styles.myMessage} key={id}>
         {message !== undefined && (
@@ -37,6 +37,33 @@ const Chat = ({
           </LinearGradient>
         )}
       </View>
+    );
+  } else if (userKey === 0) {
+    return (
+      <>
+        <View style={styles.message}>
+          <View style={styles.profileInfo}></View>
+          <LinearGradient
+            useAngle={true}
+            angle={90}
+            colors={
+              gender === 'man' ? ['#A1C4FF', '#75A4F4'] : ['#FFD8E8', '#FFBAD6']
+            }
+            style={{
+              borderRadius: getWidth(32),
+            }}>
+            <Text style={styles.text}>{message + '12'}</Text>
+          </LinearGradient>
+        </View>
+        {/* {isShowDialog && (
+          <ProfileView
+            onClose={() => {
+              setShowDialog(false);
+            }}
+            userPhoto={man}
+          />
+        )} */}
+      </>
     );
   } else {
     return (
