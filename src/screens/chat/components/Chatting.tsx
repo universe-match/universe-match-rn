@@ -7,6 +7,7 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   Platform,
+  Alert,
 } from 'react-native';
 import {Chats, ChatKeyborad} from './Index';
 import {getWidth, colors, getHeight} from '../../../constants/Index';
@@ -25,7 +26,7 @@ const Chatting = ({route, navigation}: any) => {
   const [isShowDialog, setShowDialog] = useState(false);
   const [isShowKickOutDialog, setShowKickOutDialog] = useState(false);
   const [otherUserId, setOtherUserId] = useState<string>('');
-  const ws = new WebSocket(`ws://172.30.70.118:9090/ws/chat/${itemId}`);
+  const ws = new WebSocket(`ws://192.168.0.65:9090/ws/chat/${itemId}`);
   var connected = false;
   var stompClient: any = '';
   // 메시지 전송 버튼 클릭 시 컴포넌트 리렌더링
@@ -60,21 +61,19 @@ const Chatting = ({route, navigation}: any) => {
   }, []);
 
   const sendMesage = (msg: string) => {
-    sendName();
-    console.log('f');
-    // if (msg !== undefined || msg !== '') {
-    //   ws.send(
-    //     JSON.stringify({
-    //       userKey: user.id,
-    //       username: user.nickname,
-    //       message: msg,
-    //       sessionId: '',
-    //       profileUrl: user.userImages[0].userImage,
-    //       chatroomId: itemId,
-    //       type: 'message',
-    //     }),
-    //   );
-    // }
+    if (msg !== undefined || msg !== '') {
+      ws.send(
+        JSON.stringify({
+          userKey: user.id,
+          username: user.nickname,
+          message: msg,
+          sessionId: '',
+          profileUrl: user.userImages[0].userImage,
+          chatroomId: itemId,
+          type: 'message',
+        }),
+      );
+    }
     // setInput({text: '', height: 40});
   };
   const getMyInfo = async () => {
@@ -118,22 +117,12 @@ const Chatting = ({route, navigation}: any) => {
       // stompClient.subscribe('/topic/greetings', function (message: any) {
       //   console.log(message.body);
       // });
-      stompClient.subscribe('/topic/greetings3', function (msg: an) {
-        console.log('greeting3');
-        console.log(msg.body);
+      stompClient.subscribe(`/topic/ban/${user.id}`, function (msg: any) {
+        if (msg.body === 'ban') {
+          Alert.alert('강퇴당하였습니다.');
+          navigation.navigate('Main');
+        }
       });
-      // stompClient.subscribe('/topic/greetings', onMessageReceived);
-
-      // const subs = stompClient.subscribe(
-      //   '/topic/greetings',
-      //   function (greeting: any) {
-      //     console.log(
-      //       'JSON.parse(greeting.body).content==',
-      //       JSON.parse(greeting.body).content,
-      //     );
-      //     return JSON.parse(greeting.body).content;
-      //   },
-      // );
     });
   }
   function sendName() {
