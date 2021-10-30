@@ -33,16 +33,16 @@ const InputButton = ({
 }: InputButton) => {
   return (
     <View style={[styles.wrapper, style]}>
-        <TextInput
-          style={styles.input}
-          secureTextEntry={isPassword}
-          placeholder={placeholder}
-          onChangeText={value => setInputValue(value)}
-          defaultValue={inputValue}
-          placeholderTextColor={colors.gray4}
-          editable={isEditable}
-          autoFocus={true} 
-        />
+      <TextInput
+        style={styles.input}
+        secureTextEntry={isPassword}
+        placeholder={placeholder}
+        onChangeText={value => setInputValue(value)}
+        defaultValue={inputValue}
+        placeholderTextColor={colors.gray4}
+        editable={isEditable}
+        autoFocus={true}
+      />
       <TouchableOpacity
         activeOpacity={0.8}
         style={styles.button}
@@ -56,7 +56,6 @@ const InputButton = ({
         )}
       </TouchableOpacity>
     </View>
-
   );
 };
 
