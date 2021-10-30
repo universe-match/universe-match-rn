@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
 import {
   SafeAreaView,
   View,
@@ -15,6 +15,7 @@ import InputButton from '../../components/form/InputButton';
 import BackIcon from '../../assets/images/common/back.png';
 import CameraIcon from '../../assets/images/common/camera.png';
 import RemoveIcon from '../../assets/images/common/remove.png';
+import UniverseSearch from './UniverseSearch';
 
 const SignUp = ({
   universeCertiImg,
@@ -26,6 +27,12 @@ const SignUp = ({
   nextStep,
   prevStep,
 }: any) => {
+  const [isShowDialog, setShowDialog] = useState<boolean>(false);
+
+  const handlePress = (flag: any) => {
+    setShowDialog(flag);
+  };
+
   const loadLibrary = useCallback(() => {
     launchImageLibrary(
       {
@@ -84,14 +91,19 @@ const SignUp = ({
             setInputValue={() => {}}
             style={{marginBottom: getHeight(37)}}
           />
-          <InputButton
+          {/* <InputButton
             placeholder="대학교 이름을 입력해주세요"
             buttonContent=""
             inputValue={universeName}
             setInputValue={setUniverseName}
             onPress={() => {}}
             style={{marginBottom: getHeight(37)}}
-          />
+          /> */}
+          <TouchableOpacity
+            style={styles.universeNameButton}
+            onPress={handlePress}>
+            <Text style={styles.universeNameText}>학교 검색</Text>
+          </TouchableOpacity>
           <InputButton
             placeholder="학과 이름을 입력해주세요"
             inputValue={major}
@@ -117,6 +129,15 @@ const SignUp = ({
           )}
         </View>
       </View>
+      {isShowDialog && (
+        <UniverseSearch
+          onClose={() => {
+            setShowDialog(false);
+          }}
+          universeName={universeName}
+          setUniverseName={setUniverseName}
+        />
+      )}
     </SafeAreaView>
   );
 };
@@ -157,6 +178,20 @@ const styles = StyleSheet.create({
   signUp: {
     paddingTop: getHeight(351),
     width: '80%',
+  },
+  universeNameButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.green,
+    borderRadius: 10.9153,
+    width: getWidth(200),
+    height: getHeight(60),
+    marginBottom: getWidth(37),
+  },
+  universeNameText: {
+    color: colors.white,
+    textAlign: 'center',
+    fontSize: getWidth(30),
   },
 });
 
