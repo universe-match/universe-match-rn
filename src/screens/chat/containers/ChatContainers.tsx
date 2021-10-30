@@ -23,7 +23,11 @@ const ChatContainers = ({navigation}: any) => {
 
   return (
     <View style={{backgroundColor: colors.white}}>
-      <ChatRooms chatList={chatList} navigation={navigation} />
+      <ChatRooms
+        chatList={chatList}
+        navigation={navigation}
+        getMatchRommList={getMatchRommList}
+      />
     </View>
   );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   View,
@@ -7,12 +7,24 @@ import {
   TextInput,
   Image,
   StyleSheet,
+  Alert,
 } from 'react-native';
+import axios from 'axios';
 import {colors, fonts, getHeight, getWidth} from '../../constants/Index';
 import BackIcon from '../../assets/images/common/back.png';
 import Button from '../../components/form/Button';
 
 const Complaint = ({navigation}: any) => {
+  const [content, setContent] = useState<string>('');
+
+  const handleComplain = () => {
+    const sendData = {
+      content: content,
+    };
+    axios.post('/api/complain', sendData).then((response: any) => {
+      Alert.alert(response.data);
+    });
+  };
   return (
     <SafeAreaView>
       <View style={styles.container}>
@@ -29,11 +41,16 @@ const Complaint = ({navigation}: any) => {
           <Text style={styles.title}>불편신고 접수</Text>
         </View>
         <View style={styles.content}>
-          <TextInput style={styles.textArea} />
+          <TextInput
+            style={styles.textArea}
+            onChangeText={value => setContent(value)}
+          />
           <Button
             title="불편신고 접수하기"
             style={styles.button}
-            onPress={() => {}}
+            onPress={() => {
+              handleComplain();
+            }}
           />
         </View>
       </View>

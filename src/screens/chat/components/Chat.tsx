@@ -41,19 +41,11 @@ const Chat = ({
   } else if (userKey === 0) {
     return (
       <>
-        <View style={styles.message}>
+        <View>
           <View style={styles.profileInfo}></View>
-          <LinearGradient
-            useAngle={true}
-            angle={90}
-            colors={
-              gender === 'man' ? ['#A1C4FF', '#75A4F4'] : ['#FFD8E8', '#FFBAD6']
-            }
-            style={{
-              borderRadius: getWidth(32),
-            }}>
-            <Text style={styles.text}>{message + '12'}</Text>
-          </LinearGradient>
+          <View style={{backgroundColor: 'gray'}}>
+            <Text style={styles.text}>{message}</Text>
+          </View>
         </View>
         {/* {isShowDialog && (
           <ProfileView
@@ -74,7 +66,7 @@ const Chat = ({
               <Image
                 source={{uri: profileUrl === '' ? '' : profileUrl}}
                 style={
-                  gender === 'man'
+                  gender === 'M'
                     ? styles.photo
                     : {...styles.photo, ...styles.womanPhoto}
                 }

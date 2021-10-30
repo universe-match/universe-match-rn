@@ -26,7 +26,7 @@ const Chatting = ({route, navigation}: any) => {
   const [isShowDialog, setShowDialog] = useState(false);
   const [isShowKickOutDialog, setShowKickOutDialog] = useState(false);
   const [otherUserId, setOtherUserId] = useState<string>('');
-  const ws = new WebSocket(`ws://192.168.0.10:9090/ws/chat/${itemId}`);
+  const ws = new WebSocket(`ws://192.168.0.65:9090/ws/chat/${itemId}`);
   var connected = false;
   var stompClient: any = '';
   // 메시지 전송 버튼 클릭 시 컴포넌트 리렌더링
@@ -41,7 +41,6 @@ const Chatting = ({route, navigation}: any) => {
     axios
       .get(`/api/chatroom/${itemId}`)
       .then(function (response) {
-        console.log('message', response.data);
         setMessages(response.data);
       })
       .catch(function (error) {
@@ -99,25 +98,12 @@ const Chatting = ({route, navigation}: any) => {
     getMyInfo();
     getPrevData();
   }, []);
-  var socket = new SockJS('http://192.168.0.10:9090/stomp');
+  var socket = new SockJS('http://192.168.0.65:9090/stomp');
 
   function stompConnect() {
     stompClient = Stomp.over(socket);
     // SockJS와 stomp client를 통해 연결을 시도.
     stompClient.connect({}, function (frame) {
-      // setConnected(true);
-
-      // stompClient.subscribe(
-      //   'http://192.168.0.65:9090/api/chatroom/topic/greetings',
-      //   function (greeting: any) {
-      //     console.log('greeting' + JSON.parse(greeting.body));
-      //     // showGreeting(JSON.parse(greeting.body).content);
-      //   },
-      // );
-      console.log('연결됨');
-      // stompClient.subscribe('/topic/greetings', function (message: any) {
-      //   console.log(message.body);
-      // });
       stompClient.subscribe(`/topic/ban/${user.id}`, function (msg: any) {
         if (msg.body === 'ban') {
           Alert.alert('강퇴당하였습니다.');
@@ -140,16 +126,7 @@ const Chatting = ({route, navigation}: any) => {
       );
     });
   }
-  function sendName() {
-    // /app/hello로 JSON 파라미터를 메세지 body로 전송.
-    const msg = {name: 'tsetgo'};
 
-    stompClient = Stomp.over(socket);
-    //stompClient.send('http://192.168.0.65:9090/app/hello', msg, {});
-    const HelloMessage = {name: 'tttt'};
-    stompClient.send('/app/hello', JSON.stringify({name: 'fdsf'}), {});
-    //stompClient.send('http://192.168.0.65:9090/app/hello', {}, 'test');
-  }
   useEffect(() => {
     stompConnect();
   }, []);

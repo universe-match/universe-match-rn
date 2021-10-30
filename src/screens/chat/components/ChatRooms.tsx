@@ -2,7 +2,7 @@ import React from 'react';
 import {FlatList, View} from 'react-native';
 import {ChatRoom} from './Index';
 
-const ChatRooms = ({chatList, navigation}: any) => {
+const ChatRooms = ({chatList, navigation, getMatchRommList}: any) => {
   const renderChat = ({item, idx}: any) => (
     <View key={idx}>
       <ChatRoom
@@ -13,6 +13,7 @@ const ChatRooms = ({chatList, navigation}: any) => {
         toDate={item.matchRoomResponse.toDate}
         matchingList={item.matchRoomResponse.matchingList}
         navigation={navigation}
+        getMatchRommList={getMatchRommList}
       />
     </View>
   );

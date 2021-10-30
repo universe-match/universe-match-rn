@@ -32,7 +32,7 @@ const Group = ({
       .post('/api/match', sendRequest)
       .then(function (response) {
         Alert.alert('방에 참여되었습니다');
-        getMatchRommList();
+        getMatchRommList('');
         // navigation.navigate('Main');
         // navigation.dispatch(CommonActions.navigate('Main'));
       })

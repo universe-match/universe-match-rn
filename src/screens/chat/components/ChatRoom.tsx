@@ -17,6 +17,7 @@ const ChatRoom = ({
   fromDate,
   toDate,
   matchingList,
+  getMatchRommList,
 }: any) => {
   const [isActive, setIsActive] = useState(false);
 
@@ -58,7 +59,13 @@ const ChatRoom = ({
           <ChatRoomProcessBar />
         </View>
       </TouchableHighlight>
-      {isActive && <ChatRoomButtons navigation={navigation} id={id} />}
+      {isActive && (
+        <ChatRoomButtons
+          navigation={navigation}
+          id={id}
+          getMatchRommList={getMatchRommList}
+        />
+      )}
     </View>
   );
 };

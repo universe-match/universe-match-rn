@@ -5,9 +5,9 @@ import {colors, getHeight, getWidth} from '../../../constants/Index';
 const GroupButtons = ({checkIn}: any) => {
   return (
     <>
-      <TouchableOpacity activeOpacity={0.5} style={styles.heartButton}>
+      {/* <TouchableOpacity activeOpacity={0.5} style={styles.heartButton}>
         <Text style={styles.buttonText}>찜하기</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <TouchableOpacity
         activeOpacity={0.5}
         style={styles.InButton}
