@@ -1,7 +1,7 @@
 import React from 'react';
 import {Image} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {GroupScreen, ChatScreen, FriendScreen, MyInfoScreen} from './Index';
 import group from '../assets/images/bottomTab/group.png';
 import group_active from '../assets/images/bottomTab/group_active.png';
@@ -45,6 +45,15 @@ const tabs = [
   },
 ];
 const MainScreen = ({navigation, route}: any) => {
+  const res = AsyncStorage.getItem('accessToken', (err, result: any) => {
+    return result;
+  });
+  res.then(token => {
+    if (token === null || token === '') {
+      navigation.navigate('SignIn');
+    }
+  });
+
   return (
     <Tab.Navigator
       tabBarOptions={{

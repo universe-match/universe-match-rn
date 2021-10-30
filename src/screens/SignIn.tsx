@@ -6,7 +6,9 @@ import {
   Text,
   StyleSheet,
   Alert,
+  Image,
 } from 'react-native';
+import logo from '../assets/images/common/logo.png';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {fonts, getHeight, getWidth, colors} from '../constants/Index';
 import Button from '../components/form/Button';
@@ -25,7 +27,6 @@ const Login = ({navigation}: any) => {
 
   const handleLogin = () => {
     AsyncStorage.clear();
-    console.log('token==', token);
     axios
       .post('/api/user/signin', {
         userId: userId,
@@ -47,14 +48,10 @@ const Login = ({navigation}: any) => {
   //   checkToken()
 
   // },[])
-  const test1 = async () => {
-    await messaging().requestPermission();
-    await messaging().registerDeviceForRemoteMessages();
-  };
+
   const getFcmToken = async () => {
     const fcmToken = await messaging().getToken();
     setToken(fcmToken);
-    console.log('🚒fcm token', fcmToken);
   };
 
   useEffect(() => {
@@ -78,6 +75,7 @@ const Login = ({navigation}: any) => {
   return (
     <SafeAreaView>
       <View style={styles.container}>
+        <Image style={styles.logo} source={logo} resizeMode="contain" />
         <View style={styles.login}>
           <Input
             placeholder="아이디를 입력해주세요"
@@ -185,6 +183,11 @@ const styles = StyleSheet.create({
   dialogInput: {
     marginBottom: getHeight(23),
     width: '100%',
+  },
+  logo: {
+    width: getWidth(161),
+    height: getHeight(162),
+    marginBottom: getHeight(83),
   },
 });
 

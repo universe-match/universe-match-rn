@@ -16,7 +16,7 @@ const Header = ({navigation}: any) => {
     <SafeAreaView style={styles.background}>
       <View style={styles.Area}>
         <View style={styles.leftArea}>
-          <Image style={styles.logo} source={logo} />
+          <Image style={styles.logo} source={logo} resizeMode="contain" />
         </View>
         <View style={styles.rightArea}>
           <View style={{flexDirection: 'row', flex: 2}}>
@@ -48,7 +48,11 @@ const styles = StyleSheet.create({
     flex: 1,
     right: 70,
   },
-  logo: {},
+  logo: {
+    width: getWidth(50),
+    height: getHeight(50),
+    marginLeft: 30,
+  },
   background: {
     backgroundColor: colors.white,
   },

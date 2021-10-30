@@ -69,15 +69,11 @@ const App = () => {
       <ModalPortal />
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
-          {isToken ? (
-            <Stack.Screen name="Main1" component={MainScreen} />
-          ) : (
-            <Stack.Screen name="SignIn1" component={SignIn} />
-          )}
-
-          <Stack.Screen name="SignUp" component={MultiStep} />
           <Stack.Screen name="Main" component={MainScreen} />
           <Stack.Screen name="SignIn" component={SignIn} />
+
+          <Stack.Screen name="SignUp" component={MultiStep} />
+
           <Stack.Screen name="Search" component={Search} />
           <Stack.Screen name="CreateGroup" component={CreateGroup} />
           <Stack.Screen name="Chatting" component={Chatting} />

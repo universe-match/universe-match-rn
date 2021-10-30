@@ -21,7 +21,7 @@ const Setting = ({navigation}: any) => {
   const [password, setPassword] = useState('');
 
   const handleLogOut = async () => {
-    await AsyncStorage.clear();
+    await AsyncStorage.removeItem('accessToken');
     await navigation.navigate('SignIn');
   };
 
