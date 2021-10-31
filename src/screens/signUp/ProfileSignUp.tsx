@@ -272,7 +272,6 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontFamily: fonts.bold,
-    fontWeight: '400',
     fontSize: getWidth(30),
   },
   multiLineTitle: {

@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '80%',
     top: getHeight(79),
+    zIndex: 1,
   },
   content: {
     display: 'flex',
@@ -106,7 +107,6 @@ const styles = StyleSheet.create({
   titleText: {
     textAlign: 'center',
     fontFamily: fonts.bold,
-    fontWeight: '400',
     fontSize: getWidth(30),
   },
   camera: {

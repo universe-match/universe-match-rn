@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   View,
@@ -16,7 +16,6 @@ import {fonts, getHeight, getWidth, colors} from '../../constants/Index';
 import InputButton from '../../components/form/InputButton';
 import Input from '../../components/form/Input';
 import BackIcon from '../../assets/images/common/back.png';
-import RemoveIcon from '../../assets/images/common/remove.png';
 import axios from 'axios';
 
 const SignUp = ({
@@ -117,9 +116,6 @@ const SignUp = ({
             <TouchableOpacity onPress={goToSignIn}>
               <Image style={styles.back} source={BackIcon} />
             </TouchableOpacity>
-            {/* <TouchableOpacity onPress={goToSignIn}>
-            <Image source={RemoveIcon} style={styles.remove} />
-          </TouchableOpacity> */}
           </View>
           <View style={styles.title}>
             <Text style={styles.titleText}>회원가입</Text>
@@ -233,9 +229,13 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     width: '80%',
-    top: getHeight(79),
+    top: getWidth(79),
+    zIndex: 1,
   },
-  back: {width: getWidth(15), height: getHeight(23)},
+  back: {
+    width: getWidth(15),
+    height: getHeight(23),
+  },
   remove: {
     width: getWidth(22),
     height: getHeight(22),
@@ -250,7 +250,6 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontFamily: fonts.bold,
-    fontWeight: '400',
     fontSize: getWidth(30),
   },
   warn: {

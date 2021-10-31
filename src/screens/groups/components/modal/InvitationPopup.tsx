@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {TouchableOpacity, StyleSheet, Image, Text, View} from 'react-native';
-import {getHeight, getWidth, colors} from '../../../../constants/Index';
+import {getHeight, getWidth, colors, fonts} from '../../../../constants/Index';
 import RemoveIcon from '../../../../assets/images/common/remove.png';
 import Button from '../../../../components/form/Button';
 import Input from '../../../../components/form/Input';
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     marginBottom: getWidth(23),
   },
   titleText: {
-    fontWeight: '400',
+    fontFamily: fonts.bold,
     fontSize: getWidth(30),
     color: colors.black2,
   },

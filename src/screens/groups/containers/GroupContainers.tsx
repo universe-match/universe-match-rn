@@ -11,7 +11,7 @@ const GroupContainers = ({route}: any) => {
     console.log('searchParam=', searchParam);
     if (searchParam === '') {
       axios
-        .get(`/api/matchroom`)
+        .get('/api/matchroom')
         .then(function (response: any) {
           setGroupList(response.data);
         })

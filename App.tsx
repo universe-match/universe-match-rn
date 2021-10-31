@@ -3,7 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
-import {Alert} from 'react-native';
+import {Alert} from 'react-nativ₩e';
 import {ModalPortal} from 'react-native-modals';
 import Search from './src/components/groupmatch/Search';
 import CreateGroup from './src/screens/groups/components/modal/CreateGroup';

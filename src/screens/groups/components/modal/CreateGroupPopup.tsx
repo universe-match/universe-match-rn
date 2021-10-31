@@ -1,6 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, StyleSheet, Image, Text, View} from 'react-native';
-import {getHeight, getWidth, colors} from '../../../../constants/Index';
+import {getHeight, getWidth, colors, fonts} from '../../../../constants/Index';
 import RemoveIcon from '../../../../assets/images/common/remove.png';
 import Button from '../../../../components/form/Button';
 import man from '../../../../assets/images/test/man.png';
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   },
   titleText: {
     textAlign: 'center',
-    fontWeight: '400',
+    fontFamily: fonts.bold,
     fontSize: getWidth(30),
     color: colors.black2,
   },
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     paddingLeft: getWidth(20),
   },
   leaderName: {
-    fontWeight: '400',
+    fontFamily: fonts.bold,
     fontSize: getWidth(28),
     marginTop: getWidth(20),
     marginBottom: getWidth(20),
