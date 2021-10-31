@@ -14,7 +14,6 @@ import {fonts, getHeight, getWidth, colors} from '../../constants/Index';
 import InputButton from '../../components/form/InputButton';
 import BackIcon from '../../assets/images/common/back.png';
 import CameraIcon from '../../assets/images/common/camera.png';
-import RemoveIcon from '../../assets/images/common/remove.png';
 import UniverseSearch from './UniverseSearch';
 
 const SignUp = ({
@@ -66,12 +65,9 @@ const SignUp = ({
     <SafeAreaView>
       <View style={styles.container}>
         <View style={styles.header}>
-          <TouchableOpacity onPress={() => prevStep()}>
+          <TouchableOpacity onPress={prevStep}>
             <Image style={styles.back} source={BackIcon} />
           </TouchableOpacity>
-          {/* <TouchableOpacity onPress={goToSignIn}>
-            <Image source={RemoveIcon} style={styles.remove} />
-          </TouchableOpacity> */}
         </View>
         <View style={styles.title}>
           <Text style={styles.titleText}>회원가입</Text>
@@ -107,7 +103,7 @@ const SignUp = ({
           <InputButton
             placeholder="학과 이름을 입력해주세요"
             inputValue={major}
-            buttonContent="중복확인"
+            buttonContent="확인"
             setInputValue={setMajor}
             onPress={() => {}}
             style={{marginBottom: getHeight(37)}}
@@ -151,11 +147,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   header: {
-    // position: 'absolute',
+    position: 'absolute',
     display: 'flex',
     flexDirection: 'row',
     width: '80%',
     top: getHeight(79),
+    zIndex: 1,
   },
   back: {width: getWidth(15), height: getHeight(23)},
   remove: {
@@ -172,7 +169,6 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontFamily: fonts.bold,
-    fontWeight: '400',
     fontSize: getWidth(30),
   },
   signUp: {

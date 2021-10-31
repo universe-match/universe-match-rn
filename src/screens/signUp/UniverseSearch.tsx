@@ -17,20 +17,17 @@ const UniverseSearch = ({onClose, universeName, setUniverseName}: any) => {
             <Image source={RemoveIcon} style={styles.close} />
           </TouchableOpacity>
         </View>
+        <View style={styles.title}>
+          <Text style={styles.titleText}>학교명 검색</Text>
+        </View>
         <View style={styles.content}>
-          <View style={styles.title}>
-            <Text style={styles.titleText}>학교 검색</Text>
-          </View>
-
-          <View style={styles.dialogContent}>
-            <Input
-              placeholder="학교명 입력"
-              setValue={(value: string) => setUniverseName(value)}
-              value={universeName}
-              style={{width: getWidth(470)}}
-            />
-          </View>
-          <Button title="확인" onPress={() => {}} />
+          <Input
+            placeholder="학교명 입력"
+            setValue={(value: string) => setUniverseName(value)}
+            value={universeName}
+            style={styles.input}
+          />
+          <Button title="검색" style={styles.button} onPress={() => {}} />
         </View>
       </View>
     </View>
@@ -52,7 +49,7 @@ const styles = StyleSheet.create({
   dialog: {
     backgroundColor: colors.white,
     width: getWidth(620),
-    height: getHeight(519),
+    height: getHeight(400),
     borderRadius: getWidth(10),
     paddingLeft: getWidth(63),
     paddingRight: getWidth(63),
@@ -73,6 +70,7 @@ const styles = StyleSheet.create({
   title: {
     alignItems: 'center',
     justifyContent: 'center',
+    top: getWidth(150),
     marginBottom: getWidth(23),
   },
   titleText: {
@@ -80,12 +78,17 @@ const styles = StyleSheet.create({
     fontSize: getWidth(30),
   },
   content: {
+    flexDirection: 'row',
     top: getHeight(150),
     width: '100%',
   },
-  dialogContent: {
-    marginBottom: getWidth(23),
-    alignItems: 'center',
+  input: {
+    width: getWidth(350),
+    marginRight: getWidth(20),
+  },
+  button: {
+    width: getWidth(140),
+    height: getHeight(70),
   },
 });
 

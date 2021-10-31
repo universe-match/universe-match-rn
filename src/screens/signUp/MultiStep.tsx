@@ -117,7 +117,7 @@ const MultiStep = ({navigation}: any) => {
     default:
     // do nothing
   }
-  return <div></div>;
+  return <div />;
 };
 
 export default MultiStep;
