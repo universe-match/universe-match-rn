@@ -37,8 +37,8 @@ const Group = ({
         // navigation.dispatch(CommonActions.navigate('Main'));
       })
       .catch(error => {
-        console.log(error.response);
         if (error.response.data.status === 400) {
+          console.log(error.response.data.message);
           Alert.alert(error.response.data.message);
         }
       });
