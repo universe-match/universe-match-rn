@@ -18,7 +18,6 @@ const UniverseSearch = ({onClose, setUniverseName}: any) => {
       .get('/api/user/university/', {params})
       .then(function (response: any) {
         setUniverseList(response.data);
-        console.log(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -26,7 +25,7 @@ const UniverseSearch = ({onClose, setUniverseName}: any) => {
   };
 
   const handleClick = () => {
-    setUniverseName(name);
+    //setUniverseName(name);
     onClose();
   };
 
@@ -52,9 +51,9 @@ const UniverseSearch = ({onClose, setUniverseName}: any) => {
         <View style={styles.content}>
           <Input
             placeholder="학교명 입력"
-            value={name}
+            value={''}
             style={styles.input}
-            setValue={(value: any) => setName(value)}
+            setValue={(value: any) => {}}
           />
           <Button
             title="검색"
@@ -65,7 +64,7 @@ const UniverseSearch = ({onClose, setUniverseName}: any) => {
         <UniversityList
           universeList={universeList}
           onClose={onClose}
-          setName={setName}
+          setName={setUniverseName}
         />
       </View>
     </View>

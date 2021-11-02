@@ -96,7 +96,11 @@ const SignUp = ({
             style={{marginBottom: getHeight(37)}}
           /> */}
           {universeName !== '' ? (
-            <TextInput style={styles.selectedName}>{universeName}</TextInput>
+            <TextInput
+              style={styles.selectedName}
+              onChangeText={text => setUniverseName(text)}>
+              {universeName}
+            </TextInput>
           ) : (
             <TouchableOpacity
               style={styles.universeNameButton}

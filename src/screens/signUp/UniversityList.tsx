@@ -12,8 +12,7 @@ const UniversityList = ({onClose, setName, universeList}: any) => {
   const handlePress = (item: any) => {
     if (item.id !== '') {
       setName(item.name);
-
-      //onClose();
+      onClose();
     }
   };
   return (
