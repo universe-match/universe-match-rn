@@ -2,6 +2,7 @@ import React, {useCallback, useState} from 'react';
 import {
   SafeAreaView,
   View,
+  TextInput,
   Text,
   StyleSheet,
   Image,
@@ -26,8 +27,7 @@ const SignUp = ({
   nextStep,
   prevStep,
 }: any) => {
-  const [isShowDialog, setShowDialog] = useState<boolean>(false);
-
+  const [isShowDialog, setShowDialog] = useState(false);
   const handlePress = (flag: any) => {
     setShowDialog(flag);
   };
@@ -89,17 +89,22 @@ const SignUp = ({
           />
           {/* <InputButton
             placeholder="대학교 이름을 입력해주세요"
-            buttonContent=""
+            buttonContent="학교 검색"
             inputValue={universeName}
             setInputValue={setUniverseName}
-            onPress={() => {}}
+            onPress={handlePress}
             style={{marginBottom: getHeight(37)}}
           /> */}
-          <TouchableOpacity
-            style={styles.universeNameButton}
-            onPress={handlePress}>
-            <Text style={styles.universeNameText}>학교 검색</Text>
-          </TouchableOpacity>
+          {universeName !== '' ? (
+            <TextInput style={styles.selectedName}>{universeName}</TextInput>
+          ) : (
+            <TouchableOpacity
+              style={styles.universeNameButton}
+              onPress={handlePress}>
+              <Text style={styles.universeNameText}>학교 검색</Text>
+            </TouchableOpacity>
+          )}
+
           <InputButton
             placeholder="학과 이름을 입력해주세요"
             inputValue={major}
@@ -125,12 +130,19 @@ const SignUp = ({
           )}
         </View>
       </View>
+      {/* {isShowDialog ? (
+        <UniverseSearch
+          onClose={() => {
+            setShowDialog(false);
+          }}
+          setUniverseName={setUniverseName}
+        />
+      ) : null} */}
       {isShowDialog && (
         <UniverseSearch
           onClose={() => {
             setShowDialog(false);
           }}
-          universeName={universeName}
           setUniverseName={setUniverseName}
         />
       )}
@@ -188,6 +200,19 @@ const styles = StyleSheet.create({
     color: colors.white,
     textAlign: 'center',
     fontSize: getWidth(30),
+  },
+  selectedName: {
+    width: getWidth(570),
+    height: getHeight(80),
+    marginBottom: getWidth(37),
+    borderWidth: getWidth(1),
+    borderRadius: 25,
+    borderColor: colors.green,
+    backgroundColor: colors.lightGreen,
+    textAlign: 'left',
+    paddingLeft: getWidth(30),
+    fontSize: getWidth(25),
+    fontFamily: fonts.light,
   },
 });
 

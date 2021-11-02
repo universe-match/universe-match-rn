@@ -1,18 +1,47 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {TouchableOpacity, StyleSheet, Image, Text, View} from 'react-native';
+
 import {fonts, getHeight, getWidth, colors} from '../../constants/Index';
+import UniversityList from './UniversityList';
 import RemoveIcon from '../../assets/images/common/remove.png';
 import Button from '../../components/form/Button';
 import Input from '../../components/form/Input';
+import axios from 'axios';
 
-const UniverseSearch = ({onClose, universeName, setUniverseName}: any) => {
+const UniverseSearch = ({onClose, setUniverseName}: any) => {
+  const [name, setName] = useState('');
+  const [universeList, setUniverseList] = useState([]);
+
+  const getUniversityList = () => {
+    const params = {name: name};
+    axios
+      .get('/api/user/university/', {params})
+      .then(function (response: any) {
+        setUniverseList(response.data);
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  const handleClick = () => {
+    setUniverseName(name);
+    onClose();
+  };
+
   return (
     <View style={styles.background}>
-      <View style={styles.dialog}>
+      <View
+        style={
+          universeList.length >= 2
+            ? {...styles.dialog, ...styles.active}
+            : styles.dialog
+        }>
         <View style={styles.header}>
           <TouchableOpacity
             activeOpacity={0.4}
-            onPress={onClose}
+            onPress={handleClick}
             style={styles.closeWrapper}>
             <Image source={RemoveIcon} style={styles.close} />
           </TouchableOpacity>
@@ -23,12 +52,21 @@ const UniverseSearch = ({onClose, universeName, setUniverseName}: any) => {
         <View style={styles.content}>
           <Input
             placeholder="학교명 입력"
-            setValue={(value: string) => setUniverseName(value)}
-            value={universeName}
+            value={name}
             style={styles.input}
+            setValue={(value: any) => setName(value)}
           />
-          <Button title="검색" style={styles.button} onPress={() => {}} />
+          <Button
+            title="검색"
+            style={styles.button}
+            onPress={() => getUniversityList()}
+          />
         </View>
+        <UniversityList
+          universeList={universeList}
+          onClose={onClose}
+          setName={setName}
+        />
       </View>
     </View>
   );
@@ -53,6 +91,9 @@ const styles = StyleSheet.create({
     borderRadius: getWidth(10),
     paddingLeft: getWidth(63),
     paddingRight: getWidth(63),
+  },
+  active: {
+    height: getHeight(700),
   },
   header: {
     alignItems: 'center',
@@ -85,6 +126,9 @@ const styles = StyleSheet.create({
   input: {
     width: getWidth(350),
     marginRight: getWidth(20),
+    borderWidth: 2,
+    borderRadius: 5,
+    borderColor: colors.gray4,
   },
   button: {
     width: getWidth(140),
