@@ -1,10 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {Alert} from 'react-native';
 import axios from 'axios';
-import SignUp from './SignUp';
-import StudentSignUp from './StudentSignUp';
-import StudentIdAuth from './StudentIdAuth';
-import ProfileSignUp from './ProfileSignUp';
+import {
+  SignUp,
+  StudentSignUp,
+  StudentIdAuth,
+  ProfileSignUp,
+  Interests,
+} from './Index';
 
 const MultiStep = ({navigation}: any) => {
   const [step, setStep] = useState(1);
@@ -20,6 +23,7 @@ const MultiStep = ({navigation}: any) => {
   const [mbti, setMbti] = useState('');
   const [introduce, setIntroduce] = useState('');
   const [gender, setGender] = useState('');
+  const [interested, setInterested] = useState([]);
 
   const prevStep = () => {
     setStep(step - 1);
@@ -45,6 +49,7 @@ const MultiStep = ({navigation}: any) => {
       mbti: mbti,
       introduce: introduce,
       userImages: imageSource,
+      interested: interested,
     };
 
     axios
@@ -112,6 +117,16 @@ const MultiStep = ({navigation}: any) => {
           gender={gender}
           setGender={setGender}
           prevStep={prevStep}
+          nextStep={nextStep}
+        />
+      );
+    case 5:
+      return (
+        <Interests
+          interested={interested}
+          setInterested={setInterested}
+          prevStep={prevStep}
+          handleSignUp={handleSignUp}
         />
       );
     default:
