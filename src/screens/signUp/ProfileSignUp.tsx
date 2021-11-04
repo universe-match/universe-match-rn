@@ -36,6 +36,7 @@ const SignUp = ({
   gender,
   setGender,
   prevStep,
+  nextStep,
 }: any) => {
   const [mCheck, setMCheck] = useState<boolean>(false);
   const [wCheck, setWCheck] = useState<boolean>(false);
@@ -226,7 +227,7 @@ const SignUp = ({
             <Button
               style={styles.button}
               onPress={() => {
-                handleSignUp();
+                nextStep();
               }}
               title="확인"
             />
@@ -256,6 +257,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '80%',
     top: getHeight(79),
+    zIndex: 1,
   },
   back: {width: getWidth(15), height: getHeight(23)},
   remove: {
