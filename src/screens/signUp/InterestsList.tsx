@@ -1,13 +1,27 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
-import {fonts, getHeight, getWidth, colors} from '../../constants/Index';
+import {getHeight, getWidth, colors} from '../../constants/Index';
 
-const InterestsList = ({interestedList}: any) => {
+const InterestsList = ({interestedList, onTouch}: any) => {
   return (
     <View style={styles.content}>
       {interestedList.map((item: any) => (
-        <TouchableOpacity style={styles.button}>
-          <Text key={item.id}>{item.name}</Text>
+        <TouchableOpacity
+          style={
+            item.selected
+              ? {...styles.button, ...styles.button_active}
+              : styles.button
+          }
+          onPress={() => onTouch(item.id)}>
+          <Text
+            key={item.id}
+            style={
+              item.selected
+                ? {...styles.text, ...styles.text_active}
+                : styles.text
+            }>
+            {item.name}
+          </Text>
         </TouchableOpacity>
       ))}
     </View>
@@ -34,6 +48,12 @@ const styles = StyleSheet.create({
   },
   button_active: {
     backgroundColor: colors.black,
+  },
+  text: {
+    color: colors.black,
+  },
+  text_active: {
+    color: colors.white,
   },
 });
 

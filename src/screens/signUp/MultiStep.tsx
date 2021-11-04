@@ -35,7 +35,7 @@ const MultiStep = ({navigation}: any) => {
     setStep(1);
     navigation.navigate('SignIn');
   };
-  const handleSignUp = () => {
+  const handleSignUp = (selectedInterested: any) => {
     const sendData = {
       userid: userid,
       email: email,
@@ -49,8 +49,10 @@ const MultiStep = ({navigation}: any) => {
       mbti: mbti,
       introduce: introduce,
       userImages: imageSource,
-      interested: interested,
+      interested: selectedInterested,
     };
+
+    console.log('>>>>>>>>>>>>>>>>>>>>', sendData.interested);
 
     axios
       .post('/api/user/signup', sendData)
@@ -126,7 +128,7 @@ const MultiStep = ({navigation}: any) => {
           interested={interested}
           setInterested={setInterested}
           prevStep={prevStep}
-          handleSignUp={handleSignUp}
+          onSignUp={handleSignUp}
         />
       );
     default:

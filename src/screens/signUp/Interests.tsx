@@ -8,32 +8,53 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import {fonts, getHeight, getWidth, colors} from '../../constants/Index';
+import {getHeight, getWidth, colors} from '../../constants/Index';
 import Button from '../../components/form/Button';
 import BackIcon from '../../assets/images/common/back.png';
 import axios from 'axios';
 import InterestsList from './InterestsList';
 
-const Interests = ({
-  interested,
-  setInterested,
-  prevStep,
-  handleSignUp,
-}: any) => {
-  const [interestedList, setInterestedList] = useState([]);
+const Interests = ({setInterested, prevStep, onSignUp}: any) => {
+  const [fetchedIterested, setFetchedIterested] = useState([]);
+
   const getInterestedList = () => {
     axios
       .get('/api/user/interested')
       .then(function (response: any) {
-        setInterestedList(response.data);
+        const data = response.data;
+        const newData = data.map((interest: any) => {
+          interest.selected = false;
+          return interest;
+        });
+        setFetchedIterested(newData);
       })
       .catch(function (error) {
         console.log(error);
       });
   };
+
   useEffect(() => {
     getInterestedList();
   }, []);
+
+  const handleSelectedOne = (id: any) => {
+    const newInterestedList = fetchedIterested.map((item: any) => {
+      if (item.id === id) {
+        item.selected = !item.selected;
+      }
+      return item;
+    }) as any;
+    setFetchedIterested(newInterestedList);
+  };
+
+  const handleSignUp = () => {
+    const selectedInterested = fetchedIterested.filter(
+      (item: any) => item?.selected,
+    );
+
+    setInterested(selectedInterested);
+    onSignUp(selectedInterested);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -47,7 +68,10 @@ const Interests = ({
         <Text style={styles.title}>회원님의 관심사는 어떤게 있나요?</Text>
       </View>
       <ScrollView style={styles.content}>
-        <InterestsList interestedList={interestedList} />
+        <InterestsList
+          interestedList={fetchedIterested}
+          onTouch={handleSelectedOne}
+        />
       </ScrollView>
       <View style={styles.bottom}>
         <Button
