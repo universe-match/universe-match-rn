@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+    //alignItems: 'center',
+    justifyContent: 'center',
   },
   header: {
     display: 'flex',
@@ -76,14 +77,14 @@ const styles = StyleSheet.create({
     height: getHeight(23),
   },
   button: {
-    position: 'absolute',
     top: getWidth(1000),
     alignSelf: 'center',
     width: getWidth(470),
     height: getHeight(79),
   },
   content: {
-    top: getWidth(150),
+    width: '100%',
+    height: '100%',
   },
   title: {
     fontSize: getWidth(40),
