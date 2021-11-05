@@ -45,15 +45,11 @@ const Interests = ({setInterested, prevStep, onSignUp}: any) => {
       return item;
     }) as any;
     setFetchedIterested(newInterestedList);
-  };
-
-  const handleSignUp = () => {
     const selectedInterested = fetchedIterested.filter(
       (item: any) => item?.selected,
     );
 
     setInterested(selectedInterested);
-    onSignUp(selectedInterested);
   };
 
   return (
@@ -105,7 +101,7 @@ const Interests = ({setInterested, prevStep, onSignUp}: any) => {
         <Button
           style={styles.button}
           onPress={() => {
-            handleSignUp();
+            onSignUp();
           }}
           title="확인"
         />

@@ -3,7 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
-import {Alert} from 'react-nativ₩e';
+import {Alert} from 'react-native';
 import {ModalPortal} from 'react-native-modals';
 import Search from './src/components/groupmatch/Search';
 import CreateGroup from './src/screens/groups/components/modal/CreateGroup';
@@ -34,7 +34,7 @@ const App = () => {
     });
   }
   //axios.defaults.baseURL = 'http://172.30.70.118:9090/';
-  axios.defaults.baseURL = 'http://3.34.191.212:9090/';
+  axios.defaults.baseURL = 'http://192.168.0.65:9090/';
 
   axios.interceptors.request.use(async function (config) {
     const token = await AsyncStorage.getItem('accessToken');
@@ -56,6 +56,7 @@ const App = () => {
   messaging().setBackgroundMessageHandler(async remoteMessage => {
     console.log('Message handled in the background!', remoteMessage);
   });
+
   useEffect(() => {
     // const unsubscribe = messaging().onMessage(async remoteMessage => {
     //   Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));

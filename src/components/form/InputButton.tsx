@@ -13,7 +13,7 @@ interface InputButton {
   setInputValue: Function;
   buttonContent: ReactNode | string;
   placeholder: string;
-  onPress(value: string): void;
+  onPress(): void;
   isPassword?: boolean;
   isEditable?: boolean;
   style?: object;
@@ -46,9 +46,7 @@ const InputButton = ({
       <TouchableOpacity
         activeOpacity={0.8}
         style={styles.button}
-        onPress={() => {
-          onPress('');
-        }}>
+        onPress={onPress}>
         {typeof buttonContent === 'string' ? (
           <Text style={styles.textContent}>{buttonContent}</Text>
         ) : (

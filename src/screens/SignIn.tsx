@@ -34,8 +34,20 @@ const Login = ({navigation}: any) => {
         fcmToken: token,
       })
       .then(function (response) {
-        AsyncStorage.setItem('accessToken', response.data.token);
-        navigation.navigate('Main');
+        axios
+          .get('/api/user/myinfo', {
+            headers: {
+              Authorization: 'Bearer ' + response.data.token, //the token is a variable which holds the token
+            },
+          })
+          .then(res => {
+            if (!res.data.verified) {
+              Alert.alert('학생증 인증 진행중입니다.');
+            } else {
+              AsyncStorage.setItem('accessToken', response.data.token);
+              navigation.navigate('Main');
+            }
+          });
       })
       .catch(function (error) {
         if (error.response.data.status === 400) {

@@ -31,47 +31,51 @@ const SignUp = ({
   setEmail,
   password,
   setPassword,
+  year,
+  setYear,
+  month,
+  setMonth,
+  day,
+  setDay,
 }: any) => {
   const months = [
-    '1월',
-    '2월',
-    '3월',
-    '4월',
-    '5월',
-    '6월',
-    '7월',
-    '8월',
-    '9월',
-    '10월',
-    '11월',
-    '12월',
+    '01',
+    '02',
+    '03',
+    '04',
+    '05',
+    '06',
+    '07',
+    '08',
+    '09',
+    '10',
+    '11',
+    '12',
   ];
   const [userIdCheck, setUserIdCheck] = useState('');
   const [nicknameCheck, setNicknameCheck] = useState('');
   const [emailCheck, setEmailCheck] = useState('');
   const [passwordCheck, setPasswordCheck] = useState('');
-  const [year, setYear] = useState('');
-  const [month, setMonth] = useState('');
-  const [day, setDay] = useState('');
 
   const CheckUserId = (): void => {
-    if (!userid) {
-      setUserIdCheck('아이디를 입력해 주세요.');
-    } else if (!/^[A-za-z0-9]{4,10}$/.test(userid)) {
-      setUserIdCheck('4~10자 영문 대 소문자, 숫자를 사용하세요.');
-    }
+    console.log(userid);
+    // if (!userid) {
+    //   setUserIdCheck('아이디를 입력해 주세요.');
+    // } else if (!/^[A-za-z0-9]{4,10}$/.test(userid)) {
+    //   setUserIdCheck('4~10자 영문 대 소문자, 숫자를 사용하세요.');
+    // }
 
     axios
-      .get(`/api/user/${userid}`)
+      .get(`/api/user/idcheck`, {params: {userId: userid}})
       .then(function (response) {
-        console.log('response==', response);
+        console.log(response);
         Alert.alert(response.data);
-        setUserIdCheck('사용 가능한 아이디입니다.');
+        setUserIdCheck(response.data);
       })
       .catch(function (error) {
         if (error.response.data.status === 400) {
           Alert.alert(error.response.data.message);
-          setUserIdCheck('중복된 아이디입니다.');
+          setUserIdCheck(error.response.data.message);
         }
       });
   };
@@ -79,9 +83,20 @@ const SignUp = ({
   const CheckNickname = (): void => {
     if (!nickname) {
       setNicknameCheck('닉네임을 입력해 주세요.');
-    } else {
-      setUserIdCheck('사용 가능한 닉네임입니다.');
     }
+    axios
+      .get(`/api/user/nicknamecheck`, {params: {nickName: nickname}})
+      .then(function (response) {
+        console.log(response);
+        Alert.alert(response.data);
+        setNicknameCheck(response.data);
+      })
+      .catch(function (error) {
+        if (error.response.data.status === 400) {
+          Alert.alert(error.response.data.message);
+          setNicknameCheck(error.response.data.message);
+        }
+      });
   };
 
   const CheckEmail = (): void => {
@@ -169,7 +184,7 @@ const SignUp = ({
             <View style={{marginBottom: getHeight(37)}}>
               <InputButton
                 placeholder="닉네임을 입력해주세요"
-                buttonContent="확인"
+                buttonContent="중복확인"
                 setInputValue={setNickname}
                 inputValue={nickname}
                 onPress={CheckNickname}

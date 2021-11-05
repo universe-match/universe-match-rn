@@ -24,7 +24,9 @@ const MultiStep = ({navigation}: any) => {
   const [introduce, setIntroduce] = useState('');
   const [gender, setGender] = useState('');
   const [interested, setInterested] = useState([]);
-
+  const [year, setYear] = useState('');
+  const [month, setMonth] = useState('');
+  const [day, setDay] = useState('');
   const prevStep = () => {
     setStep(step - 1);
   };
@@ -35,12 +37,14 @@ const MultiStep = ({navigation}: any) => {
     setStep(1);
     navigation.navigate('SignIn');
   };
-  const handleSignUp = (selectedInterested: any) => {
+  const handleSignUp = () => {
+    let interestedArr: any = [];
+    interested.map((item: any) => interestedArr.push(item.name));
     const sendData = {
       userid: userid,
       email: email,
       gender: gender,
-      age: age,
+      age: year + month + day,
       password: password,
       nickname: nickname,
       universeName: universeName,
@@ -49,11 +53,10 @@ const MultiStep = ({navigation}: any) => {
       mbti: mbti,
       introduce: introduce,
       userImages: imageSource,
-      interested: selectedInterested,
+      interest: interestedArr,
     };
 
-    console.log('>>>>>>>>>>>>>>>>>>>>', sendData.interested);
-
+    console.log(sendData);
     axios
       .post('/api/user/signup', sendData)
       .then(function (response: any) {
@@ -83,6 +86,12 @@ const MultiStep = ({navigation}: any) => {
           setEmail={setEmail}
           password={password}
           setPassword={setPassword}
+          year={year}
+          setYear={setYear}
+          month={month}
+          setMonth={setMonth}
+          day={day}
+          setDay={setDay}
         />
       );
     case 2:
