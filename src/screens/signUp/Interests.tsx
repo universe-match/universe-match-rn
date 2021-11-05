@@ -57,23 +57,51 @@ const Interests = ({setInterested, prevStep, onSignUp}: any) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => prevStep()}>
-          <Image style={styles.back} source={BackIcon} />
-        </TouchableOpacity>
-        <Text style={styles.title}>관심사 선택</Text>
+    // <SafeAreaView style={styles.container}>
+    // <View style={styles.header}>
+    //   <TouchableOpacity onPress={() => prevStep()}>
+    //     <Image style={styles.back} source={BackIcon} />
+    //   </TouchableOpacity>
+    //   <Text style={styles.title}>관심사 선택</Text>
+    // </View>
+    // <View style={styles.subheader}>
+    //   <Text style={styles.title}>회원님의 관심사는 어떤게 있나요?</Text>
+    // </View>
+    // <ScrollView style={styles.content}>
+    //   <InterestsList
+    //     interestedList={fetchedIterested}
+    //     onTouch={handleSelectedOne}
+    //   />
+    // </ScrollView>
+    // <View style={styles.bottom}>
+    //   <Button
+    //     style={styles.button}
+    //     onPress={() => {
+    //       handleSignUp();
+    //     }}
+    //     title="확인"
+    //   />
+    // </View>
+    // </SafeAreaView>
+    <View style={styles.container1}>
+      <View style={styles.case1}>
+        <View style={styles.header}>
+          <TouchableOpacity onPress={() => prevStep()}>
+            <Image style={styles.back} source={BackIcon} />
+          </TouchableOpacity>
+          <Text style={styles.title}>관심사 선택</Text>
+        </View>
+        <View style={styles.subheader}>
+          <Text style={styles.title}>회원님의 관심사는 어떤게 있나요?</Text>
+        </View>
+        <ScrollView style={styles.content}>
+          <InterestsList
+            interestedList={fetchedIterested}
+            onTouch={handleSelectedOne}
+          />
+        </ScrollView>
       </View>
-      <View style={styles.subheader}>
-        <Text style={styles.title}>회원님의 관심사는 어떤게 있나요?</Text>
-      </View>
-      <ScrollView style={styles.content}>
-        <InterestsList
-          interestedList={fetchedIterested}
-          onTouch={handleSelectedOne}
-        />
-      </ScrollView>
-      <View style={styles.bottom}>
+      <View style={styles.case2}>
         <Button
           style={styles.button}
           onPress={() => {
@@ -82,7 +110,7 @@ const Interests = ({setInterested, prevStep, onSignUp}: any) => {
           title="확인"
         />
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -91,12 +119,23 @@ const styles = StyleSheet.create({
     width: getWidth(720),
     height: getHeight(1280),
     paddingTop: getHeight(240),
+
     display: 'flex',
     flexDirection: 'column',
     flexWrap: 'nowrap',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.white,
+  },
+  container1: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  case1: {
+    flex: 6,
+  },
+  case2: {
+    flex: 1,
   },
   header: {
     flexBasis: getHeight(100),
@@ -124,7 +163,7 @@ const styles = StyleSheet.create({
     marginBottom: getWidth(60),
   },
   bottom: {
-    flexBasis: getHeight(90),
+    flexBasis: getHeight(110),
   },
   button: {
     alignSelf: 'center',
