@@ -33,8 +33,8 @@ const App = () => {
       }
     });
   }
-  //axios.defaults.baseURL = 'http://172.30.70.118:9090/';
   axios.defaults.baseURL = 'http://192.168.0.65:9090/';
+  //axios.defaults.baseURL = 'http://192.168.0.65:9090/';
 
   axios.interceptors.request.use(async function (config) {
     const token = await AsyncStorage.getItem('accessToken');

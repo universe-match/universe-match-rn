@@ -41,12 +41,23 @@ const Login = ({navigation}: any) => {
             },
           })
           .then(res => {
-            if (!res.data.verified) {
-              Alert.alert('학생증 인증 진행중입니다.');
+            console.log('res==', res);
+            if (res.data.apply === 'N') {
+              Alert.alert(
+                '학생증 인증 진행중입니다.1~2일내로 승인 하겠습니다.',
+              );
+            } else if (res.data.apply === 'R') {
+              Alert.alert(res.data.rejectContent);
             } else {
               AsyncStorage.setItem('accessToken', response.data.token);
               navigation.navigate('Main');
             }
+            // if (!res.data.verified) {
+            //   Alert.alert('학생증 인증 진행중입니다.');
+            // } else {
+            // AsyncStorage.setItem('accessToken', response.data.token);
+            // navigation.navigate('Main');
+            // }
           });
       })
       .catch(function (error) {

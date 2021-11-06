@@ -45,6 +45,24 @@ const CreateGroup = ({navigation}: any) => {
     setShowGroupDialog(flag);
   };
   const makeRoom = () => {
+    if (genderKind === '') {
+      return Alert.alert('비율을 선택해주세요.');
+    }
+    if (groupKind === '') {
+      return Alert.alert('그룹을 선택해주세요.');
+    }
+    if (fromDate === 'NaNNaNNaN') {
+      return Alert.alert('시작일자와 종료일자를 선택해주세요.');
+    }
+    if (place === '') {
+      return Alert.alert('장소를 입력해주세요.');
+    }
+    if (title === '') {
+      return Alert.alert('제목을 입력해주세요.');
+    }
+    if (content === '') {
+      return Alert.alert('내용을 입력해주세요.');
+    }
     const sendRequest = {
       title: title,
       content: content,
@@ -64,7 +82,6 @@ const CreateGroup = ({navigation}: any) => {
       })
       .catch(error => {
         if (error.response.data.status === 400) {
-          console.log(error.response.data.message);
           Alert.alert(error.response.data.message);
         }
       });
@@ -110,7 +127,7 @@ const CreateGroup = ({navigation}: any) => {
                   title={content}
                   setTitle={setContent}
                 />
-                <FriendInvitation onPress={handlePress} />
+                {/* <FriendInvitation onPress={handlePress} /> */}
                 <Button title="방 만들기" onPress={handleCreateGroup} />
               </View>
             </View>

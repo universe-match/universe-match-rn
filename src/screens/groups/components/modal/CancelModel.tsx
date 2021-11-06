@@ -37,7 +37,6 @@ const CancelModel = ({
   // const [profileImageList, setProfileImageList] = useState(user);
   const [internetCheck, setInternetCheck] = useState(0);
 
-  console.log('profileImages==', profileImages);
   const removePicture = (image: string) => {
     setProfileImages(profileImages.filter((item: any) => item !== image));
     //setUser(user.userImages.filter((item: any) => console.log(item)));
@@ -55,30 +54,27 @@ const CancelModel = ({
         if (response?.errorCode) {
           console.log('LaunchImageLibrary Error: ', response.errorMessage);
         } else {
-          // console.log(response.assets);
-          // setImageSource(imageSource.concat(response.assets[0]));
-          // if (imageSource.length > 3) {
-          //   return Alert.alert('5개 미만만 올릴수있습니다');
-          // }
-
-          const fd = new FormData();
-          fd.append('image', {
-            name: response.assets[0].fileName, // require, file name
-            uri: response.assets[0].uri, // require, file absoluete path
-            type: response.assets[0].type, // options, if none, will get mimetype from `filepath` extension
-          });
-          axios
-            .post('/user/image', fd)
-            .then(function (response: any) {
-              let userImageObj: any = {
-                userImage: response.data.imgUrl,
-              };
-
-              setProfileImages(profileImages.concat(response.data.imgUrl));
-            })
-            .catch(function (error) {
-              console.log(error);
+          if (response.assets !== undefined) {
+            const fd = new FormData();
+            fd.append('image', {
+              name: response.assets[0].fileName, // require, file name
+              uri: response.assets[0].uri, // require, file absoluete path
+              type: response.assets[0].type, // options, if none, will get mimetype from `filepath` extension
             });
+            axios
+              .post('/user/image', fd)
+              .then(function (response: any) {
+                let userImageObj: any = {
+                  userImage: response.data.imgUrl,
+                };
+
+                //setProfileImages(profileImages.concat(response.data.imgUrl));
+                setProfileImages([response.data.imgUrl]);
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+          }
         }
       },
     );
@@ -92,7 +88,7 @@ const CancelModel = ({
         transparent={true} // 배경 투명 하게
         visible={modalVisible}
         onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
+          setModalVisible(false);
         }}>
         <View
           style={{
@@ -132,27 +128,28 @@ const CancelModel = ({
                 display: 'flex',
                 flexDirection: 'row',
               }}>
-              {profileImages.map((image: any, index: number) => (
-                <View style={{marginTop: 10}} key={index}>
-                  <ImageBackground
-                    source={{
-                      uri: image,
-                    }}
-                    style={{height: 100, width: 100}}>
-                    <TouchableOpacity onPress={() => removePicture(image)}>
-                      <Image
-                        source={RemoveIcon}
-                        style={{
-                          height: 40,
-                          width: 40,
-                          marginTop: 5,
-                          marginLeft: 65,
-                        }}
-                      />
-                    </TouchableOpacity>
-                  </ImageBackground>
-                </View>
-              ))}
+              {profileImages.length > 0 &&
+                profileImages.map((image: any, index: number) => (
+                  <View style={{marginTop: 10}} key={index}>
+                    <ImageBackground
+                      source={{
+                        uri: image,
+                      }}
+                      style={{height: 100, width: 100}}>
+                      <TouchableOpacity onPress={() => removePicture(image)}>
+                        <Image
+                          source={RemoveIcon}
+                          style={{
+                            height: 40,
+                            width: 40,
+                            marginTop: 5,
+                            marginLeft: 65,
+                          }}
+                        />
+                      </TouchableOpacity>
+                    </ImageBackground>
+                  </View>
+                ))}
               {/* {user.userImages &&
                 user.userImages.map((image: any, index: number) => (
                   <View style={{marginTop: 10}} key={index}>

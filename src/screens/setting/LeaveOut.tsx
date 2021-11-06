@@ -31,7 +31,7 @@ const LeaveOut = ({navigation}: any) => {
         <View style={styles.content}>
           <Text style={styles.text}>
             {`
-            그동안 OOOO를 이용해주셔서 감사합니다. 
+            그동안 캠밋을 이용해주셔서 감사합니다. 
             개인정보는 모두 삭제 될 예정이며 삭제된 계정은 
             복구 할 수 없습니다.
             `}

@@ -20,6 +20,7 @@ import SettingIcon from '../assets/images/common/setting.png';
 import CancleModal from './groups/components/modal/CancelModel';
 import axios from 'axios';
 import Slider from '@react-native-community/slider';
+import {logoUrl} from '../common/commnCode';
 
 const Profile = () => {
   const [isActive, setActive] = useState<boolean>(false);
@@ -49,6 +50,7 @@ const Profile = () => {
         setUser(response.data);
         setNickName(response.data.nickname);
         setIntroduce(response.data.introduce);
+        console.log(response.data);
       })
       .catch(response => {
         console.log(response);
@@ -57,7 +59,6 @@ const Profile = () => {
 
   const onSubmit = () => {
     user.introduce = introduce;
-    console.log(user);
     const userRequest = {
       id: user.id,
       introduce: user.introduce,
@@ -73,7 +74,6 @@ const Profile = () => {
         console.log(response);
       });
   };
-
   return (
     <SafeAreaView>
       <CancleModal
@@ -89,16 +89,19 @@ const Profile = () => {
             <Image source={SettingIcon} style={styles.settingButtonImage} />
           </TouchableOpacity>
           <View style={styles.profileImageSection}>
-            <View style={styles.profileImageWrapper}>
-              <TouchableOpacity onPress={() => setModalVisible(true)}>
+            <TouchableOpacity onPress={() => setModalVisible(true)}>
+              <View style={styles.profileImageWrapper}>
                 <Image
                   source={{
-                    uri: profileImages[0] === '' ? '' : profileImages[0],
+                    uri:
+                      profileImages[0] === undefined
+                        ? logoUrl
+                        : profileImages[0],
                   }}
                   style={styles.profileImage}
                 />
-              </TouchableOpacity>
-            </View>
+              </View>
+            </TouchableOpacity>
             <TouchableOpacity style={styles.editButton}>
               <Image source={CameraIcon} style={styles.editButtonImage} />
             </TouchableOpacity>
@@ -112,11 +115,11 @@ const Profile = () => {
           <View style={styles.pinkMeeting}>
             <TouchableOpacity style={styles.meetingButton}>
               <Text style={styles.meetingText}>찜한미팅</Text>
-              <Text style={styles.meetingCount}>14</Text>
+              <Text style={styles.meetingCount}>0</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.meetingButton}>
               <Text style={styles.meetingText}>최근참여미팅</Text>
-              <Text style={styles.meetingCount}>16</Text>
+              <Text style={styles.meetingCount}>0</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.mbti}>

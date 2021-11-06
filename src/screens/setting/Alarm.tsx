@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   View,
@@ -10,10 +10,26 @@ import {
 } from 'react-native';
 import {colors, fonts, getHeight, getWidth} from '../../constants/Index';
 import BackIcon from '../../assets/images/common/back.png';
+import axios from 'axios';
 
 const Alarm = ({navigation}: any) => {
   const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  const toggleSwitch = (val: any) => {
+    console.log('val', val);
+    setIsEnabled(previousState => !previousState);
+    const sendData = {
+      noti: val,
+    };
+    axios
+      .patch('/api/user/update/noti', sendData)
+      .then(res => console.log(res));
+  };
+  useEffect(() => {
+    axios.get('/api/user/myinfo').then(res => {
+      console.log(res.data.notiYn);
+      setIsEnabled(res.data.notiYn);
+    });
+  }, []);
   return (
     <SafeAreaView>
       <View style={styles.container}>
@@ -40,7 +56,7 @@ const Alarm = ({navigation}: any) => {
             trackColor={{false: colors.gray4, true: colors.green}}
             thumbColor={isEnabled ? colors.white : colors.white}
             ios_backgroundColor={colors.gray4}
-            onValueChange={toggleSwitch}
+            onValueChange={(val): any => toggleSwitch(val)}
             value={isEnabled}
           />
         </View>

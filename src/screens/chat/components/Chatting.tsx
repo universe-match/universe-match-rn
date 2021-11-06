@@ -21,13 +21,13 @@ const Chatting = ({route, navigation}: any) => {
   const scrollViewRef = useRef<ElementType>();
   const {itemId} = route.params;
   const [user, setUser] = useState<any>([]);
-  const [userId,setUserId] = useState<string>("");
+  const [userId, setUserId] = useState<string>('');
   // const [input, setInput] = useState({text: '', height: 40});
   const [messages, setMessages] = useState<any>('');
   const [isShowDialog, setShowDialog] = useState(false);
   const [isShowKickOutDialog, setShowKickOutDialog] = useState(false);
   const [otherUserId, setOtherUserId] = useState<string>('');
-  const ws = new WebSocket(`ws://96b5-106-244-75-190.ngrok.io/ws/chat/${itemId}`);
+  const ws = new WebSocket(`ws://192.168.0.65:9090/ws/chat/${itemId}`);
   var connected = false;
   var stompClient: any = '';
   // 메시지 전송 버튼 클릭 시 컴포넌트 리렌더링
@@ -81,7 +81,7 @@ const Chatting = ({route, navigation}: any) => {
     try {
       await axios.get('/api/user/myinfo').then((response: any) => {
         setUser(response.data);
-        setUserId(response.data.id)
+        setUserId(response.data.id);
       });
     } catch (error) {}
   };
@@ -101,21 +101,20 @@ const Chatting = ({route, navigation}: any) => {
     getPrevData();
     stompConnect();
   }, [userId]);
-  var socket = new SockJS('http://96b5-106-244-75-190.ngrok.io/stomp');
+  var socket = new SockJS('http://192.168.0.65:9090/stomp');
 
   function stompConnect() {
     stompClient = Stomp.over(socket);
     // SockJS와 stomp client를 통해 연결을 시도.
     stompClient.connect({}, function (frame) {
-        stompClient.subscribe(`/topic/ban/${userId}`, function (msg: any) {
-          console.log('msg',msg)
-          if (msg.body === 'ban') {
-            Alert.alert('강퇴당하였습니다.');
-            navigation.navigate('Main');
-          }
-        });
-      
-      
+      stompClient.subscribe(`/topic/ban/${userId}`, function (msg: any) {
+        console.log('msg', msg);
+        if (msg.body === 'ban') {
+          Alert.alert('강퇴당하였습니다.');
+          navigation.navigate('Main');
+        }
+      });
+
       stompClient.subscribe(
         `/topic/chatroom/enter/${itemId}`,
         function (msg: any) {
@@ -132,7 +131,6 @@ const Chatting = ({route, navigation}: any) => {
       );
     });
   }
-
 
   const content = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   return (
