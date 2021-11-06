@@ -18,7 +18,7 @@ const Groups = ({groupList, getMatchRommList}: any) => {
   );
 
   return (
-    <View style={{marginBottom: 130}}>
+    <View style={{marginBottom: 120}}>
       <FlatList
         data={groupList}
         renderItem={renderGroup}

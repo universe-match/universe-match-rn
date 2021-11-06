@@ -37,17 +37,10 @@ const Header = ({navigation}: any) => {
 const styles = StyleSheet.create({
   Area: {
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
   },
-  leftArea: {
-    flex: 1,
-    left: -20,
-  },
-  rightArea: {
-    position: 'absolute',
-    flex: 1,
-    right: 70,
-  },
+  leftArea: {},
+  rightArea: {},
   logo: {
     width: getWidth(50),
     height: getHeight(50),
@@ -55,16 +48,19 @@ const styles = StyleSheet.create({
   },
   background: {
     backgroundColor: colors.white,
+    paddingTop: 15,
+    paddingBottom: 10,
   },
   search: {
     width: getWidth(42),
     height: getHeight(43),
+    marginRight: 10,
     top: 10,
   },
   noti: {
     width: getWidth(42),
     height: getHeight(43),
-    left: 20,
+    marginRight: 40,
     top: 8,
   },
 });
